@@ -141,7 +141,7 @@ public class JDialogCadastroCliente extends javax.swing.JDialog {
         jPanel2.add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, -1, -1));
 
         jLabel1.setText("Tipo:");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, -1, -1));
 
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("Jurídico");
