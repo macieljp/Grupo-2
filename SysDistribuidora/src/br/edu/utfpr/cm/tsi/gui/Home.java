@@ -55,6 +55,12 @@ public class Home extends javax.swing.JFrame {
         lbDuffBeer = new javax.swing.JLabel();
         lbStatus = new javax.swing.JLabel();
         jMenuBar = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         mnCliente = new javax.swing.JMenuItem();
         jSeparator5 = new javax.swing.JPopupMenu.Separator();
@@ -67,12 +73,6 @@ public class Home extends javax.swing.JFrame {
         mnMunicipo = new javax.swing.JMenuItem();
         jSeparator9 = new javax.swing.JPopupMenu.Separator();
         mnEstado = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(860, 640));
@@ -225,6 +225,25 @@ public class Home extends javax.swing.JFrame {
         jMenuBar.setMinimumSize(new java.awt.Dimension(860, 30));
         jMenuBar.setPreferredSize(new java.awt.Dimension(860, 30));
 
+        jMenu2.setText("Pesquisar");
+
+        jMenuItem6.setText("jMenuItem6");
+        jMenu2.add(jMenuItem6);
+
+        jMenuItem7.setText("jMenuItem7");
+        jMenu2.add(jMenuItem7);
+
+        jMenuItem8.setText("jMenuItem8");
+        jMenu2.add(jMenuItem8);
+
+        jMenuItem9.setText("jMenuItem9");
+        jMenu2.add(jMenuItem9);
+
+        jMenuItem10.setText("jMenuItem10");
+        jMenu2.add(jMenuItem10);
+
+        jMenuBar.add(jMenu2);
+
         jMenu1.setText("Cadastro");
 
         mnCliente.setText("Cliente");
@@ -256,25 +275,6 @@ public class Home extends javax.swing.JFrame {
         jMenu1.add(mnEstado);
 
         jMenuBar.add(jMenu1);
-
-        jMenu2.setText("Pesquisar");
-
-        jMenuItem6.setText("jMenuItem6");
-        jMenu2.add(jMenuItem6);
-
-        jMenuItem7.setText("jMenuItem7");
-        jMenu2.add(jMenuItem7);
-
-        jMenuItem8.setText("jMenuItem8");
-        jMenu2.add(jMenuItem8);
-
-        jMenuItem9.setText("jMenuItem9");
-        jMenu2.add(jMenuItem9);
-
-        jMenuItem10.setText("jMenuItem10");
-        jMenu2.add(jMenuItem10);
-
-        jMenuBar.add(jMenu2);
 
         setJMenuBar(jMenuBar);
 
