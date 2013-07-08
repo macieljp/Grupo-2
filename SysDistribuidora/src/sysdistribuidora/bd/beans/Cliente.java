@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package sysdistribuidora.bd.beans;
 
 import java.util.Calendar;
@@ -61,12 +57,13 @@ public class Cliente {
     
  @Override
  
-  public String toString();
+  public String toString(){
  
     return "Pessoa {" + "id: " + id + 
                     "nome: " + nome+
                     "cpf:  " + cpf+
-                    "endereco: "+enderco+
-                    "Data de Nascimento: "+dNascimento+ }"
+                    "endereco: "+endereco+
+                    "Data de Nascimento: " +dNascimento+ "}";
+ }
  
 }

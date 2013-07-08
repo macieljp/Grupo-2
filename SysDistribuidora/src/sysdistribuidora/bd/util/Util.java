@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.utfpr.cm.tsi.util;
+package sysdistribuidora.bd.util;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -23,6 +23,10 @@ public class Util {
 
         dialog.setLocationRelativeTo(null);
         dialog.setVisible(true);
+    }
+
+    public static void imprimirConfirmacao(String deseja_Fechar) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

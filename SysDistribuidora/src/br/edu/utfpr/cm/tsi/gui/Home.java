@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package sysdistribuidora.bd.telas.gui;
+package br.edu.utfpr.cm.tsi.gui;
 
-import br.edu.utfpr.cm.tsi.util.Util;
+import sysdistribuidora.bd.util.Util;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 

@@ -2,11 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package sysdistribuidora.bd.telas;
+package br.edu.utfpr.cm.tsi.main;
 
-
+import br.edu.utfpr.cm.tsi.gui.Home;
 import javax.swing.JFrame;
-import sysdistribuidora.bd.telas.gui.Home;
 
 /**
  *
