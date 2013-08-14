@@ -41,16 +41,6 @@ public class Home extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JToolBar.Separator();
         jButton4 = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JToolBar.Separator();
-        jButton5 = new javax.swing.JButton();
-        jSeparator10 = new javax.swing.JToolBar.Separator();
-        jButton6 = new javax.swing.JButton();
-        jSeparator11 = new javax.swing.JToolBar.Separator();
-        jButton7 = new javax.swing.JButton();
-        jSeparator12 = new javax.swing.JToolBar.Separator();
-        jButton8 = new javax.swing.JButton();
-        jSeparator13 = new javax.swing.JToolBar.Separator();
-        jButton9 = new javax.swing.JButton();
-        jSeparator15 = new javax.swing.JToolBar.Separator();
         jButton10 = new javax.swing.JButton();
         lbDuffBeer = new javax.swing.JLabel();
         lbStatus = new javax.swing.JLabel();
@@ -86,7 +76,7 @@ public class Home extends javax.swing.JFrame {
         pnMenu.setPreferredSize(new java.awt.Dimension(50, 860));
         pnMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jToolBarMenu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jToolBarMenu.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jToolBarMenu.setRollover(true);
         jToolBarMenu.setMaximumSize(new java.awt.Dimension(860, 50));
         jToolBarMenu.setMinimumSize(new java.awt.Dimension(860, 50));
@@ -151,42 +141,6 @@ public class Home extends javax.swing.JFrame {
         jToolBarMenu.add(jButton4);
         jToolBarMenu.add(jSeparator4);
 
-        jButton5.setText("jButton5");
-        jButton5.setFocusable(false);
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBarMenu.add(jButton5);
-        jToolBarMenu.add(jSeparator10);
-
-        jButton6.setText("jButton6");
-        jButton6.setFocusable(false);
-        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBarMenu.add(jButton6);
-        jToolBarMenu.add(jSeparator11);
-
-        jButton7.setText("jButton7");
-        jButton7.setFocusable(false);
-        jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBarMenu.add(jButton7);
-        jToolBarMenu.add(jSeparator12);
-
-        jButton8.setText("jButton8");
-        jButton8.setFocusable(false);
-        jButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBarMenu.add(jButton8);
-        jToolBarMenu.add(jSeparator13);
-
-        jButton9.setText("jButton9");
-        jButton9.setFocusable(false);
-        jButton9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton9.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBarMenu.add(jButton9);
-        jToolBarMenu.add(jSeparator15);
-
-        jButton10.setText("jButton10");
         jButton10.setFocusable(false);
         jButton10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton10.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -220,7 +174,7 @@ public class Home extends javax.swing.JFrame {
         });
         getContentPane().add(lbStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 558, 260, 18));
 
-        jMenuBar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jMenuBar.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jMenuBar.setMaximumSize(new java.awt.Dimension(860, 30));
         jMenuBar.setMinimumSize(new java.awt.Dimension(860, 30));
         jMenuBar.setPreferredSize(new java.awt.Dimension(860, 30));
@@ -348,11 +302,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar;
@@ -362,12 +311,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JToolBar.Separator jSeparator1;
-    private javax.swing.JToolBar.Separator jSeparator10;
-    private javax.swing.JToolBar.Separator jSeparator11;
-    private javax.swing.JToolBar.Separator jSeparator12;
-    private javax.swing.JToolBar.Separator jSeparator13;
     private javax.swing.JSeparator jSeparator14;
-    private javax.swing.JToolBar.Separator jSeparator15;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator4;
