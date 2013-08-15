@@ -135,8 +135,10 @@ public class DaoTelefone implements Dao<Telefone>{
    
    }
 
+   
+
     @Override
-    public Telefone retrive(Integer id) throws Exception {
+    public Telefone retrive(int id) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
         
