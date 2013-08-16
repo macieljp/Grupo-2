@@ -4,7 +4,7 @@
  */
 package br.edu.utfpr.cm.tsi.gui;
 
-import sysdistribuidora.bd.util.Util;
+import br.edu.utfpr.cm.pi.util.Util;
 
 /**
  *

@@ -2,8 +2,8 @@ package br.edu.utfpr.cm.tsi.gui;
 
 import br.edu.utfpr.cm.pi.bean.Cliente;
 import br.edu.utfpr.cm.pi.bean.Endereco;
-import br.edu.utfpr.cm.pi.dao.DaoCliente;
-import br.edu.utfpr.cm.tsi.util.Util;
+import br.edu.utfpr.cm.pi.daos.DaoCliente;
+import br.edu.utfpr.cm.pi.util.Util;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;

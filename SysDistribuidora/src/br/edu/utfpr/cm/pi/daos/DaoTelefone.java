@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package sysdistribuidora.bd.daos;
+package br.edu.utfpr.cm.pi.daos;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,8 +10,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import sysdistribuidora.bd.beans.Cliente;
-import sysdistribuidora.bd.beans.Telefone;
+import br.edu.utfpr.cm.pi.bean.Cliente;
+import br.edu.utfpr.cm.pi.bean.Telefone;
 
 
   

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package sysdistribuidora.bd.util;
+package br.edu.utfpr.cm.pi.util;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;

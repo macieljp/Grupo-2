@@ -1,4 +1,4 @@
-package sysdistribuidora.bd.beans;
+package br.edu.utfpr.cm.pi.bean;
 
 import java.util.Calendar;
 import java.util.Date;
