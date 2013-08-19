@@ -25,8 +25,8 @@ public class Util {
         dialog.setVisible(true);
     }
 
-    public static void imprimirConfirmacao(String deseja_Fechar) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static boolean imprimirConfirmacao(String deseja_Fechar) {
+        return true;
     }
     
 }
