@@ -18,7 +18,7 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
     /**
      * Creates new form JDialogFormularioCliente
      */
-    public JDialogFormularioCliente (java.awt.Frame parent, boolean modal) {
+    public JDialogFormularioCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -59,7 +59,7 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
         ftfTelefone = new javax.swing.JFormattedTextField();
         btDeletar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableCliente = new javax.swing.JTable();
 
         setTitle("Cadastro de Clientes");
         setMinimumSize(new java.awt.Dimension(800, 600));
@@ -182,7 +182,7 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
         });
         getContentPane().add(btDeletar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 540, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -193,7 +193,7 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableCliente);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 700, 230));
 
@@ -230,12 +230,12 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         if (Util.imprimirConfirmacao("Deseja Salvar?")) {
 
-            switch (tipoCadastro) {
-                case "novo":
+            switch (tipoCadastro.charAt(0)) {
+                case 'n':
                     cadastrarCliente();
                     listarClientes();
                     break;
-                case "alteracao":
+                case 'a':
                     alterarCliente();
                     listarClientes();
                     break;
@@ -250,11 +250,11 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_tfNomeActionPerformed
 
     private void btDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeletarActionPerformed
-        if (tbCliente.getSelectedRow() == -1) {// se tabela selecionada
+        if (jTableCliente.getSelectedRow() == -1) {// se tabela selecionada
             Util.imprimirConfirmacao("Selecione Um Cliente");
 
         } else {
-            tbClientesLinhaSelecionada(tbCliente);  //carrega dados da tabela p/ tf
+            tbClientesLinhaSelecionada(jTableCliente);  //carrega dados da tabela p/ tf
             if (Util.imprimirConfirmacao("Deseja Deletar Cliente")) {
                 deletaCliente();
                 novoCliente();
@@ -285,7 +285,7 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
     private javax.swing.JLabel jLabelEndereco;
     private javax.swing.JLabel jLabelNome;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableCliente;
     protected javax.swing.JTextField tfBairro;
     protected javax.swing.JTextField tfCep;
     protected javax.swing.JTextField tfCidade;
@@ -297,7 +297,7 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
 
     protected void listarClientes() {
         DaoCliente cli = new DaoCliente();
-       // fornecedores = cli.listCliente("%" + tfPesquisar.getText().trim()+"%");
+        // fornecedores = cli.listCliente("%" + tfPesquisar.getText().trim()+"%");
         mostrarClientes(fornecedores);
     }
 
@@ -311,7 +311,7 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
             String[] campos = new String[]{null, null, null, null, null, null, null, null};
             for (int i = 0; i < clientes.size(); i++) {
                 tmClientes.addRow(campos);
-                tmClientes.setValueAt(clientes.get(i).getCodigo(), i, 0);
+                tmClientes.setValueAt(clientes.get(i).getId(), i, 0);
                 tmClientes.setValueAt(clientes.get(i).getNome(), i, 1);
                 tmClientes.setValueAt(clientes.get(i).getEndereco(), i, 2);
                 tmClientes.setValueAt(clientes.get(i).getCidade(), i, 3);
@@ -453,10 +453,10 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
     }
 
     private Endereco PegarDadosEndereco() {
-      Endereco end = new Endereco();
-      
-      end.setLogradouro(tfEndereco.getText());
-      end.setBairro(tfBairro.getText());
-      
+        Endereco end = new Endereco();
+
+        end.setLogradouro(tfEndereco.getText());
+        end.setBairro(tfBairro.getText());
+
     }
 }

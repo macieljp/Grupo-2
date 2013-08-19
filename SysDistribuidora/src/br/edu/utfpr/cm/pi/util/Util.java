@@ -6,6 +6,8 @@ package br.edu.utfpr.cm.pi.util;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.RootPaneContainer;
 
 /**
  *
@@ -26,7 +28,12 @@ public class Util {
     }
 
     public static boolean imprimirConfirmacao(String deseja_Fechar) {
+        
         return true;
+    }
+
+    public static void dispayMsg(String nenhum_Cliente_Encontrado) {
+        JOptionPane.showMessageDialog(null, nenhum_Cliente_Encontrado);
     }
     
 }
