@@ -91,7 +91,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JTextField" name="tfEndereco">
+    <Component class="javax.swing.JTextField" name="tfLogradouro">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>

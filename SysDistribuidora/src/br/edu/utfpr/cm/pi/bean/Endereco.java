@@ -15,7 +15,10 @@ public class Endereco {
      private int numero;
      private String bairro;
      private String complemento;
-
+     private String cidade;
+     private String Uf;
+     private String cep;
+     private String telefone;
 
    
     public int getId() {
@@ -59,6 +62,39 @@ public class Endereco {
         this.complemento = complemento;
     }
 
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getUf() {
+        return Uf;
+    }
+
+    public void setUf(String Uf) {
+        this.Uf = Uf;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+    
+    
     
     @Override
     public String toString() {

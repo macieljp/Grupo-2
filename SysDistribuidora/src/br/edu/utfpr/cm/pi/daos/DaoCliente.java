@@ -22,7 +22,7 @@ public class DaoCliente implements Dao<Cliente> {
         c.setId(rs.getInt("id: "));
         c.setNome(rs.getString("Nome: "));
         c.setCpf(rs.getString("Cpf: "));
-        c.setEndereco(rs.getString("Endereço: "));
+        //c.setEndereco(rs.getString("Endereço: "));
         c.setdNascimento(rs.getDate("Data de Nascimento: "));
         
         return c;
@@ -83,6 +83,10 @@ public class DaoCliente implements Dao<Cliente> {
 
     @Override
     public Cliente retrive(int id) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void cadastrarCliente(Cliente cliente) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

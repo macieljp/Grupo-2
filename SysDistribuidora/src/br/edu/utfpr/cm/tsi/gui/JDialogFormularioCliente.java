@@ -41,7 +41,7 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
         jLabelNome = new javax.swing.JLabel();
         tfNome = new javax.swing.JTextField();
         jLabelEndereco = new javax.swing.JLabel();
-        tfEndereco = new javax.swing.JTextField();
+        tfLogradouro = new javax.swing.JTextField();
         jLabelBairro = new javax.swing.JLabel();
         tfBairro = new javax.swing.JTextField();
         jLabelCidade = new javax.swing.JLabel();
@@ -95,8 +95,8 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
         jLabelEndereco.setText("Endereço:");
         getContentPane().add(jLabelEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 350, -1, -1));
 
-        tfEndereco.setEditable(false);
-        getContentPane().add(tfEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 370, 426, -1));
+        tfLogradouro.setEditable(false);
+        getContentPane().add(tfLogradouro, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 370, 426, -1));
 
         jLabelBairro.setText("Bairro:");
         getContentPane().add(jLabelBairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(487, 350, -1, -1));
@@ -289,7 +289,7 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
     protected javax.swing.JTextField tfBairro;
     protected javax.swing.JTextField tfCep;
     protected javax.swing.JTextField tfCidade;
-    protected javax.swing.JTextField tfEndereco;
+    protected javax.swing.JTextField tfLogradouro;
     protected javax.swing.JTextField tfNome;
     public javax.swing.JTextField tfPesquisar;
     protected javax.swing.JTextField tfUF;
@@ -314,11 +314,11 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
                 tmClientes.setValueAt(clientes.get(i).getId(), i, 0);
                 tmClientes.setValueAt(clientes.get(i).getNome(), i, 1);
                 tmClientes.setValueAt(clientes.get(i).getEndereco(), i, 2);
-                tmClientes.setValueAt(clientes.get(i).getCidade(), i, 3);
-                tmClientes.setValueAt(clientes.get(i).getBairro(), i, 4);
-                tmClientes.setValueAt(clientes.get(i).getUf(), i, 5);
-                tmClientes.setValueAt(clientes.get(i).getCep(), i, 6);
-                tmClientes.setValueAt(clientes.get(i).getTelefone(), i, 7);
+                tmClientes.setValueAt(clientes.get(i).getEndereco().getCidade(), i, 3);
+                tmClientes.setValueAt(clientes.get(i).getEndereco().getBairro(), i, 4);
+                tmClientes.setValueAt(clientes.get(i).getEndereco().getUf(), i, 5);
+                tmClientes.setValueAt(clientes.get(i).getEndereco().getCep(), i, 6);
+                tmClientes.setValueAt(clientes.get(i).getEndereco().getTelefone(), i, 7);
             }
         }
     }
@@ -326,15 +326,15 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
     protected void tbClientesLinhaSelecionada(JTable tb) {
         if (tb.getSelectedRow() != -1) {
             tfNome.setText(fornecedores.get(tb.getSelectedRow()).getNome());
-            tfEndereco.setText(fornecedores.get(tb.getSelectedRow()).getEndereco());
-            tfCidade.setText(fornecedores.get(tb.getSelectedRow()).getCidade());
-            tfBairro.setText(fornecedores.get(tb.getSelectedRow()).getBairro());
-            tfUF.setText(fornecedores.get(tb.getSelectedRow()).getUf());
-            tfCep.setText(fornecedores.get(tb.getSelectedRow()).getCep());
-            ftfTelefone.setText(fornecedores.get(tb.getSelectedRow()).getTelefone());
+            tfLogradouro.setText(fornecedores.get(tb.getSelectedRow()).getEndereco().getLogradouro());
+            tfCidade.setText(fornecedores.get(tb.getSelectedRow()).getEndereco().getCidade());
+            tfBairro.setText(fornecedores.get(tb.getSelectedRow()).getEndereco().getBairro());
+            tfUF.setText(fornecedores.get(tb.getSelectedRow()).getEndereco().getUf());
+            tfCep.setText(fornecedores.get(tb.getSelectedRow()).getEndereco().getCep());
+            ftfTelefone.setText(fornecedores.get(tb.getSelectedRow()).getEndereco().getTelefone());
         } else {
             tfNome.setText("");
-            tfEndereco.setText("");
+            tfLogradouro.setText("");
             tfCidade.setText("");
             tfBairro.setText("");
             tfUF.setText("");
@@ -346,7 +346,7 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
     protected void novoCliente() {
         habilitarCampos();
         tfNome.setText("");
-        tfEndereco.setText("");
+        tfLogradouro.setText("");
         tfCidade.setText("");
         tfBairro.setText("");
         tfUF.setText("");
@@ -359,12 +359,14 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
             Cliente cliente = new Cliente();
             cliente.setNome(tfNome.getText().trim());
             Endereco end = PegarDadosEndereco();
-            cliente.setEndereco(tfEndereco.getText().trim());
-            cliente.setBairro(tfBairro.getText().trim());
-            cliente.setCidade(tfCidade.getText().trim());
-            cliente.setUf(tfUF.getText().trim());
-            cliente.setCep(tfCep.getText().trim());
-            cliente.setTelefone(ftfTelefone.getText().trim());
+            end.setLogradouro(tfLogradouro.getText().trim());
+            end.setBairro(tfBairro.getText().trim());
+            end.setCidade(tfCidade.getText().trim());
+            end.setUf(tfUF.getText().trim());
+            end.setCep(tfCep.getText().trim());
+            end.setTelefone(ftfTelefone.getText().trim());
+            
+            cliente.setEndereco(end);
             DaoCliente c = new DaoCliente();
             c.cadastrarCliente(cliente);
             desabilitarCampos();
@@ -376,7 +378,7 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
             Cliente cliente = new Cliente();
             cliente.setCodigo(fornecedores.get(tbCliente.getSelectedRow()).getCodigo());
             cliente.setNome(tfNome.getText().trim());
-            cliente.setEndereco(tfEndereco.getText().trim());
+            cliente.setEndereco(tfLogradouro.getText().trim());
             cliente.setBairro(tfBairro.getText().trim());
             cliente.setCidade(tfCidade.getText().trim());
             cliente.setUf(tfUF.getText().trim());
@@ -393,7 +395,7 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
 
     protected void habilitarCampos() {
         tfNome.setEditable(true);
-        tfEndereco.setEditable(true);
+        tfLogradouro.setEditable(true);
         tfBairro.setEditable(true);
         tfCidade.setEditable(true);
         tfCep.setEditable(true);
@@ -404,7 +406,7 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
 
     protected void desabilitarCampos() {
         tfNome.setEditable(false);
-        tfEndereco.setEditable(false);
+        tfLogradouro.setEditable(false);
         tfBairro.setEditable(false);
         tfCidade.setEditable(false);
         tfCep.setEditable(false);
@@ -442,7 +444,7 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
         Cliente cliente = new Cliente();
         cliente.setCodigo(fornecedores.get(tbCliente.getSelectedRow()).getCodigo());
         cliente.setNome(tfNome.getText().trim());
-        cliente.setEndereco(tfEndereco.getText().trim());
+        cliente.setEndereco(tfLogradouro.getText().trim());
         cliente.setBairro(tfBairro.getText().trim());
         cliente.setCidade(tfCidade.getText().trim());
         cliente.setUf(tfUF.getText().trim());
@@ -455,7 +457,7 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
     private Endereco PegarDadosEndereco() {
         Endereco end = new Endereco();
 
-        end.setLogradouro(tfEndereco.getText());
+        end.setLogradouro(tfLogradouro.getText());
         end.setBairro(tfBairro.getText());
 
     }
