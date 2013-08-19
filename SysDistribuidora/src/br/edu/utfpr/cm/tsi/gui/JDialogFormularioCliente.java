@@ -4,7 +4,10 @@ import br.edu.utfpr.cm.pi.bean.Cliente;
 import br.edu.utfpr.cm.pi.bean.Endereco;
 import br.edu.utfpr.cm.pi.daos.DaoCliente;
 import br.edu.utfpr.cm.pi.util.Util;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -256,7 +259,13 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
         } else {
             tbClientesLinhaSelecionada(jTableCliente);  //carrega dados da tabela p/ tf
             if (Util.imprimirConfirmacao("Deseja Deletar Cliente")) {
-                deletaCliente();
+                try {
+                    deletaCliente();
+                } catch (SQLException ex) {
+                    Logger.getLogger(JDialogFormularioCliente.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception ex) {
+                    Logger.getLogger(JDialogFormularioCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 novoCliente();
                 listarClientes();
             }
@@ -376,14 +385,15 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
     protected void alterarCliente() {
         if (verificarCampos() && verificarUF()) {
             Cliente cliente = new Cliente();
-            cliente.setCodigo(fornecedores.get(tbCliente.getSelectedRow()).getCodigo());
+            cliente.setId(fornecedores.get(jTableCliente.getSelectedRow()).getId());
             cliente.setNome(tfNome.getText().trim());
-            cliente.setEndereco(tfLogradouro.getText().trim());
-            cliente.setBairro(tfBairro.getText().trim());
-            cliente.setCidade(tfCidade.getText().trim());
-            cliente.setUf(tfUF.getText().trim());
-            cliente.setCep(tfCep.getText().trim());
-            cliente.setTelefone(ftfTelefone.getText().trim());
+            Endereco end = cliente.getEndereco();
+            end.setLogradouro(tfLogradouro.getText().trim());
+            end.setBairro(tfBairro.getText().trim());
+            end.setCidade(tfCidade.getText().trim());
+            end.setUf(tfUF.getText().trim());
+            end.setCep(tfCep.getText().trim());
+            end.setTelefone(ftfTelefone.getText().trim());
             DaoCliente c = new DaoCliente();
             c.alterarCliente(cliente);
             desabilitarCampos();
@@ -416,8 +426,8 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
     }
 
     private void alteraCliente() {
-        if (tbCliente.getSelectedRow() != -1) {
-            tbClientesLinhaSelecionada(tbCliente);
+        if (jTableCliente.getSelectedRow() != -1) {
+            tbClientesLinhaSelecionada(jTableCliente);
             habilitarCampos();
         } else {
             Util.dispayMsg("Selecione um Cliente");
@@ -439,19 +449,13 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
         return false;
     }
 
-    protected void deletaCliente() {
+    protected void deletaCliente() throws SQLException, Exception {
         habilitarCampos();
         Cliente cliente = new Cliente();
-        cliente.setCodigo(fornecedores.get(tbCliente.getSelectedRow()).getCodigo());
-        cliente.setNome(tfNome.getText().trim());
-        cliente.setEndereco(tfLogradouro.getText().trim());
-        cliente.setBairro(tfBairro.getText().trim());
-        cliente.setCidade(tfCidade.getText().trim());
-        cliente.setUf(tfUF.getText().trim());
-        cliente.setCep(tfCep.getText().trim());
-        cliente.setTelefone(ftfTelefone.getText().trim());
+        cliente.setId(fornecedores.get(jTableCliente.getSelectedRow()).getId());
+       
         DaoCliente c = new DaoCliente();
-        c.deletarCliente(cliente);
+        c.delete(cliente);
     }
 
     private Endereco PegarDadosEndereco() {
@@ -459,6 +463,8 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
 
         end.setLogradouro(tfLogradouro.getText());
         end.setBairro(tfBairro.getText());
+        
+        return end;
 
     }
 }
