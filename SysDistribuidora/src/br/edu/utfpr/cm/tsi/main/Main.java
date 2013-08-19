@@ -14,7 +14,8 @@ import javax.swing.JFrame;
 public class Main {
 
     public static void main(String[] args) {
-        Home home = new Home();
+        JFrame home = new Home();
+        
         home.setVisible(true);
         home.setLocationRelativeTo(null);
         home.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
