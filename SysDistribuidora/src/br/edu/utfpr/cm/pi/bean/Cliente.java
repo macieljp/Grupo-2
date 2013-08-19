@@ -12,7 +12,7 @@ public class Cliente {
     private int id;
     private String nome;
     private String cpf;
-    private String endereco;
+    private Endereco endereco;
     private Date dNascimento = Calendar.getInstance().getTime();
 
     public int getId() {
@@ -27,10 +27,7 @@ public class Cliente {
         return cpf;
     }
 
-    public String getEndereco() {
-        return endereco;
-    }
-
+    
     public Date getdNascimento() {
         return dNascimento;
     }
@@ -47,9 +44,15 @@ public class Cliente {
         this.cpf = cpf;
     }
 
-    public void setEndereco(String endereco) {
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
+
+    
 
     public void setdNascimento(Date dNascimento) {
         this.dNascimento = dNascimento;
