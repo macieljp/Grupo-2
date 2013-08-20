@@ -4,6 +4,7 @@
  */
 package br.edu.utfpr.cm.pi.daos;
 
+
 import java.util.List;
 import javax.persistence.Query;
 import javax.transaction.TransactionManager;
