@@ -167,15 +167,15 @@ public class DaoCliente implements Dao<Cliente> {
         }
         
         /* Converte o ResultSet da query para uma lista de objetos */
-        while(rs.next()){
-            Cliente c  = converteRsParaCliente(rs);
-            cliente.add(c);
-           
-        }
-        
-        return clientes;
-    }
-    
+//        while(rs.next()){
+//            Cliente c  = converteRsParaCliente(rs);
+//            c.add(c);
+//           
+//        }
+//        
+//        return clientes;
+//    }
+//    
     public static void main(String[] args) throws SQLException, Exception {
         Connection con = br.edu.utfpr.cm.pi.api.ConnectionFactory.prepareConnectionTransactrion();
            Cliente c = new DaoCliente().list().get(0);
@@ -200,8 +200,6 @@ public class DaoCliente implements Dao<Cliente> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void cadastrarCliente(Cliente cliente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 }
 
