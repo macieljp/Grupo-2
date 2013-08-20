@@ -4,6 +4,9 @@
  */
 package br.edu.utfpr.cm.pi.daos;
 
+import br.edu.utfpr.cm.pi.api.Filter;
+import br.edu.utfpr.cm.pi.api.Operator;
+import br.edu.utfpr.cm.pi.entidades.Endereco;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,7 +20,7 @@ import java.util.List;
  * @author TAYLY
  */
 
-    public class DaoEndereco implements Dao<Endereco>{
+    public class DaoEndereco implements br.edu.utfpr.cm.pi.api.Dao<Endereco>{
 
     private static Endereco converteRsParaEndereco(ResultSet rs) throws SQLException {
         Endereco e = new Endereco();
@@ -37,7 +40,7 @@ import java.util.List;
     }
     
     private void insert(Endereco e) throws SQLException{
-        PreparedStatement pst =  ConnectionFactory.prepareConnection().prepareStatement("INSERT INTO Endereco (logradouro, numero, complemento) VALUES(?,?,?)", Statement.RETURN_GENERATED_KEYS);
+        PreparedStatement pst =  br.edu.utfpr.cm.pi.api.ConnectionFactory.prepareConnection().prepareStatement("INSERT INTO Endereco (logradouro, numero, complemento) VALUES(?,?,?)", Statement.RETURN_GENERATED_KEYS);
         pst.setString(1, e.getLogradouro());
         pst.setInt(2, e.getNumero());
         pst.setString(3, e.getComplemento());
@@ -50,7 +53,7 @@ import java.util.List;
     
     @Override
     public Endereco retrieve(int id) throws SQLException{
-        Statement st =  ConnectionFactory.prepareConnection().createStatement();                                
+        Statement st =  br.edu.utfpr.cm.pi.api.ConnectionFactory.prepareConnection().createStatement();                                
         st.execute("SELECT * FROM Endereco WHERE id = " + id);
         ResultSet rs = st.getResultSet();
         
@@ -61,7 +64,7 @@ import java.util.List;
     }
 
     public void update(Endereco e) throws SQLException{
-        PreparedStatement pst =  ConnectionFactory.prepareConnection().prepareStatement("UPDATE Endereco SET logradouro = ?, numero = ?, complemento = ? WHERE id = ?");
+        PreparedStatement pst =  br.edu.utfpr.cm.pi.api.ConnectionFactory.prepareConnection().prepareStatement("UPDATE Endereco SET logradouro = ?, numero = ?, complemento = ? WHERE id = ?");
         pst.setString(1, e.getLogradouro());
         pst.setInt(2, e.getNumero());
         pst.setString(3, e.getComplemento());
@@ -71,7 +74,7 @@ import java.util.List;
     
     @Override
     public void delete(Endereco e) throws SQLException{
-        delete(e, ConnectionFactory.prepareConnection());
+        delete(e, br.edu.utfpr.cm.pi.api.ConnectionFactory.prepareConnection());
     }
     
     @Override
@@ -84,7 +87,7 @@ import java.util.List;
     public List<Endereco> list(String whereClause, String orderClause) throws SQLException{
         List<Endereco> enderecos = new ArrayList<Endereco>();
         
-        Statement st =  ConnectionFactory.prepareConnection().createStatement();                                
+        Statement st =  br.edu.utfpr.cm.pi.api.ConnectionFactory.prepareConnection().createStatement();                                
         ResultSet rs =  st.executeQuery("SELECT * FROM Endereco" + 
                 (whereClause==null || whereClause.trim().isEmpty()?"":" WHERE " + whereClause) + 
                 (orderClause==null || orderClause.trim().isEmpty()?"":" ORDER BY " + orderClause));
@@ -106,7 +109,7 @@ import java.util.List;
         
         /* Verifica se algum friltro foi fornecido para o método */
         if(filters == null || filters.length == 0){
-            Statement st =  ConnectionFactory.prepareConnection().createStatement();
+            Statement st =  br.edu.utfpr.cm.pi.api.ConnectionFactory.prepareConnection().createStatement();
             rs =  st.executeQuery("SELECT * FROM Endereco");
         }else{
             String sql = "SELECT * FROM Endereco WHERE ";
@@ -114,7 +117,9 @@ import java.util.List;
             for(int i = 0; i < filters.length; i++){
                 Filter f = filters[i];
                 System.out.println(f);
+                
                 switch(f.getOperator()){
+                    
                     case IS_NOT_NULL: sql += f.getAttribute() + " IS NOT NULL"; break;
                     case IS_NULL: sql += f.getAttribute() + " IS NULL"; break;
                     case LIKE: sql += f.getAttribute() + " LIKE '%?" + f.getValue()+ "%'"; break;
@@ -130,7 +135,7 @@ import java.util.List;
                     sql += " AND ";
                 }
             }
-            PreparedStatement pst =  ConnectionFactory.prepareConnection().prepareStatement(sql);
+            PreparedStatement pst =  br.edu.utfpr.cm.pi.api.ConnectionFactory.prepareConnection().prepareStatement(sql);
             System.out.println("SQL:" + sql);
             rs =  pst.executeQuery();
         }
@@ -143,6 +148,42 @@ import java.util.List;
         
         return Enderecos;
     }
+    
+    public static void main(String[] args) throws SQLException {
+        String luc = String.format("O aluno %30s tirou uma nota %05d e gicou com media %.2f", "Lucio", 10, 8.5);
+        System.out.println(luc);
+        
+        
+        
+        /* Teste do método list(String)*/
+        List ends = new DaoEndereco().list(null, "id");
+        for(Object e: ends){
+            System.out.println("->" + e);
+        }
+        
+        /* Teste do método list(Fiter)*/
+        List ends2 = new DaoEndereco().list(new Filter
+                ("logradouro",Operator.LIKE, "Log"), new Filter("id", Operator.MORE_THAN, 28));
+        for(Object e: ends2){
+            System.out.println("XXXXXXXXXXXXXXXXXX>" + e);
+        }
+        
+
+
+//        Pessoa p = new Pessoa();
+//        p.setCpf("123123654654");
+//        p.setNome("Luciooooooooooooo");
+//
+//        Endereco end = new Endereco();
+//        end.setLogradouro("Log");
+//        p.setEndereco(end);
+//        
+//        new DaoPessoa().persist(p);
+//
+//        Endereco ende = new Endereco();
+//        end.setLogradouro("Log23");
+//        new DaoEndereco().persist(ende);
+//    }
 
     }
 }

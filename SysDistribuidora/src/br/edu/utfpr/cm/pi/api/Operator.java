@@ -8,8 +8,8 @@ package br.edu.utfpr.cm.pi.api;
  *
  * @author TAYLY
  */
-class Operator {
-    
+public enum Operator {
+  
     IS_NULL, 
     IS_NOT_NULL, 
     LIKE, 

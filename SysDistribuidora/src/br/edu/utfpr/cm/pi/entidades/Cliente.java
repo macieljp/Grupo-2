@@ -13,7 +13,7 @@ public class Cliente {
     private String nome;
     private String cpf;
     private Endereco endereco;
-    private Date dNascimento = Calendar.getInstance().getTime();
+    private Date dataNascimento = Calendar.getInstance().getTime();
 
     public int getId() {
         return id;
@@ -28,8 +28,8 @@ public class Cliente {
     }
 
     
-    public Date getdNascimento() {
-        return dNascimento;
+    public Date getdataNascimento() {
+        return dataNascimento;
     }
 
     public void setId(int id) {
@@ -54,8 +54,8 @@ public class Cliente {
 
     
 
-    public void setdNascimento(Date dNascimento) {
-        this.dNascimento = dNascimento;
+    public void setdataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
     
  @Override
@@ -66,7 +66,7 @@ public class Cliente {
                     "nome: " + nome+
                     "cpf:  " + cpf+
                     "endereco: "+endereco+
-                    "Data de Nascimento: " +dNascimento+ "}";
+                    "Data de Nascimento: " +dataNascimento+ "}";
  }
  
 }

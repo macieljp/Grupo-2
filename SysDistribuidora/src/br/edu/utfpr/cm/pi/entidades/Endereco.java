@@ -4,11 +4,26 @@
  */
 package br.edu.utfpr.cm.pi.entidades;
 
+import java.io.Serializable;
+import org.hibernate.annotations.Entity;
+import org.hibernate.annotations.Table;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+
 /**
  *
  * @author Tayly
  */
-public class Endereco {
+@Entity
+
+@Table(name="tbEndereco")
+
+public class Endereco implements  Serializable {
+
+    @Id    
+    @GeneratedValue
+
     
      private int id;
      private String logradouro;

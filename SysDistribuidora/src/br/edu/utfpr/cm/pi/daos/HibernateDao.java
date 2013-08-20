@@ -9,9 +9,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import br.edu.utfpr.cm.pi.daos;
-import javaapplication1.daos.api.Filter;
-import javaapplication1.entidades.Pessoa;
+import br.edu.utfpr.cm.pi.api.Filter;
+import br.edu.utfpr.cm.pi.entidades.Cliente;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -39,7 +38,7 @@ public class HibernateDao implements Dao<Object> {
         cfg.setProperty("hibernate.connection.password", "aluno");
 //        cfg.setProperty("hibernate.connection.autocommit", "true");
 
-        cfg.addAnnotatedClass(Pessoa.class);
+        cfg.addAnnotatedClass(Cliente.class);
 
         SessionFactory sessionFactory = cfg.buildSessionFactory();
 
@@ -70,26 +69,7 @@ public class HibernateDao implements Dao<Object> {
         em.getTransaction().commit();
     }
 
-    @Override
-    public void delete(Object o, Connection con) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public Object retrieve(int id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public List<Object> list(String whereClause, String orderClause) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public List<Object> list(Filter... filters) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
+   
 //    public static void main(String[] args) throws Exception {
 //        Pessoa p = new Pessoa();
 //        p.setNome("Hiber");
@@ -100,6 +80,16 @@ public class HibernateDao implements Dao<Object> {
 //        new HibernateDao().persist(p);
 //
 //        new HibernateDao().delete(p);
+
+    @Override
+    public Object retrive(int id) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Object> list() throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 
 
