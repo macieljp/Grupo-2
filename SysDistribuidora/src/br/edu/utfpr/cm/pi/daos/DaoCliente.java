@@ -76,12 +76,26 @@ public class DaoCliente implements Dao<Cliente> {
         return Cliente;
     }
 
-    @Override
-    public void persist(Cliente o) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        public void persist(Cliente c) throws SQLException, Exception{
+        if(c.getId()==0)
+            insert(c);
+        else
+            update(c);
     }
+    
+      
+    private void insert(Cliente c) throws SQLException, Exception{
+        //adaptar para cliente inclusive com os dados para inserir no banco
+        PreparedStatement pst =  ConnectionFactory.prepareConnection().prepareStatement("INSERT INTO Cliente (logradouro, numero, complemento) VALUES(?,?,?)", Statement.RETURN_GENERATED_KEYS);
+        pst.setString(1, c.getLogradouro());
+        pst.setInt(2, c.getNumero());
+        pst.setString(3, c.getComplemento());
+        pst.execute();
 
-    @Override
+        ResultSet rs = pst.getGeneratedKeys();
+        rs.next();
+        c.setId(rs.getInt(1));
+    }    @Override
     public Cliente retrive(int id) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
