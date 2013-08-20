@@ -4,7 +4,7 @@
  */
 package br.edu.utfpr.cm.pi.daos;
 
-import br.edu.utfpr.cm.pi.bean.Cliente;
+import br.edu.utfpr.cm.pi.entidades.Cliente;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

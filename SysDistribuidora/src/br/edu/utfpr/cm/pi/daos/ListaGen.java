@@ -7,7 +7,7 @@ package br.edu.utfpr.cm.pi.daos;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import br.edu.utfpr.cm.pi.bean.Cliente;
+import br.edu.utfpr.cm.pi.entidades.Cliente;
 
 /**
  *

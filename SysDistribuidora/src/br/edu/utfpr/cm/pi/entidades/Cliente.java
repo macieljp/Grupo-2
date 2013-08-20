@@ -1,4 +1,4 @@
-package br.edu.utfpr.cm.pi.bean;
+package br.edu.utfpr.cm.pi.entidades;
 
 import java.util.Calendar;
 import java.util.Date;

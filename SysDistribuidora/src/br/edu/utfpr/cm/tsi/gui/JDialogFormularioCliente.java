@@ -1,7 +1,7 @@
 package br.edu.utfpr.cm.tsi.gui;
 
-import br.edu.utfpr.cm.pi.bean.Cliente;
-import br.edu.utfpr.cm.pi.bean.Endereco;
+import br.edu.utfpr.cm.pi.entidades.Cliente;
+import br.edu.utfpr.cm.pi.entidades.Endereco;
 import br.edu.utfpr.cm.pi.daos.DaoCliente;
 import br.edu.utfpr.cm.pi.util.Util;
 import java.sql.SQLException;
