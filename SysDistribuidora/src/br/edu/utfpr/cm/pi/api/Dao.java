@@ -6,7 +6,7 @@ package br.edu.utfpr.cm.pi.api;
 
 import java.sql.Connection;
 import java.util.List;
-import javaapplication1.daos.api.Filter;
+import br.edu.utfpr.cm.pi.api.Filter;
 
 /**
  *
