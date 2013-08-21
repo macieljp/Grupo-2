@@ -373,12 +373,13 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
             end.setCidade(tfCidade.getText().trim());
             end.setUf(tfUF.getText().trim());
             end.setCep(tfCep.getText().trim());
-          //  end.setTelefone(ftfTelefone.getText().trim());
+            end.setTelefone(ftfTelefone.getText().trim());
             
             cliente.setEndereco(end);
             DaoCliente c = new DaoCliente();
             c.cadastrarCliente(cliente);
             desabilitarCampos();
+            
         }
     }
 
