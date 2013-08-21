@@ -6,8 +6,7 @@ package br.edu.utfpr.cm.pi.entidades;
 
 import java.io.Serializable;
 import javax.persistence.Column;
-import org.hibernate.annotations.Entity;
-import org.hibernate.annotations.Table;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,9 +17,6 @@ import javax.persistence.Id;
  * @author Tayly
  */
 @Entity
-
-//@Table(name="tabelaEndereco")
-
 public class Endereco implements  Serializable {
 
     @Id    
