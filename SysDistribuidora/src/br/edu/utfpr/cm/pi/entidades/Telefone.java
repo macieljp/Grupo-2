@@ -22,11 +22,9 @@ public class Telefone {
      @OneToOne
      private int id;
     
-     @ManyToMany
-    private int numero;
     
-     @OneToOne
-    private int ddd;
+    private String numero;
+    
 
     
      /**
@@ -41,31 +39,25 @@ public class Telefone {
         return id;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public int getDdd() {
-        return ddd;
-    }
-
+    
+     
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
-    public void setDdd(int ddd) {
-        this.ddd = ddd;
-    }
-    
-     @Override
+    @Override
     public String toString() {
-        return "Endereco{" + "id=" + id +
-                ",numero=" + numero + 
-                ", ddd=" + ddd +'}';
+        return "Telefone{" + "id=" + id + ", numero=" + numero + '}';
     }
+
+  
     
 }

@@ -377,6 +377,7 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
             
             
             Telefone tel = new Telefone();
+            tel.setNumero(ftfTelefone.getText());
             
             cliente.setEndereco(end);
             DaoCliente c = new DaoCliente();
