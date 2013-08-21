@@ -17,7 +17,7 @@ import org.hibernate.annotations.Entity;
  *
  * @author TAYLY
  */
-public class GrupodeProduto {
+
     
     /**
      *
@@ -41,7 +41,7 @@ public class GrupodeProduto {
     @OneToMany    
     private Produto produto;
     
-    @OneToMany
+  
     private String classificacao;
 
         public int getId() {
@@ -96,4 +96,3 @@ public class GrupodeProduto {
                     "Classificação: " +classificacao+ "}";
         }
     }
-}

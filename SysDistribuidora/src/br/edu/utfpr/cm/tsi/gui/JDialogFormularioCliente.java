@@ -3,6 +3,9 @@ package br.edu.utfpr.cm.tsi.gui;
 import br.edu.utfpr.cm.pi.entidades.Cliente;
 import br.edu.utfpr.cm.pi.entidades.Endereco;
 import br.edu.utfpr.cm.pi.daos.DaoCliente;
+import br.edu.utfpr.cm.pi.daos.DaoEndereco;
+import br.edu.utfpr.cm.pi.daos.DaoTelefone;
+import br.edu.utfpr.cm.pi.entidades.Telefone;
 import br.edu.utfpr.cm.pi.util.Util;
 import java.sql.SQLException;
 import java.util.List;
@@ -367,17 +370,28 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
         if (verificarCampos() && verificarUF()) {
             Cliente cliente = new Cliente();
             cliente.setNome(tfNome.getText().trim());
-            Endereco end = PegarDadosEndereco();
+            Endereco end = new Endereco();
             end.setLogradouro(tfLogradouro.getText().trim());
             end.setBairro(tfBairro.getText().trim());
             end.setCidade(tfCidade.getText().trim());
             end.setUf(tfUF.getText().trim());
             end.setCep(tfCep.getText().trim());
-            end.setTelefone(ftfTelefone.getText().trim());
+            
+            
+            Telefone tel = new Telefone();
+            tel.setNumero(ftfTelefone.getText());
+            
+            DaoTelefone daoT = new DaoTelefone();
+            
+            daoT.persist(tel);
+            
+            DaoEndereco daoE = new DaoEndereco();
+            daoE.persist(end);
+            
             
             cliente.setEndereco(end);
             DaoCliente c = new DaoCliente();
-            c.cadastrarCliente(cliente);
+            c.persist(cliente);
             desabilitarCampos();
             
         }
@@ -396,7 +410,7 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
             end.setCep(tfCep.getText().trim());
            // end.setTelefone(ftfTelefone.getText().trim());
             DaoCliente c = new DaoCliente();
-            c.alterarCliente(cliente);
+            c.persist(cliente);
             desabilitarCampos();
         } else {
             Util.dispayMsg("Informe o nome do cliente!");

@@ -7,7 +7,9 @@ package br.edu.utfpr.cm.pi.api;
 import br.edu.utfpr.cm.pi.entidades.Cliente;
 import br.edu.utfpr.cm.pi.entidades.Endereco;
 import br.edu.utfpr.cm.pi.entidades.Fornecedor;
+import br.edu.utfpr.cm.pi.entidades.GrupodeProduto;
 import br.edu.utfpr.cm.pi.entidades.Produto;
+import br.edu.utfpr.cm.pi.entidades.Telefone;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -28,9 +30,9 @@ public class HibernateConfiguration {
 
     private static AnnotationConfiguration cfg;
     private static SessionFactory sessionFactory;
-    private static String user = "aluno";
+    private static String user = "root";
     private static String pass = "aluno";
-    private static String base = "asstec";
+    private static String base = "tayly";
     private static String host = "localhost:3306";
 
     public static Session openConnect() {
@@ -48,6 +50,8 @@ public class HibernateConfiguration {
             cfg.addAnnotatedClass(Endereco.class);
             cfg.addAnnotatedClass(Fornecedor.class);
             cfg.addAnnotatedClass(Produto.class);
+            cfg.addAnnotatedClass(GrupodeProduto.class);
+            cfg.addAnnotatedClass(Telefone.class);
         //    cfg.addAnnotatedClass(Produto.class);
           //  cfg.addAnnotatedClass(UnidadeMedida.class);
 
@@ -99,7 +103,7 @@ public class HibernateConfiguration {
     }
 
     public static void criarSchema() {
-        openConnect().close();
+         openConnect().close();
         org.hibernate.tool.hbm2ddl.SchemaExport schemaEx = new SchemaExport(cfg);
         schemaEx.create(true, true);
     }

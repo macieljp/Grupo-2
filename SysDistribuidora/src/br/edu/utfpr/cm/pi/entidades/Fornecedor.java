@@ -10,26 +10,20 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-
+import org.hibernate.annotations.Entity;
 
 /**
  *
  * @author TAYLY
  */
-public class Fornecedor {
-    
-@Entity
-
 //@Table(name="tabelaEndereco")
+@Entity
+public class Fornecedor implements Serializable {
 
-  public class Fornecedor implements  Serializable {
-
-    @Id    
-    @GeneratedValue(strategy=GenerationType.AUTO)  
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
-    
-     private int id;
+    private int id;
     @Column
     private String RazaoSocial;
     @Column
@@ -37,49 +31,48 @@ public class Fornecedor {
     @Column
     private String contato;
 
-        // public Endereco (int id , String logradouro,int numero,String bairro,String complemento,String cidade,String Uf,String cep,String telefone);
-        public int getId() {
-            return id;
-        }
+    // public Endereco (int id , String logradouro,int numero,String bairro,String complemento,String cidade,String Uf,String cep,String telefone);
+    public int getId() {
+        return id;
+    }
 
-        public String getRazaoSocial() {
-            return RazaoSocial;
-        }
+    public String getRazaoSocial() {
+        return RazaoSocial;
+    }
 
-        public int getNomeFantasia() {
-            return NomeFantasia;
-        }
+    public int getNomeFantasia() {
+        return NomeFantasia;
+    }
 
-        public String getContato() {
-            return contato;
-        }
+    public String getContato() {
+        return contato;
+    }
 
-        public void setId(int id) {
-            this.id = id;
-        }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-        public void setRazaoSocial(String RazaoSocial) {
-            this.RazaoSocial = RazaoSocial;
-        }
+    public void setRazaoSocial(String RazaoSocial) {
+        this.RazaoSocial = RazaoSocial;
+    }
 
-        public void setNomeFantasia(int NomeFantasia) {
-            this.NomeFantasia = NomeFantasia;
-        }
+    public void setNomeFantasia(int NomeFantasia) {
+        this.NomeFantasia = NomeFantasia;
+    }
 
-        public void setContato(String contato) {
-            this.contato = contato;
-        }
+    public void setContato(String contato) {
+        this.contato = contato;
+    }
 
     @Override
- 
-  public String toString(){
- 
-    return "Pessoa {" + "id: " + id + 
-                    "Razão Social: " + RazaoSocial+
-                    "Nome Fantasisa:  " + NomeFantasia+
-                    "Contato: " +contato+ "}";
-    
-    
+    public String toString() {
+
+        return "Pessoa {" + "id: " + id
+                + "Razão Social: " + RazaoSocial
+                + "Nome Fantasisa:  " + NomeFantasia
+                + "Contato: " + contato + "}";
+
+
     }
-   }
 }
+
