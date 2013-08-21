@@ -60,8 +60,6 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         tfCep = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        btNovo = new javax.swing.JButton();
-        btAlterar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
         btSalvar = new javax.swing.JButton();
         btFechar = new javax.swing.JButton();
@@ -82,7 +80,8 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
         });
         getContentPane().add(tfPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 24, 472, -1));
 
-        btPesquisar.setText("Pesquisar");
+        btPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/PesquisarPadrao.png"))); // NOI18N
+        btPesquisar.setToolTipText("Pesquisar");
         btPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btPesquisarActionPerformed(evt);
@@ -123,27 +122,8 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
         jLabel8.setText("Telefone:");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(487, 396, -1, -1));
 
-        btNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/Add.png"))); // NOI18N
-        btNovo.setToolTipText("Novo");
-        btNovo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btNovoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 470, 70, 40));
-        btNovo.getAccessibleContext().setAccessibleName("");
-
-        btAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/update.png"))); // NOI18N
-        btAlterar.setToolTipText("Alterar");
-        btAlterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btAlterarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 470, -1, -1));
-
         btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/clear.png"))); // NOI18N
-        btCancelar.setToolTipText("Cancelar");
+        btCancelar.setToolTipText("Limpar");
         btCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btCancelarActionPerformed(evt);
@@ -158,7 +138,7 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
                 btSalvarActionPerformed(evt);
             }
         });
-        getContentPane().add(btSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 470, -1, -1));
+        getContentPane().add(btSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 470, -1, -1));
 
         btFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/Close_.png"))); // NOI18N
         btFechar.setToolTipText("Fechar");
@@ -167,7 +147,7 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
                 btFecharActionPerformed(evt);
             }
         });
-        getContentPane().add(btFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 470, 60, 40));
+        getContentPane().add(btFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 470, 60, 40));
 
         try {
             ftfTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
@@ -184,7 +164,7 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
                 btDeletarActionPerformed(evt);
             }
         });
-        getContentPane().add(btDeletar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 470, -1, -1));
+        getContentPane().add(btDeletar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 470, -1, -1));
 
         jTableCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -212,24 +192,14 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_btFecharActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
-        //if (Util.imprimirMsgNaTela("Deseja Cancelar?")) {
-        habilitarCampos();
+      //  if (Util.imprimirMsgNaTela("Deseja Cancelar?")) {
+        limparCampos();
 //        }
     }//GEN-LAST:event_btCancelarActionPerformed
-
-    private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
-        tipoCadastro = "novo";
-        novoCliente();
-    }//GEN-LAST:event_btNovoActionPerformed
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         listarClientes();
     }//GEN-LAST:event_btPesquisarActionPerformed
-
-    private void btAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlterarActionPerformed
-        tipoCadastro = "alteracao";
-        alteraCliente();
-    }//GEN-LAST:event_btAlterarActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
 
@@ -245,36 +215,20 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_tfNomeActionPerformed
 
     private void btDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeletarActionPerformed
-        if (jTableCliente.getSelectedRow() == -1) {// se tabela selecionada
-            Util.imprimirConfirmacao("Selecione Um Cliente");
-
-        } else {
-            tbClientesLinhaSelecionada(jTableCliente);  //carrega dados da tabela p/ tf
-            if (Util.imprimirConfirmacao("Deseja Deletar Cliente")) {
-                try {
-                    deletaCliente();
-                } catch (SQLException ex) {
-                    Logger.getLogger(JDialogFormularioCliente.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (Exception ex) {
-                    Logger.getLogger(JDialogFormularioCliente.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                novoCliente();
-                listarClientes();
-            }
+       int linha = jTableCliente.getSelectedRow();
+        
+       if (linha != -1) {// se tabela selecionada
+        
+        Cliente c = clientes.get(linha);
+        DaoCliente daoc = new DaoCliente();
+        daoc.delete(c);
+        
         }
-
-        //        alteraCliente();
-//        if (Util.imprimirMsgNaTela("Deseja deletar")) {
-//            deletaCliente();
-//            listarClientes();
-//        }
     }//GEN-LAST:event_btDeletarActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btAlterar;
     private javax.swing.JButton btCancelar;
     private javax.swing.JButton btDeletar;
     private javax.swing.JButton btFechar;
-    private javax.swing.JButton btNovo;
     private javax.swing.JButton btPesquisar;
     private javax.swing.JButton btSalvar;
     protected javax.swing.JFormattedTextField ftfTelefone;
@@ -470,5 +424,15 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
         mostrarClientes(clientes);
 
 
+    }
+
+    private void limparCampos() {
+        tfNome.setText(null);
+        tfLogradouro.setText(null);
+        tfBairro.setText(null);
+        tfCidade.setText(null);
+        tfUF.setText(null);
+        tfCep.setText(null);
+        ftfTelefone.setText(null);
     }
 }
