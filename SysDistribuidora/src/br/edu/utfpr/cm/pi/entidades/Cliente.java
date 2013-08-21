@@ -2,11 +2,16 @@ package br.edu.utfpr.cm.pi.entidades;
 
 import java.util.Calendar;
 import java.util.Date;
+import org.hibernate.annotations.Entity;
+import org.hibernate.annotations.Table;
 
 /**
  *
  * @author Tayly
  */
+
+@Entity
+
 public class Cliente {
     
     private int id;
