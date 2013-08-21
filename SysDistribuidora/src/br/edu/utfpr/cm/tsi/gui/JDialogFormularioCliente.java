@@ -24,9 +24,12 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
     /**
      * Creates new form JDialogFormularioCliente
      */
+    private List<Cliente> clientes;
+
     public JDialogFormularioCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        carregarTabelaComClientes();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -90,7 +93,6 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
         jLabelNome.setText("Nome:");
         getContentPane().add(jLabelNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 304, -1, -1));
 
-        tfNome.setEditable(false);
         tfNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfNomeActionPerformed(evt);
@@ -100,32 +102,22 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
 
         jLabelEndereco.setText("Endereço:");
         getContentPane().add(jLabelEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 350, -1, -1));
-
-        tfLogradouro.setEditable(false);
         getContentPane().add(tfLogradouro, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 370, 426, -1));
 
         jLabelBairro.setText("Bairro:");
         getContentPane().add(jLabelBairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(487, 350, -1, -1));
-
-        tfBairro.setEditable(false);
         getContentPane().add(tfBairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(487, 370, 256, -1));
 
         jLabelCidade.setText("Cidade:");
         getContentPane().add(jLabelCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 396, -1, -1));
-
-        tfCidade.setEditable(false);
         getContentPane().add(tfCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 416, 238, -1));
 
         jLabel6.setText("UF:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(291, 396, -1, -1));
-
-        tfUF.setEditable(false);
         getContentPane().add(tfUF, new org.netbeans.lib.awtextra.AbsoluteConstraints(291, 416, 67, -1));
 
         jLabel7.setText("CEP:");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(368, 396, -1, -1));
-
-        tfCep.setEditable(false);
         getContentPane().add(tfCep, new org.netbeans.lib.awtextra.AbsoluteConstraints(368, 416, 101, -1));
 
         jLabel8.setText("Telefone:");
@@ -171,7 +163,6 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
         });
         getContentPane().add(btFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(545, 471, -1, -1));
 
-        ftfTelefone.setEditable(false);
         try {
             ftfTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
         } catch (java.text.ParseException ex) {
@@ -234,19 +225,10 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_btAlterarActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        if (Util.imprimirConfirmacao("Deseja Salvar?")) {
 
-            switch (tipoCadastro.charAt(0)) {
-                case 'n':
-                    cadastrarCliente();
-                    listarClientes();
-                    break;
-                case 'a':
-                    alterarCliente();
-                    listarClientes();
-                    break;
-            }
-        }
+        cadastrarCliente();
+        carregarTabelaComClientes();
+
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void tfPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPesquisarActionPerformed
@@ -314,24 +296,14 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
     }
 
     protected void mostrarClientes(List<Cliente> clientes) {
-        while (tmClientes.getRowCount() > 0) {
-            tmClientes.removeRow(0);
-        }
-        if (clientes.isEmpty() && btPesquisar.isSelected()) {
-            Util.dispayMsg("Nenhum Cliente Encontrado");
-        } else {
-            String[] campos = new String[]{null, null, null, null, null, null, null, null};
-            for (int i = 0; i < clientes.size(); i++) {
-                tmClientes.addRow(campos);
-                tmClientes.setValueAt(clientes.get(i).getId(), i, 0);
-                tmClientes.setValueAt(clientes.get(i).getNome(), i, 1);
-                tmClientes.setValueAt(clientes.get(i).getEndereco(), i, 2);
-                tmClientes.setValueAt(clientes.get(i).getEndereco().getCidade(), i, 3);
-                tmClientes.setValueAt(clientes.get(i).getEndereco().getBairro(), i, 4);
-                tmClientes.setValueAt(clientes.get(i).getEndereco().getUf(), i, 5);
-                tmClientes.setValueAt(clientes.get(i).getEndereco().getCep(), i, 6);
-//                tmClientes.setValueAt(clientes.get(i).getEndereco().getTelefone(), i, 7);
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new String[]{"Códogo", "Nome", "Endeço", "Bairro", "Cidade", "UF", "CEP"});
+
+        if (clientes != null) {
+            for (Cliente cliente : clientes) {
+                model.addRow(new Object[]{cliente.getId(), cliente.getNome(), cliente.getEndereco().getLogradouro(), cliente.getEndereco().getBairro(), cliente.getEndereco().getCidade(), cliente.getEndereco().getUf(), cliente.getEndereco().getCep()});
             }
+            jTableCliente.setModel(model);
         }
     }
 
@@ -376,24 +348,24 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
             end.setCidade(tfCidade.getText().trim());
             end.setUf(tfUF.getText().trim());
             end.setCep(tfCep.getText().trim());
-            
-            
+
+
             Telefone tel = new Telefone();
             tel.setNumero(ftfTelefone.getText());
-            
+
             DaoTelefone daoT = new DaoTelefone();
-            
+
             daoT.persist(tel);
-            
+
             DaoEndereco daoE = new DaoEndereco();
             daoE.persist(end);
-            
-            
+
+
             cliente.setEndereco(end);
             DaoCliente c = new DaoCliente();
             c.persist(cliente);
             desabilitarCampos();
-            
+
         }
     }
 
@@ -408,7 +380,7 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
             end.setCidade(tfCidade.getText().trim());
             end.setUf(tfUF.getText().trim());
             end.setCep(tfCep.getText().trim());
-           // end.setTelefone(ftfTelefone.getText().trim());
+            // end.setTelefone(ftfTelefone.getText().trim());
             DaoCliente c = new DaoCliente();
             c.persist(cliente);
             desabilitarCampos();
@@ -468,7 +440,7 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
         habilitarCampos();
         Cliente cliente = new Cliente();
         cliente.setId(fornecedores.get(jTableCliente.getSelectedRow()).getId());
-       
+
         DaoCliente c = new DaoCliente();
         c.delete(cliente);
     }
@@ -478,8 +450,18 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
 
         end.setLogradouro(tfLogradouro.getText());
         end.setBairro(tfBairro.getText());
-        
+
         return end;
+
+    }
+
+    private void carregarTabelaComClientes() {
+        DaoCliente daoC = new DaoCliente();
+
+        clientes = daoC.list();
+
+        mostrarClientes(clientes);
+
 
     }
 }
