@@ -24,8 +24,9 @@ import org.hibernate.cfg.AnnotationConfiguration;
  */
 public class HibernateDao implements Dao<Object> {
 
+   
     @Override
-    public void persist(Object o) throws Exception {
+    public void persist(Object o)  {
         
         AnnotationConfiguration cfg = new AnnotationConfiguration();
         cfg.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");

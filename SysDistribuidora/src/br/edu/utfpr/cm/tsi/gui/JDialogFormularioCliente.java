@@ -327,7 +327,7 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
                 tmClientes.setValueAt(clientes.get(i).getEndereco().getBairro(), i, 4);
                 tmClientes.setValueAt(clientes.get(i).getEndereco().getUf(), i, 5);
                 tmClientes.setValueAt(clientes.get(i).getEndereco().getCep(), i, 6);
-                tmClientes.setValueAt(clientes.get(i).getEndereco().getTelefone(), i, 7);
+//                tmClientes.setValueAt(clientes.get(i).getEndereco().getTelefone(), i, 7);
             }
         }
     }
@@ -340,7 +340,7 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
             tfBairro.setText(fornecedores.get(tb.getSelectedRow()).getEndereco().getBairro());
             tfUF.setText(fornecedores.get(tb.getSelectedRow()).getEndereco().getUf());
             tfCep.setText(fornecedores.get(tb.getSelectedRow()).getEndereco().getCep());
-            ftfTelefone.setText(fornecedores.get(tb.getSelectedRow()).getEndereco().getTelefone());
+//            ftfTelefone.setText(fornecedores.get(tb.getSelectedRow()).getEndereco().getTelefone());
         } else {
             tfNome.setText("");
             tfLogradouro.setText("");
@@ -373,7 +373,7 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
             end.setCidade(tfCidade.getText().trim());
             end.setUf(tfUF.getText().trim());
             end.setCep(tfCep.getText().trim());
-            end.setTelefone(ftfTelefone.getText().trim());
+          //  end.setTelefone(ftfTelefone.getText().trim());
             
             cliente.setEndereco(end);
             DaoCliente c = new DaoCliente();
@@ -393,7 +393,7 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
             end.setCidade(tfCidade.getText().trim());
             end.setUf(tfUF.getText().trim());
             end.setCep(tfCep.getText().trim());
-            end.setTelefone(ftfTelefone.getText().trim());
+           // end.setTelefone(ftfTelefone.getText().trim());
             DaoCliente c = new DaoCliente();
             c.alterarCliente(cliente);
             desabilitarCampos();

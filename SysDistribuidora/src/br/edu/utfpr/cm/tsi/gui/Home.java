@@ -43,9 +43,6 @@ public class Home extends javax.swing.JFrame {
         jMenuBar = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         mnCliente = new javax.swing.JMenuItem();
@@ -161,10 +158,10 @@ public class Home extends javax.swing.JFrame {
         lbStatus.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 lbStatusAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         getContentPane().add(lbStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 558, 260, 18));
@@ -178,15 +175,6 @@ public class Home extends javax.swing.JFrame {
 
         jMenuItem6.setText("jMenuItem6");
         jMenu2.add(jMenuItem6);
-
-        jMenuItem7.setText("jMenuItem7");
-        jMenu2.add(jMenuItem7);
-
-        jMenuItem8.setText("jMenuItem8");
-        jMenu2.add(jMenuItem8);
-
-        jMenuItem9.setText("jMenuItem9");
-        jMenu2.add(jMenuItem9);
 
         jMenuItem10.setText("jMenuItem10");
         jMenu2.add(jMenuItem10);
@@ -310,9 +298,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JSeparator jSeparator14;
     private javax.swing.JToolBar.Separator jSeparator2;
