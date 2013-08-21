@@ -3,6 +3,7 @@ package br.edu.utfpr.cm.tsi.gui;
 import br.edu.utfpr.cm.pi.entidades.Cliente;
 import br.edu.utfpr.cm.pi.entidades.Endereco;
 import br.edu.utfpr.cm.pi.daos.DaoCliente;
+import br.edu.utfpr.cm.pi.entidades.Telefone;
 import br.edu.utfpr.cm.pi.util.Util;
 import java.sql.SQLException;
 import java.util.List;
@@ -367,13 +368,15 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
         if (verificarCampos() && verificarUF()) {
             Cliente cliente = new Cliente();
             cliente.setNome(tfNome.getText().trim());
-            Endereco end = PegarDadosEndereco();
+            Endereco end = new Endereco();
             end.setLogradouro(tfLogradouro.getText().trim());
             end.setBairro(tfBairro.getText().trim());
             end.setCidade(tfCidade.getText().trim());
             end.setUf(tfUF.getText().trim());
             end.setCep(tfCep.getText().trim());
-            end.setTelefone(ftfTelefone.getText().trim());
+            
+            
+            Telefone tel = new Telefone();
             
             cliente.setEndereco(end);
             DaoCliente c = new DaoCliente();
