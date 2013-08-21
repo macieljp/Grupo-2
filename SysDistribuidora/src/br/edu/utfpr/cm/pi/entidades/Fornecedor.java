@@ -19,7 +19,7 @@ import javax.persistence.Id;
  */
 public class Fornecedor {
     
-//@Entity
+@Entity
 
 //@Table(name="tabelaEndereco")
 
