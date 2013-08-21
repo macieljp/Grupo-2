@@ -5,9 +5,11 @@
 package br.edu.utfpr.cm.pi.entidades;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import org.hibernate.annotations.Entity;
 import org.hibernate.annotations.Table;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
@@ -17,23 +19,31 @@ import javax.persistence.Id;
  */
 @Entity
 
-@Table(name="tabelaEndereco")
+//@Table(name="tabelaEndereco")
 
 public class Endereco implements  Serializable {
 
     @Id    
-    @GeneratedValue
-
-    
+    @GeneratedValue(strategy=GenerationType.AUTO)  
+    @Column
      private int id;
-     private String logradouro;
-     private int numero;
-     private String bairro;
-     private String complemento;
-     private String cidade;
-     private String Uf;
-     private String cep;
-     private String telefone;
+    @Column
+    private String logradouro;
+    @Column
+    private int numero;
+    @Column
+    private String bairro;
+    @Column
+    private String complemento;
+    @Column
+    private String cidade;
+    @Column
+    private String Uf;
+    @Column
+    private String cep;
+    
+    
+   // public Endereco (int id , String logradouro,int numero,String bairro,String complemento,String cidade,String Uf,String cep,String telefone);
 
    
     public int getId() {
@@ -101,19 +111,17 @@ public class Endereco implements  Serializable {
         this.cep = cep;
     }
 
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-    
-    
+  
     
     @Override
     public String toString() {
-        return "Endereco{" + "id=" + id + ", logradouro=" + logradouro + ", numero=" + numero + '}';
+        return "Endereco{" + "id=" + id + ", logradouro=" + logradouro + 
+                ", numero=" + numero + 
+                ", bairro=" + bairro +
+                ", complemento=" + complemento +
+                ", cidade=" + cidade +
+                ", Uf =" + Uf +
+                "cep=" + cep+ '}';
     }
 
 }
