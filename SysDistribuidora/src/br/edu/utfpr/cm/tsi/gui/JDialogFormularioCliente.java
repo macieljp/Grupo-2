@@ -123,45 +123,51 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
         jLabel8.setText("Telefone:");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(487, 396, -1, -1));
 
-        btNovo.setText("Novo");
+        btNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/Add.png"))); // NOI18N
+        btNovo.setToolTipText("Novo");
         btNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btNovoActionPerformed(evt);
             }
         });
-        getContentPane().add(btNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 471, -1, -1));
+        getContentPane().add(btNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 470, 70, 40));
+        btNovo.getAccessibleContext().setAccessibleName("");
 
-        btAlterar.setText("Alterar");
+        btAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/update.png"))); // NOI18N
+        btAlterar.setToolTipText("Alterar");
         btAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btAlterarActionPerformed(evt);
             }
         });
-        getContentPane().add(btAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(272, 471, -1, -1));
+        getContentPane().add(btAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 470, -1, -1));
 
-        btCancelar.setText("Cancelar");
+        btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/clear.png"))); // NOI18N
+        btCancelar.setToolTipText("Cancelar");
         btCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btCancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(btCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(363, 471, -1, -1));
+        getContentPane().add(btCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 470, -1, -1));
 
-        btSalvar.setText("Salvar");
+        btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/save01.png"))); // NOI18N
+        btSalvar.setToolTipText("Salvar");
         btSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSalvarActionPerformed(evt);
             }
         });
-        getContentPane().add(btSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(454, 471, -1, -1));
+        getContentPane().add(btSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 470, -1, -1));
 
-        btFechar.setText("Fechar");
+        btFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/Close_.png"))); // NOI18N
+        btFechar.setToolTipText("Fechar");
         btFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btFecharActionPerformed(evt);
             }
         });
-        getContentPane().add(btFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(545, 471, -1, -1));
+        getContentPane().add(btFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 470, 60, 40));
 
         try {
             ftfTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
@@ -171,13 +177,14 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
         ftfTelefone.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         getContentPane().add(ftfTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 420, 250, -1));
 
-        btDeletar.setText("Deletar");
+        btDeletar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/delete.png"))); // NOI18N
+        btDeletar.setToolTipText("Deletar");
         btDeletar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btDeletarActionPerformed(evt);
             }
         });
-        getContentPane().add(btDeletar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 540, -1, -1));
+        getContentPane().add(btDeletar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 470, -1, -1));
 
         jTableCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
