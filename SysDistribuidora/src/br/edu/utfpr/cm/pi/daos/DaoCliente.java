@@ -15,10 +15,15 @@ import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class DaoCliente implements Dao<Cliente> {
+public class DaoCliente extends DaoGenerics<Cliente> {
+    
+    private List <Cliente> clientes;
+    
+    
     
       private static Cliente converteRsParaCliente(ResultSet rs) throws SQLException {
         Cliente c = new Cliente();
@@ -65,14 +70,22 @@ public class DaoCliente implements Dao<Cliente> {
     
     //@Override
    
-    public Cliente retrieve(int id) throws SQLException{
-        Statement st =  br.edu.utfpr.cm.pi.api.ConnectionFactory.prepareConnection().createStatement();                                
-        st.execute("SELECT * FROM Pessoa WHERE id =" + id);
+    public Cliente retrieve(int id) {
+        Statement st;                                
+         Cliente c = null;  
+        try {
+              st = br.edu.utfpr.cm.pi.api.ConnectionFactory.prepareConnection().createStatement();
+           st.execute("SELECT * FROM Pessoa WHERE id =" + id);
         ResultSet rs = st.getResultSet();
         
         rs.next();
-        Cliente c = converteRsParaCliente(rs);
+         c = converteRsParaCliente(rs);
        
+          } catch (SQLException ex) {
+              
+              Logger.getLogger(DaoCliente.class.getName()).log(Level.SEVERE, null, ex);
+          }
+            
         return c;
     }
 
@@ -96,7 +109,7 @@ public class DaoCliente implements Dao<Cliente> {
         pst.execute();
     }
     
-    //@Override
+    @Override
    
     public void delete(Cliente c) throws SQLException{
         Connection con = br.edu.utfpr.cm.pi.api.ConnectionFactory.prepareConnectionTransactrion();
@@ -116,7 +129,7 @@ public class DaoCliente implements Dao<Cliente> {
         
     }
     
-    //@Override
+   // @Override
     
     public List<Cliente> list(String whereClause, String orderClause) throws SQLException{
         List<Cliente> enderecos = new ArrayList<Cliente>();
@@ -167,15 +180,15 @@ public class DaoCliente implements Dao<Cliente> {
         }
         
         /* Converte o ResultSet da query para uma lista de objetos */
-//        while(rs.next()){
-//            Cliente c  = converteRsParaCliente(rs);
-//            c.add(c);
-//           
-//        }
-//        
-//        return clientes;
-//    }
-//    
+        while(rs.next()){
+            Cliente c  = converteRsParaCliente(rs);
+            clientes.add(c);
+           
+        }
+        
+        return clientes;
+    }
+    
     public static void main(String[] args) throws SQLException, Exception {
         Connection con = br.edu.utfpr.cm.pi.api.ConnectionFactory.prepareConnectionTransactrion();
            Cliente c = new DaoCliente().list().get(0);

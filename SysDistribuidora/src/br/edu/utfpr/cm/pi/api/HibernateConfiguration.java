@@ -28,7 +28,7 @@ public class HibernateConfiguration {
 
     private static AnnotationConfiguration cfg;
     private static SessionFactory sessionFactory;
-    private static String user = "root";
+    private static String user = "aluno";
     private static String pass = "aluno";
     private static String base = "asstec";
     private static String host = "localhost:3306";

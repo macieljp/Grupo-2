@@ -13,10 +13,9 @@ import br.edu.utfpr.cm.pi.api.Filter;
  * @author suporte
  */
 public interface Dao<T> {
-    void persist(T o)  throws Exception;
-    void delete(T o)  throws Exception;
-    void delete(T o, Connection con)  throws Exception;
-    T retrieve(int id)  throws Exception;
-    List<T> list(String whereClause, String orderClause)  throws Exception;
-    List<T> list(Filter... filters)  throws Exception;
+    public void persist(T o) ;
+    public void delete(T o) ;
+    public T retrieve(int id)  throws Exception;
+    public List<T> list() ;
+    public List<T> list(String filtro);
 }
