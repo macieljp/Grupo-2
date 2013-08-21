@@ -19,79 +19,95 @@ import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.mapping.PersistentClass;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 
+
 /**
  *
  * @author TAYLY
  */
 public class HibernateConfiguration {
-    // configuracÃµes somente uma vez 
-    // build  valida somente uma vez
-    // Session uma sessÃ£o para cada transaÃ§Ã£o ou um conjunto de transaÃ§Ãµes
 
     private static AnnotationConfiguration cfg;
     private static SessionFactory sessionFactory;
-    private static String user = "root";
-    private static String pass = "aluno";
-    private static String base = "tayly";
-    private static String host = "localhost:3306";
+    
+    private static String usuarioBase = "root";// seu nome de usuario da base de dados aqui
+    private static String senhaBase = "aluno";// sua seha de usuario da base de dados aqui
+    private static String baseDados = "tayly";// o nome da sua base de dados aqui
+    private static String host = "localhost:3307";
 
-    public static Session openConnect() {
+    public static Session openConect() {
         if (cfg == null) {
             cfg = new AnnotationConfiguration();
             cfg.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
             cfg.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
-            cfg.setProperty("hibernate.connection.username", user);
-            cfg.setProperty("hibernate.connection.password", pass);
-            cfg.setProperty("hibernate.connection.url", "jdbc:mysql://" + host + "/" + base);
-            cfg.setProperty("hibernate.show_sql", "true");
-            cfg.setProperty("hibernate.connection.autocommit", "true");
-
+            cfg.setProperty("hibernate.connection.username", usuarioBase);
+            cfg.setProperty("hibernate.connection.password", senhaBase);
+            cfg.setProperty("hibernate.connection.url", "jdbc:mysql://"+host +"/"+baseDados);
+            
+            
             cfg.addAnnotatedClass(Cliente.class);
             cfg.addAnnotatedClass(Endereco.class);
             cfg.addAnnotatedClass(Fornecedor.class);
-            cfg.addAnnotatedClass(Produto.class);
             cfg.addAnnotatedClass(GrupodeProduto.class);
+            cfg.addAnnotatedClass(Produto.class);
             cfg.addAnnotatedClass(Telefone.class);
-        //    cfg.addAnnotatedClass(Produto.class);
-          //  cfg.addAnnotatedClass(UnidadeMedida.class);
+            
+            cfg.setProperty("hibernate.show_sql", "true");
+            cfg.setProperty("hibernate.connection.autocommit", "true");
 
-
-
+                       
             sessionFactory = cfg.buildSessionFactory();
         }
         return sessionFactory.openSession();
     }
 
-    public static AnnotationConfiguration getCfg() {
-        return cfg;
+    public static void criarSchema() {
+        openConect().close();
+        org.hibernate.tool.hbm2ddl.SchemaExport schemaEx = new SchemaExport(cfg);
+        schemaEx.create(true, true);
+    }
+    
+    public static List<Object> runHQLQuery(String hql){
+        Session session = TransactionManager.getCurrentSession();
+        return session.createQuery(hql).list();
     }
 
-    public static void setCfg(AnnotationConfiguration cfg) {
-        HibernateConfiguration.cfg = cfg;
+    public static String getSenhaBase() {
+        return senhaBase;
     }
 
-    public static String getBase() {
-        return base;
+    public static void setSenhaBase(String senhaBase) {
+        HibernateConfiguration.senhaBase = senhaBase;
     }
 
-    public static void setBase(String base) {
-        HibernateConfiguration.base = base;
+    public static String getUsuarioBase() {
+        return usuarioBase;
     }
 
-    public static String getPass() {
-        return pass;
+    public static void setUsuarioBase(String usuarioBase) {
+        HibernateConfiguration.usuarioBase = usuarioBase;
     }
 
-    public static void setPass(String pass) {
-        HibernateConfiguration.pass = pass;
+    public static String getBaseDados() {
+        return baseDados;
     }
 
-    public static String getUser() {
-        return user;
+    public static void setBaseDados(String baseDados) {
+        HibernateConfiguration.baseDados = baseDados;
     }
+    
+    
+    public static ArrayList<Class> getEntityClasses() {
+        ArrayList<Class> classes = new ArrayList<Class>();
 
-    public static void setUser(String user) {
-        HibernateConfiguration.user = user;
+        if (cfg == null) {
+            openConect();
+        }
+        
+        Iterator i = cfg.getClassMappings();
+        while(i.hasNext()) {
+            classes.add(((PersistentClass)i.next()).getMappedClass());
+        }
+        return classes;
     }
 
     public static String getHost() {
@@ -101,29 +117,7 @@ public class HibernateConfiguration {
     public static void setHost(String host) {
         HibernateConfiguration.host = host;
     }
-
-    public static void criarSchema() {
-         openConnect().close();
-        org.hibernate.tool.hbm2ddl.SchemaExport schemaEx = new SchemaExport(cfg);
-        schemaEx.create(true, true);
-    }
-
-    public static List<Object> runHQLQuery(String hql) {
-        Session session = TransactionManager.getCurrentSession();
-        return session.createQuery(hql).list();
-    }
-
-    public static ArrayList<Class> getEntityClasses() {
-        ArrayList<Class> classes = new ArrayList<Class>();
-        if (cfg == null) {
-            openConnect();
-        }
-        Iterator i = cfg.getClassMappings();
-        while (i.hasNext()) {
-            classes.add(((PersistentClass) i.next()).getMappedClass());
-        }
-        return classes;
-    }
+    
 }
 
     

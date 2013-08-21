@@ -2,8 +2,13 @@ package br.edu.utfpr.cm.pi.entidades;
 
 import java.util.Calendar;
 import java.util.Date;
-import org.hibernate.annotations.Entity;
-import org.hibernate.annotations.Table;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Entity;
+
 
 /**
  *
@@ -11,13 +16,17 @@ import org.hibernate.annotations.Table;
  */
 
 @Entity
-
 public class Cliente {
-    
+    @Id    
+    @GeneratedValue(strategy=GenerationType.AUTO)  
+    @Column
     private int id;
     private String nome;
     private String cpf;
+    
+    @OneToOne
     private Endereco endereco;
+    
     private Date dataNascimento = Calendar.getInstance().getTime();
 
     public int getId() {

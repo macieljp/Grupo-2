@@ -5,6 +5,7 @@
 package br.edu.utfpr.cm.pi.entidades;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,10 +14,12 @@ import javax.persistence.Id;
  *
  * @author TAYLY
  */
+@Entity
 public class Telefone {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private int id;
     private String numero;
 
