@@ -39,7 +39,7 @@ public class GrupodeProduto {
     private int unidade;
     
     @OneToMany    
-    private String produto;
+    private Produto produto;
     
     @OneToMany
     private String classificacao;
@@ -56,7 +56,7 @@ public class GrupodeProduto {
             return unidade;
         }
 
-        public String getProduto() {
+        public Produto getProduto() {
             return produto;
         }
 
@@ -76,7 +76,7 @@ public class GrupodeProduto {
             this.unidade = unidade;
         }
 
-        public void setProduto(String produto) {
+        public void setProduto(Produto produto) {
             this.produto = produto;
         }
 
