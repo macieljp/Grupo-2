@@ -8,34 +8,19 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 
 /**
  *
  * @author TAYLY
  */
 public class Telefone {
-     @Id    
-    @GeneratedValue(strategy=GenerationType.AUTO)  
-    
-     @OneToOne
-     private int id;
-    
-    
-    private String numero;
-    
 
-    
-     /**
-     *
-     * @param id
-     * @param numero
-     * @param ddd
-     */
-    //public Telefone (int id ,int numero,int ddd);
-     
-     public int getId() {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+    private String numero;
+
+    public int getId() {
         return id;
     }
 
@@ -43,8 +28,6 @@ public class Telefone {
         return numero;
     }
 
-    
-     
     public void setId(int id) {
         this.id = id;
     }
@@ -57,7 +40,4 @@ public class Telefone {
     public String toString() {
         return "Telefone{" + "id=" + id + ", numero=" + numero + '}';
     }
-
-  
-    
 }
