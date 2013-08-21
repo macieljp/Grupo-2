@@ -48,7 +48,6 @@ public class Home extends javax.swing.JFrame {
         mnCliente = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jSeparator5 = new javax.swing.JPopupMenu.Separator();
-        mnFuncionario = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
         mnFornecedor = new javax.swing.JMenuItem();
         jSeparator7 = new javax.swing.JPopupMenu.Separator();
@@ -173,10 +172,15 @@ public class Home extends javax.swing.JFrame {
 
         jMenu2.setText("Pesquisar");
 
-        jMenuItem6.setText("jMenuItem6");
+        jMenuItem6.setText("Cliente");
         jMenu2.add(jMenuItem6);
 
-        jMenuItem10.setText("jMenuItem10");
+        jMenuItem10.setText("Produto");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem10);
 
         jMenuBar.add(jMenu2);
@@ -191,7 +195,7 @@ public class Home extends javax.swing.JFrame {
         });
         jMenu1.add(mnCliente);
 
-        jMenuItem1.setText("Mini Cadastro Cliente");
+        jMenuItem1.setText("Pesquisa");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -199,9 +203,6 @@ public class Home extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
         jMenu1.add(jSeparator5);
-
-        mnFuncionario.setText("Funcionário");
-        jMenu1.add(mnFuncionario);
         jMenu1.add(jSeparator6);
 
         mnFornecedor.setText("Fornecedor");
@@ -251,6 +252,10 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
         Util.abrirJDialogCentralizado(new JDialogFormularioCliente(this, true));
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -313,7 +318,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel lbStatus;
     private javax.swing.JMenuItem mnCliente;
     private javax.swing.JMenuItem mnFornecedor;
-    private javax.swing.JMenuItem mnFuncionario;
     private javax.swing.JMenuItem mnProduto;
     private javax.swing.JPanel pnMenu;
     // End of variables declaration//GEN-END:variables
