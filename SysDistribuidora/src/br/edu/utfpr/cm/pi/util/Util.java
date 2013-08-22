@@ -35,5 +35,9 @@ public class Util {
     public static void dispayMsg(String nenhum_Cliente_Encontrado) {
         JOptionPane.showMessageDialog(null, nenhum_Cliente_Encontrado);
     }
+
+    public static boolean imprimirMsgNaTela(String deseja_Cancelar) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

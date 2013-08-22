@@ -19,14 +19,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author JoaoPaulo
  */
-public class JDialogFormularioCliente extends javax.swing.JDialog {
+public class JDialogPesquisaCliente extends javax.swing.JDialog {
 
     /**
-     * Creates new form JDialogFormularioCliente
+     * Creates new form JDialogPesquisaCliente
      */
     private List<Cliente> clientes;
 
-    public JDialogFormularioCliente(java.awt.Frame parent, boolean modal) {
+    public JDialogPesquisaCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         carregarTabelaComClientes();
@@ -186,15 +186,15 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
 
     private void btFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFecharActionPerformed
         if (Util.imprimirConfirmacao("Deseja Sair?")) {
-//            dispose();
+
             dispose();
         }
     }//GEN-LAST:event_btFecharActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
-      //  if (Util.imprimirMsgNaTela("Deseja Cancelar?")) {
+        if (Util.imprimirMsgNaTela("Deseja Cancelar?")) {
         limparCampos();
-//        }
+        }
     }//GEN-LAST:event_btCancelarActionPerformed
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
@@ -252,7 +252,7 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
 
     protected void listarClientes() {
         DaoCliente cli = new DaoCliente();
-        // fornecedores = cli.listCliente("%" + tfPesquisar.getText().trim()+"%");
+        fornecedores = cli.listCliente("%" + tfPesquisar.getText().trim()+"%");
         mostrarClientes(fornecedores);
     }
 
@@ -276,7 +276,7 @@ public class JDialogFormularioCliente extends javax.swing.JDialog {
             tfBairro.setText(fornecedores.get(tb.getSelectedRow()).getEndereco().getBairro());
             tfUF.setText(fornecedores.get(tb.getSelectedRow()).getEndereco().getUf());
             tfCep.setText(fornecedores.get(tb.getSelectedRow()).getEndereco().getCep());
-//            ftfTelefone.setText(fornecedores.get(tb.getSelectedRow()).getEndereco().getTelefone());
+           //ftfTelefone.setText(fornecedores.get(tb.getSelectedRow()).getEndereco().getTelefone());
         } else {
             tfNome.setText("");
             tfLogradouro.setText("");

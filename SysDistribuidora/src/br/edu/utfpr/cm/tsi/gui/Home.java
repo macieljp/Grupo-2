@@ -26,7 +26,6 @@ public class Home extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSeparator14 = new javax.swing.JSeparator();
         pnMenu = new javax.swing.JPanel();
         jToolBarMenu = new javax.swing.JToolBar();
         btCadastrarCliente = new javax.swing.JButton();
@@ -41,19 +40,17 @@ public class Home extends javax.swing.JFrame {
         lbDuffBeer = new javax.swing.JLabel();
         lbStatus = new javax.swing.JLabel();
         jMenuBar = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         mnCliente = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jSeparator5 = new javax.swing.JPopupMenu.Separator();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
         mnFornecedor = new javax.swing.JMenuItem();
-        jSeparator7 = new javax.swing.JPopupMenu.Separator();
+        jSeparator5 = new javax.swing.JPopupMenu.Separator();
         mnProduto = new javax.swing.JMenuItem();
-        jSeparator8 = new javax.swing.JPopupMenu.Separator();
         jSeparator9 = new javax.swing.JPopupMenu.Separator();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jSeparator7 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem10 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(860, 640));
@@ -170,10 +167,32 @@ public class Home extends javax.swing.JFrame {
         jMenuBar.setMinimumSize(new java.awt.Dimension(860, 30));
         jMenuBar.setPreferredSize(new java.awt.Dimension(860, 30));
 
+        jMenu1.setText("Cadastro");
+
+        mnCliente.setText("Cliente");
+        mnCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnClienteActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnCliente);
+        jMenu1.add(jSeparator6);
+
+        mnFornecedor.setText("Fornecedor");
+        jMenu1.add(mnFornecedor);
+        jMenu1.add(jSeparator5);
+
+        mnProduto.setText("Produto");
+        jMenu1.add(mnProduto);
+        jMenu1.add(jSeparator9);
+
+        jMenuBar.add(jMenu1);
+
         jMenu2.setText("Pesquisar");
 
         jMenuItem6.setText("Cliente");
         jMenu2.add(jMenuItem6);
+        jMenu2.add(jSeparator7);
 
         jMenuItem10.setText("Produto");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
@@ -184,37 +203,6 @@ public class Home extends javax.swing.JFrame {
         jMenu2.add(jMenuItem10);
 
         jMenuBar.add(jMenu2);
-
-        jMenu1.setText("Cadastro");
-
-        mnCliente.setText("Cliente");
-        mnCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnClienteActionPerformed(evt);
-            }
-        });
-        jMenu1.add(mnCliente);
-
-        jMenuItem1.setText("Pesquisa");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem1);
-        jMenu1.add(jSeparator5);
-        jMenu1.add(jSeparator6);
-
-        mnFornecedor.setText("Fornecedor");
-        jMenu1.add(mnFornecedor);
-        jMenu1.add(jSeparator7);
-
-        mnProduto.setText("Produto");
-        jMenu1.add(mnProduto);
-        jMenu1.add(jSeparator8);
-        jMenu1.add(jSeparator9);
-
-        jMenuBar.add(jMenu1);
 
         setJMenuBar(jMenuBar);
 
@@ -247,11 +235,6 @@ public class Home extends javax.swing.JFrame {
     private void mnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnClienteActionPerformed
         Util.abrirJDialogCentralizado(new JDialogCadastroCliente(this, true));
     }//GEN-LAST:event_mnClienteActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-        Util.abrirJDialogCentralizado(new JDialogFormularioCliente(this, true));
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         // TODO add your handling code here:
@@ -300,18 +283,15 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JToolBar.Separator jSeparator1;
-    private javax.swing.JSeparator jSeparator14;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JPopupMenu.Separator jSeparator7;
-    private javax.swing.JPopupMenu.Separator jSeparator8;
     private javax.swing.JPopupMenu.Separator jSeparator9;
     private javax.swing.JToolBar jToolBarMenu;
     private javax.swing.JLabel lbDuffBeer;

@@ -40,20 +40,15 @@ public class JDialogCadastroCliente extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         lbNome = new javax.swing.JLabel();
         lbCPF = new javax.swing.JLabel();
-        lbRG = new javax.swing.JLabel();
         lbId = new javax.swing.JLabel();
-        lbSexo = new javax.swing.JLabel();
         lbNascimento = new javax.swing.JLabel();
         tfCodigo = new javax.swing.JTextField();
         tfNome = new javax.swing.JTextField();
-        tfCPF = new javax.swing.JTextField();
-        tfRG = new javax.swing.JTextField();
         tfDataNascimento = new javax.swing.JTextField();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jPanel3 = new javax.swing.JPanel();
         lbTipoLogradouro = new javax.swing.JLabel();
         lbLogradouro = new javax.swing.JLabel();
@@ -75,11 +70,8 @@ public class JDialogCadastroCliente extends javax.swing.JDialog {
         lbTelefone = new javax.swing.JLabel();
         lbCelular = new javax.swing.JLabel();
         tfCelular = new javax.swing.JTextField();
-        lbRecado = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         tfEmail = new javax.swing.JTextField();
-        btNovo = new javax.swing.JButton();
         btSalvar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
         btDeletar = new javax.swing.JButton();
@@ -90,7 +82,7 @@ public class JDialogCadastroCliente extends javax.swing.JDialog {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnRotulo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        pnRotulo.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         pnRotulo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbRotulo.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
@@ -100,10 +92,10 @@ public class JDialogCadastroCliente extends javax.swing.JDialog {
 
         getContentPane().add(pnRotulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jPanel2.setMaximumSize(new java.awt.Dimension(790, 200));
         jPanel2.setMinimumSize(new java.awt.Dimension(790, 200));
         jPanel2.setPreferredSize(new java.awt.Dimension(795, 200));
@@ -115,45 +107,41 @@ public class JDialogCadastroCliente extends javax.swing.JDialog {
         lbCPF.setText("CNPJ/CPF:");
         jPanel2.add(lbCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
 
-        lbRG.setText("IE/RG:");
-        jPanel2.add(lbRG, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, -1, -1));
-
         lbId.setText("Código:");
         jPanel2.add(lbId, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
-
-        lbSexo.setText("Sexo:");
-        jPanel2.add(lbSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, -1, -1));
 
         lbNascimento.setText("Nasc:");
         jPanel2.add(lbNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, -1, -1));
         jPanel2.add(tfCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 90, 25));
         jPanel2.add(tfNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 390, 25));
-        jPanel2.add(tfCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 170, 25));
-        jPanel2.add(tfRG, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 160, 25));
         jPanel2.add(tfDataNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 170, 25));
-
-        buttonGroup2.add(jRadioButton3);
-        jRadioButton3.setText("Maculino");
-        jPanel2.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, -1, -1));
-
-        buttonGroup2.add(jRadioButton4);
-        jRadioButton4.setText("Feminino");
-        jPanel2.add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, -1, -1));
 
         jLabel1.setText("Tipo:");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, -1, -1));
 
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("Jurídico");
-        jPanel2.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, -1, -1));
+        jPanel2.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, -1, -1));
 
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Físico");
-        jPanel2.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, -1, -1));
+        jPanel2.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, -1, -1));
+
+        try {
+            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 160, 30));
 
         jTabbedPane1.addTab("Dados Pessoais", jPanel2);
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbTipoLogradouro.setText("Tipo Logradouro:");
@@ -202,41 +190,32 @@ public class JDialogCadastroCliente extends javax.swing.JDialog {
         jPanel3.add(lbCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, -1, -1));
         jPanel3.add(tfCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 250, 120, -1));
 
-        lbRecado.setText("Recado:");
-        jPanel3.add(lbRecado, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 250, -1, -1));
-        jPanel3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 250, 110, -1));
-
         jLabel13.setText("E-mail:");
         jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, -1, -1));
         jPanel3.add(tfEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, 400, -1));
 
-        jTabbedPane1.addTab("Contato", jPanel3);
+        jTabbedPane1.addTab("Endereço", jPanel3);
 
         jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 410));
 
-        btNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/update.png"))); // NOI18N
-        btNovo.setToolTipText("Atualizar");
-        btNovo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel1.add(btNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 430, 50, 40));
-
         btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/save01.png"))); // NOI18N
         btSalvar.setToolTipText("Salvar");
-        btSalvar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btSalvar.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jPanel1.add(btSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 430, 50, 40));
 
         btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/clear.png"))); // NOI18N
         btCancelar.setToolTipText("Cancelar");
-        btCancelar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btCancelar.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jPanel1.add(btCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 430, 50, 40));
 
         btDeletar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/delete.png"))); // NOI18N
         btDeletar.setToolTipText("Apagar");
-        btDeletar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btDeletar.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jPanel1.add(btDeletar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 430, 50, 40));
 
         btFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/Close.png"))); // NOI18N
         btFechar.setToolTipText("Fechar");
-        btFechar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btFechar.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         btFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btFecharActionPerformed(evt);
@@ -253,6 +232,10 @@ public class JDialogCadastroCliente extends javax.swing.JDialog {
        Util.imprimirConfirmacao("Deseja Fechar?");
        dispose();
     }//GEN-LAST:event_btFecharActionPerformed
+
+    private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -299,13 +282,13 @@ public class JDialogCadastroCliente extends javax.swing.JDialog {
     private javax.swing.JButton btCancelar;
     private javax.swing.JButton btDeletar;
     private javax.swing.JButton btFechar;
-    private javax.swing.JButton btNovo;
     private javax.swing.JButton btSalvar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JComboBox cbTipoLogradouro;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JPanel jPanel1;
@@ -313,10 +296,7 @@ public class JDialogCadastroCliente extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbBairro;
     private javax.swing.JLabel lbCPF;
     private javax.swing.JLabel lbCelular;
@@ -329,15 +309,11 @@ public class JDialogCadastroCliente extends javax.swing.JDialog {
     private javax.swing.JLabel lbNascimento;
     private javax.swing.JLabel lbNome;
     private javax.swing.JLabel lbNumero;
-    private javax.swing.JLabel lbRG;
-    private javax.swing.JLabel lbRecado;
     private javax.swing.JLabel lbRotulo;
-    private javax.swing.JLabel lbSexo;
     private javax.swing.JLabel lbTelefone;
     private javax.swing.JLabel lbTipoLogradouro;
     private javax.swing.JPanel pnRotulo;
     private javax.swing.JTextField tfBairro;
-    private javax.swing.JTextField tfCPF;
     private javax.swing.JTextField tfCelular;
     private javax.swing.JTextField tfCep;
     private javax.swing.JTextField tfCodigo;
@@ -347,7 +323,6 @@ public class JDialogCadastroCliente extends javax.swing.JDialog {
     private javax.swing.JTextField tfLogradouro;
     private javax.swing.JTextField tfNome;
     private javax.swing.JTextField tfNumero;
-    private javax.swing.JTextField tfRG;
     private javax.swing.JTextField tfResidencial;
     // End of variables declaration//GEN-END:variables
 }

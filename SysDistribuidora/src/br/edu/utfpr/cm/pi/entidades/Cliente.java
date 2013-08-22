@@ -8,8 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
 
 
+ 
 /**
  *
  * @author Tayly
@@ -23,10 +25,12 @@ public class Cliente {
     private int id;
     private String nome;
     private String cpf;
+    private String tipo;
     
     @OneToOne
     private Endereco endereco;
     
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataNascimento = Calendar.getInstance().getTime();
 
     public int getId() {
@@ -44,6 +48,10 @@ public class Cliente {
     
     public Date getdataNascimento() {
         return dataNascimento;
+    }
+
+    public String getTipo() {
+        return tipo;
     }
 
     public void setId(int id) {
@@ -71,16 +79,16 @@ public class Cliente {
     public void setdataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
     
  @Override
  
-  public String toString(){
+    public String toString() {
+        return "Cliente{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", tipo=" + tipo + ", endereco=" + endereco + ", dataNascimento=" + dataNascimento + '}';
+    }
  
-    return "Pessoa {" + "id: " + id + 
-                    "nome: " + nome+
-                    "cpf:  " + cpf+
-                    "endereco: "+endereco+
-                    "Data de Nascimento: " +dataNascimento+ "}";
  }
- 
-}
+

@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
+
 /**
  *
  * @author Tayly
@@ -35,6 +36,8 @@ public class Endereco implements  Serializable {
     private String cidade;
     @Column
     private String Uf;
+    @Column
+    private String estado;
     @Column
     private String cep;
     
@@ -87,6 +90,10 @@ public class Endereco implements  Serializable {
         return cidade;
     }
 
+    public String getEstado() {
+        return estado;
+    }
+
     public void setCidade(String cidade) {
         this.cidade = cidade;
     }
@@ -107,19 +114,17 @@ public class Endereco implements  Serializable {
         this.cep = cep;
     }
 
-  
-    
-    @Override
-    public String toString() {
-        return "Endereco{" + "id=" + id + ", logradouro=" + logradouro + 
-                ", numero=" + numero + 
-                ", bairro=" + bairro +
-                ", complemento=" + complemento +
-                ", cidade=" + cidade +
-                ", Uf =" + Uf +
-                "cep=" + cep+ '}';
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
+    @Override
+    public String toString() {
+        return "Endereco{" + "id=" + id + ", logradouro=" + logradouro + ", numero=" + numero + ", bairro=" + bairro + ", complemento=" + complemento + ", cidade=" + cidade + ", Uf=" + Uf + ", estado=" + estado + ", cep=" + cep + '}';
+    }
+
+  
+    
 }
 
     
