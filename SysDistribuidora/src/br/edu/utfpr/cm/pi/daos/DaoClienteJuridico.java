@@ -43,6 +43,7 @@ public class DaoClienteJuridico extends DaoGenerics<ClienteJuridico>{
                     + " where cnpj LIKE '"
                     + cnpj + "%'");
             lista = query.list();
+            lista = query.list();
         }
         return lista;
     }
