@@ -76,8 +76,6 @@ public class JDialogCadastroCliente extends javax.swing.JDialog {
         btCancelar = new javax.swing.JButton();
         btDeletar = new javax.swing.JButton();
         btFechar = new javax.swing.JButton();
-        pnRotulo1 = new javax.swing.JPanel();
-        lbRotulo1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 550));
@@ -198,7 +196,7 @@ public class JDialogCadastroCliente extends javax.swing.JDialog {
 
         jTabbedPane1.addTab("Endereço", jPanel3);
 
-        jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 800, 350));
+        jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 800, 390));
 
         btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/save01.png"))); // NOI18N
         btSalvar.setToolTipText("Salvar");
@@ -224,16 +222,6 @@ public class JDialogCadastroCliente extends javax.swing.JDialog {
             }
         });
         jPanel1.add(btFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 430, 50, 40));
-
-        pnRotulo1.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
-        pnRotulo1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lbRotulo1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        lbRotulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbRotulo1.setText("Cadastro de Cliente");
-        pnRotulo1.add(lbRotulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(222, 5, -1, -1));
-
-        jPanel1.add(pnRotulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 800, 490));
 
@@ -322,11 +310,9 @@ public class JDialogCadastroCliente extends javax.swing.JDialog {
     private javax.swing.JLabel lbNome;
     private javax.swing.JLabel lbNumero;
     private javax.swing.JLabel lbRotulo;
-    private javax.swing.JLabel lbRotulo1;
     private javax.swing.JLabel lbTelefone;
     private javax.swing.JLabel lbTipoLogradouro;
     private javax.swing.JPanel pnRotulo;
-    private javax.swing.JPanel pnRotulo1;
     private javax.swing.JTextField tfBairro;
     private javax.swing.JTextField tfCelular;
     private javax.swing.JTextField tfCep;
