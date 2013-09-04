@@ -23,7 +23,8 @@ public class DaoClienteJuridico extends DaoGenerics<ClienteJuridico>{
         if (razao != null || !"".equals(razao)) {
 
             Query query = session.createQuery("From "
-                    + alvo.getSimpleName()
+                    +alvo.getSimpleName()
+                   
                     + " where razaoSocial LIKE '"
                     + razao + "%'");
             lista = query.list();
@@ -31,4 +32,35 @@ public class DaoClienteJuridico extends DaoGenerics<ClienteJuridico>{
         return lista;
     }
     
+      public List<ClienteJuridico> obterCnpj(String cnpj) {
+        List<ClienteJuridico> lista = null;
+        
+        
+        //if (cnpj != null || !"".equals(cnpj)) {
+
+            Query query = session.createQuery("From "
+                    + alvo.getSimpleName()
+                    + " where cnpj LIKE '"
+                    + cnpj + "%'");
+            lista = query.list();
+        }
+        return lista;
+    }
+
+    public List<ClienteJuridico> obterResponsavel(String responsavel) {
+        List<ClienteJuridico> lista = null;
+       // if (responsavel != null || !"".equals(responsavel)) {
+
+            Query query = session.createQuery("From "
+                    + alvo.getSimpleName()
+                    + " where responsavel LIKE '"
+                    + responsavel + "%'");
+            lista = query.list();
+        }
+        return lista;
+    }
+
+   
 }
+    
+
