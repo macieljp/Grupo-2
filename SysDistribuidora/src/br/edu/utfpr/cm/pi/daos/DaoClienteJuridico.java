@@ -36,7 +36,7 @@ public class DaoClienteJuridico extends DaoGenerics<ClienteJuridico>{
         List<ClienteJuridico> lista = null;
         
         
-        //if (cnpj != null || !"".equals(cnpj)) {
+        if (cnpj != null || !"".equals(cnpj)) {
 
             Query query = session.createQuery("From "
                     + alvo.getSimpleName()
@@ -50,7 +50,7 @@ public class DaoClienteJuridico extends DaoGenerics<ClienteJuridico>{
 
     public List<ClienteJuridico> obterResponsavel(String responsavel) {
         List<ClienteJuridico> lista = null;
-       // if (responsavel != null || !"".equals(responsavel)) {
+        if (responsavel != null || !"".equals(responsavel)) {
 
             Query query = session.createQuery("From "
                     + alvo.getSimpleName()
