@@ -6,11 +6,13 @@ package br.edu.utfpr.cm.pi.entidades;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import javax.persistence.Entity;
 
 /**
  *
  * @author TAYLY
  */
+@Entity
 public class Funcionario extends Fisico implements Serializable {
 
     public Funcionario() {
@@ -20,5 +22,9 @@ public class Funcionario extends Fisico implements Serializable {
         super(nome, sobrenome, rg, cpf, nascimento, id, endereco, email, dataCadastro);
     }
 
+    @Override
     
+    public String toString (){
+        return super.getNome();
+    }
 }
