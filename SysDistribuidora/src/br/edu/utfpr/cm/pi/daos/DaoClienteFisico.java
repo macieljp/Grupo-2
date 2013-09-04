@@ -4,8 +4,10 @@
  */
 package br.edu.utfpr.cm.pi.daos;
 
+import br.edu.utfpr.cm.pi.entidades.ClienteFisico;
 import java.util.List;
 import org.hibernate.Query;
+
 
 /**
  *
@@ -13,10 +15,10 @@ import org.hibernate.Query;
  */
 public class DaoClienteFisico extends DaoGenerics<ClienteFisico> {
 
+    public ClienteFisico() {
     
         super.alvo = ClienteFisico.class;
     }
-
     public List<ClienteFisico> obterNome(String nome) {
         List<ClienteFisico> lista = null;
         if (nome != null || !"".equals(nome)) {
