@@ -23,7 +23,7 @@ public class Fisico extends Pessoa implements Serializable {
     }
 
     public Fisico(String nome, String sobrenome, String rg, String cpf, Calendar nascimento, Integer id, Endereco endereco, String email, Calendar dataCadastro) {
-        super(id, endereco, email, dataCadastro);
+        super(id, endereco, email );
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.rg = rg;
