@@ -11,5 +11,10 @@ import br.edu.utfpr.cm.pi.entidades.Juridico;
  * @author TAYLY
  */
 public class DaoJuridico extends DaoGenerics<Juridico> {
+
+      public DaoJuridico(){
+          super.alvo = Juridico.class;
+      } 
+    
     
 }
