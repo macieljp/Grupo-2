@@ -27,19 +27,19 @@ public class ClienteJuridico extends Juridico implements Serializable {
         super(id, endereco, email);
     }
 
-//    public ClienteJuridico(String razaoSocial, String cnpj, String responsavel, String inscricao) {
-//        super(razaoSocial, cnpj, responsavel, inscricao);
-//    }
-//
-//    public ClienteJuridico(String referencia1,  Integer id, Endereco endereco, String email) {
-//        super(id, endereco, email);
-//        this.referencia1 = referencia1;
-//       
-//    }
-//
-//    public ClienteJuridico(String referencia1, String razaoSocial, String cnpj, String responsavel, String inscricao) {
-//        super(razaoSocial, cnpj, responsavel, inscricao);
-//        this.referencia1 = referencia1;
+    public ClienteJuridico(String razaoSocial, String cnpj, String responsavel, String inscricao) {
+        super(razaoSocial, cnpj, responsavel, inscricao);
+    }
+
+    public ClienteJuridico(String referencia1,  Integer id, Endereco endereco, String email) {
+        super(id, endereco, email);
+        this.referencia1 = referencia1;
+       
+    }
+
+    public ClienteJuridico(String referencia1, String razaoSocial, String cnpj, String responsavel, String inscricao) {
+        super(razaoSocial, cnpj, responsavel, inscricao);
+        this.referencia1 = referencia1;
        
     }
 
