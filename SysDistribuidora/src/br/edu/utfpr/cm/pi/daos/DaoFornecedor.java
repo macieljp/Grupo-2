@@ -5,6 +5,8 @@
 package br.edu.utfpr.cm.pi.daos;
 
 import br.edu.utfpr.cm.pi.entidades.Fornecedor;
+import java.util.List;
+import org.hibernate.Query;
 
 /**
  *
@@ -14,5 +16,18 @@ import br.edu.utfpr.cm.pi.entidades.Fornecedor;
     public DaoFornecedor() {
         super.alvo = Fornecedor.class;
     }
-    
+   public List<Fornecedor> obterNome(String nome) {
+
+        List<Fornecedor> lista = null;
+        if (nome != null || !"".equals(nome)) {
+
+            Query query = session.createQuery("From "
+                    + alvo.getSimpleName()
+                    + " where nome LIKE '"
+                    + nome + "%'");
+            lista = query.list();
+        }
+        return lista;  
 }
+
+ }

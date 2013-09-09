@@ -52,7 +52,7 @@ public class JDialogPesquisarProduto extends javax.swing.JDialog {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelPesProdImagem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelPesProdImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/pi/icons/Pesquisar produto.png"))); // NOI18N
+        jLabelPesProdImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/name/Pesquisar produto.png"))); // NOI18N
         jLabelPesProdImagem.setToolTipText("");
         getContentPane().add(jLabelPesProdImagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 240, 50));
 
@@ -64,7 +64,7 @@ public class JDialogPesquisarProduto extends javax.swing.JDialog {
         getContentPane().add(jTextFieldPesProdCod, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 110, -1));
 
         jButton1PesProdPesquisar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButton1PesProdPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/pi/icons/pesquisar.png"))); // NOI18N
+        jButton1PesProdPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/pesquisar.png"))); // NOI18N
         jButton1PesProdPesquisar.setToolTipText("Pesquisar");
         getContentPane().add(jButton1PesProdPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 50, 50));
 
@@ -100,22 +100,22 @@ public class JDialogPesquisarProduto extends javax.swing.JDialog {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 510, 160));
 
         jButtonPesProdAtualizar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButtonPesProdAtualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/pi/icons/update.png"))); // NOI18N
+        jButtonPesProdAtualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/update.png"))); // NOI18N
         jButtonPesProdAtualizar.setToolTipText("Atualizar");
         getContentPane().add(jButtonPesProdAtualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, -1, -1));
 
         jButtonPesProdLimpar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButtonPesProdLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/pi/icons/clear02.png"))); // NOI18N
+        jButtonPesProdLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/clear02.png"))); // NOI18N
         jButtonPesProdLimpar.setToolTipText("Limpar");
         getContentPane().add(jButtonPesProdLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, -1, -1));
 
         jButtonPesProdCadastrarProduto.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButtonPesProdCadastrarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/pi/icons/searchProd.png"))); // NOI18N
+        jButtonPesProdCadastrarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/searchBeer.png"))); // NOI18N
         jButtonPesProdCadastrarProduto.setToolTipText("Cadastrar Produto");
         getContentPane().add(jButtonPesProdCadastrarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 390, -1, -1));
 
         jButtonPesProdFechar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButtonPesProdFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/pi/icons/Close.png"))); // NOI18N
+        jButtonPesProdFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/Close.png"))); // NOI18N
         jButtonPesProdFechar.setToolTipText("Fechar");
         jButtonPesProdFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

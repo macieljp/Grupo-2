@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -22,6 +23,7 @@ import org.hibernate.Session;
     public class DaoGenerics<T> implements Dao<T> {
 
     protected Session session = TransactionManager.getCurrentSession();
+    protected Transaction transaction;
     protected Class alvo;
 
     @Override
@@ -30,6 +32,24 @@ import org.hibernate.Session;
         session.flush();
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     @Override
     public void delete(T o) {
         session.delete(o);

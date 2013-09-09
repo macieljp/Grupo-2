@@ -105,6 +105,11 @@ public class Home extends javax.swing.JFrame {
                 btPesquisarClienteMouseEntered(evt);
             }
         });
+        btPesquisarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPesquisarClienteActionPerformed(evt);
+            }
+        });
         jToolBarMenu.add(btPesquisarCliente);
         btPesquisarCliente.getAccessibleContext().setAccessibleName("Pesquisar Cliente");
         btPesquisarCliente.getAccessibleContext().setAccessibleDescription("");
@@ -239,6 +244,10 @@ public class Home extends javax.swing.JFrame {
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void btPesquisarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarClienteActionPerformed
+            Util.abrirJDialogCentralizado(new JDialogPesquisaCliente(this,true));        // TODO add your handling code here:
+    }//GEN-LAST:event_btPesquisarClienteActionPerformed
 
     /**
      * @param args the command line arguments

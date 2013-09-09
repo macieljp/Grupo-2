@@ -4,7 +4,8 @@
  */
 package br.edu.utfpr.cm.tsi.gui;
 
-import br.edu.utfpr.cm.tsi.pi.Util.Util;
+import br.edu.utfpr.cm.pi.util.Util;
+
 
 /**
  *
@@ -29,6 +30,7 @@ public class JDialogPesquisarFornecedor extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jOptionPane1 = new javax.swing.JOptionPane();
         jLabelpesClienteImagem = new javax.swing.JLabel();
         jTextFieldPesFornCod = new javax.swing.JTextField();
         jLabelPesClienteCod = new javax.swing.JLabel();
@@ -53,7 +55,7 @@ public class JDialogPesquisarFornecedor extends javax.swing.JDialog {
 
         jLabelpesClienteImagem.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabelpesClienteImagem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelpesClienteImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/pi/icons/PesquisarFornecedor.png"))); // NOI18N
+        jLabelpesClienteImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/name/PesquisarFornecedor.png"))); // NOI18N
         getContentPane().add(jLabelpesClienteImagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 280, 50));
 
         jTextFieldPesFornCod.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -77,13 +79,17 @@ public class JDialogPesquisarFornecedor extends javax.swing.JDialog {
         jTextFieldpesPesFornCod.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         getContentPane().add(jTextFieldpesPesFornCod, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 230, -1));
 
-        jFormattedTextFieldPesFornCod.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        try {
+            jFormattedTextFieldPesFornCod.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         jFormattedTextFieldPesFornCod.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jFormattedTextFieldPesFornCod.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         getContentPane().add(jFormattedTextFieldPesFornCod, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 110, -1));
 
         jButtonPesquisar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButtonPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/pi/icons/pesquisar.png"))); // NOI18N
+        jButtonPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/pesquisar.png"))); // NOI18N
         jButtonPesquisar.setToolTipText("Pesquisar");
         jButtonPesquisar.setMaximumSize(new java.awt.Dimension(72, 72));
         jButtonPesquisar.setMinimumSize(new java.awt.Dimension(72, 72));
@@ -111,17 +117,17 @@ public class JDialogPesquisarFornecedor extends javax.swing.JDialog {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 540, 160));
 
         jButtonAtualizar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButtonAtualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/pi/icons/update.png"))); // NOI18N
+        jButtonAtualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/update.png"))); // NOI18N
         jButtonAtualizar.setToolTipText("Atualizar");
         getContentPane().add(jButtonAtualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, -1, -1));
 
         jButtonLimpar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButtonLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/pi/icons/clear02.png"))); // NOI18N
+        jButtonLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/clear02.png"))); // NOI18N
         jButtonLimpar.setToolTipText("Limpar");
         getContentPane().add(jButtonLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, -1, -1));
 
         jButtonFechar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/pi/icons/Close.png"))); // NOI18N
+        jButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/Close.png"))); // NOI18N
         jButtonFechar.setToolTipText("Fechar");
         jButtonFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,7 +140,7 @@ public class JDialogPesquisarFornecedor extends javax.swing.JDialog {
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 620, 1));
 
         jButtonCadFornecedor.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButtonCadFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/pi/icons/Forn.png"))); // NOI18N
+        jButtonCadFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/Forn.png"))); // NOI18N
         jButtonCadFornecedor.setToolTipText("Cadastrar Fornecedor");
         getContentPane().add(jButtonCadFornecedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 390, -1, -1));
 
@@ -200,6 +206,7 @@ public class JDialogPesquisarFornecedor extends javax.swing.JDialog {
     private javax.swing.JLabel jLabelPesClienteCPF;
     private javax.swing.JLabel jLabelPesClienteCod;
     private javax.swing.JLabel jLabelpesClienteImagem;
+    private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTablePesquisarCliente;
