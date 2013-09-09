@@ -37,6 +37,14 @@ public class Home extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JToolBar.Separator();
         jButton10 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jSeparator8 = new javax.swing.JToolBar.Separator();
+        jButton2 = new javax.swing.JButton();
+        jSeparator10 = new javax.swing.JToolBar.Separator();
+        jButton5 = new javax.swing.JButton();
+        jSeparator11 = new javax.swing.JToolBar.Separator();
+        jButton6 = new javax.swing.JButton();
+        jSeparator12 = new javax.swing.JToolBar.Separator();
         lbDuffBeer = new javax.swing.JLabel();
         lbStatus = new javax.swing.JLabel();
         jMenuBar = new javax.swing.JMenuBar();
@@ -139,7 +147,42 @@ public class Home extends javax.swing.JFrame {
         jButton10.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBarMenu.add(jButton10);
 
-        pnMenu.add(jToolBarMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/Truck.png"))); // NOI18N
+        jButton1.setToolTipText("Fornecedor");
+        jButton1.setFocusable(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jToolBarMenu.add(jButton1);
+        jToolBarMenu.add(jSeparator8);
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/searchTruck.png"))); // NOI18N
+        jButton2.setToolTipText("Pesquisar Fornecedor");
+        jButton2.setFocusable(false);
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBarMenu.add(jButton2);
+        jToolBarMenu.add(jSeparator10);
+
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/grupo.png"))); // NOI18N
+        jButton5.setFocusable(false);
+        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBarMenu.add(jButton5);
+        jToolBarMenu.add(jSeparator11);
+
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/relatorio.png"))); // NOI18N
+        jButton6.setFocusable(false);
+        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBarMenu.add(jButton6);
+        jToolBarMenu.add(jSeparator12);
+
+        pnMenu.add(jToolBarMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, -1));
 
         getContentPane().add(pnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 50));
 
@@ -249,6 +292,10 @@ public class Home extends javax.swing.JFrame {
             Util.abrirJDialogCentralizado(new JDialogPesquisaCliente(this,true));        // TODO add your handling code here:
     }//GEN-LAST:event_btPesquisarClienteActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -286,21 +333,29 @@ public class Home extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCadastrarCliente;
     private javax.swing.JButton btPesquisarCliente;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JToolBar.Separator jSeparator1;
+    private javax.swing.JToolBar.Separator jSeparator10;
+    private javax.swing.JToolBar.Separator jSeparator11;
+    private javax.swing.JToolBar.Separator jSeparator12;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JPopupMenu.Separator jSeparator7;
+    private javax.swing.JToolBar.Separator jSeparator8;
     private javax.swing.JPopupMenu.Separator jSeparator9;
     private javax.swing.JToolBar jToolBarMenu;
     private javax.swing.JLabel lbDuffBeer;
