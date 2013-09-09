@@ -51,7 +51,7 @@ public class JDialogCadastrarFornecedor extends javax.swing.JDialog {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelImagemCadForn.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabelImagemCadForn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/Truck.png"))); // NOI18N
+        jLabelImagemCadForn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/Truck-icon.png"))); // NOI18N
         getContentPane().add(jLabelImagemCadForn, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, 130, 90));
 
         jLabelCadFornCodigo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
