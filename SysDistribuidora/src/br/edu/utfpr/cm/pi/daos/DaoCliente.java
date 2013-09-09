@@ -13,7 +13,4 @@ import java.util.List;
         super.alvo = Cliente.class;
     }
 
-    public List<Cliente> listCliente(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-}
