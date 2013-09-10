@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.utfpr.cm.tsi.main;
+package br.edu.utfpr.cm.pi.main;
 
-import br.edu.utfpr.cm.tsi.gui.Home;
+import br.edu.utfpr.cm.pi.gui.Home;
 import javax.swing.JFrame;
 
 /**

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.utfpr.cm.tsi.gui;
+package br.edu.utfpr.cm.pi.gui;
 
 import br.edu.utfpr.cm.pi.util.Util;
 import java.text.ParseException;
@@ -60,11 +60,7 @@ public class JDialogRelatorioCliente extends javax.swing.JDialog {
         jLabelRelClienteImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/Cliente_32.png"))); // NOI18N
         getContentPane().add(jLabelRelClienteImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 40));
 
-        try {
-            jFormattedTextFieldRelClienteData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        jFormattedTextFieldRelClienteData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         jFormattedTextFieldRelClienteData.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jFormattedTextFieldRelClienteData.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
         getContentPane().add(jFormattedTextFieldRelClienteData, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 80, -1));
@@ -84,11 +80,7 @@ public class JDialogRelatorioCliente extends javax.swing.JDialog {
         jTextFieldRelClienteCliente.setPreferredSize(new java.awt.Dimension(250, 20));
         getContentPane().add(jTextFieldRelClienteCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 240, -1));
 
-        try {
-            jFormattedTextFieldRelClienteDataFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        jFormattedTextFieldRelClienteDataFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         jFormattedTextFieldRelClienteDataFim.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jFormattedTextFieldRelClienteDataFim.setPreferredSize(new java.awt.Dimension(48, 20));
         getContentPane().add(jFormattedTextFieldRelClienteDataFim, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 80, -1));

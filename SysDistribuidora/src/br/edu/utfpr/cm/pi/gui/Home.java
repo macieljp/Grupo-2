@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.utfpr.cm.tsi.gui;
+package br.edu.utfpr.cm.pi.gui;
 
 import br.edu.utfpr.cm.pi.util.Util;
 import javax.swing.JButton;
@@ -45,6 +45,8 @@ public class Home extends javax.swing.JFrame {
         jSeparator11 = new javax.swing.JToolBar.Separator();
         jButton6 = new javax.swing.JButton();
         jSeparator12 = new javax.swing.JToolBar.Separator();
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator13 = new javax.swing.JToolBar.Separator();
         lbDuffBeer = new javax.swing.JLabel();
         lbStatus = new javax.swing.JLabel();
         jMenuBar = new javax.swing.JMenuBar();
@@ -62,6 +64,13 @@ public class Home extends javax.swing.JFrame {
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(860, 640));
@@ -214,7 +223,12 @@ public class Home extends javax.swing.JFrame {
         jToolBarMenu.add(jButton6);
         jToolBarMenu.add(jSeparator12);
 
-        pnMenu.add(jToolBarMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/email.png"))); // NOI18N
+        jLabel1.setToolTipText("Enviar e-mail");
+        jToolBarMenu.add(jLabel1);
+        jToolBarMenu.add(jSeparator13);
+
+        pnMenu.add(jToolBarMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, -1));
 
         getContentPane().add(pnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 50));
 
@@ -297,7 +311,30 @@ public class Home extends javax.swing.JFrame {
 
         jMenu3.setText("Relatórios");
         jMenu3.setToolTipText("Gerar Relatórios");
+
+        jMenuItem7.setText("Cliente");
+        jMenu3.add(jMenuItem7);
+
+        jMenuItem8.setText("Fornecedor");
+        jMenu3.add(jMenuItem8);
+
+        jMenuItem9.setText("Produtos");
+        jMenu3.add(jMenuItem9);
+
         jMenuBar.add(jMenu3);
+
+        jMenu4.setText("Opções");
+
+        jMenuItem3.setText("Ajuda");
+        jMenu4.add(jMenuItem3);
+
+        jMenuItem4.setText("Sobre o Sistema");
+        jMenu4.add(jMenuItem4);
+
+        jMenuItem5.setText("Sair");
+        jMenu4.add(jMenuItem5);
+
+        jMenuBar.add(jMenu4);
 
         setJMenuBar(jMenuBar);
 
@@ -411,18 +448,27 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator10;
     private javax.swing.JToolBar.Separator jSeparator11;
     private javax.swing.JToolBar.Separator jSeparator12;
+    private javax.swing.JToolBar.Separator jSeparator13;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator4;

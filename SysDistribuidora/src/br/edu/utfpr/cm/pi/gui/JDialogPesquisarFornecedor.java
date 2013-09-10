@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.utfpr.cm.tsi.gui;
+package br.edu.utfpr.cm.pi.gui;
 
 import br.edu.utfpr.cm.pi.util.Util;
 
@@ -79,11 +79,7 @@ public class JDialogPesquisarFornecedor extends javax.swing.JDialog {
         jTextFieldpesPesFornCod.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         getContentPane().add(jTextFieldpesPesFornCod, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 230, -1));
 
-        try {
-            jFormattedTextFieldPesFornCod.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        jFormattedTextFieldPesFornCod.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         jFormattedTextFieldPesFornCod.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jFormattedTextFieldPesFornCod.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         getContentPane().add(jFormattedTextFieldPesFornCod, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 110, -1));

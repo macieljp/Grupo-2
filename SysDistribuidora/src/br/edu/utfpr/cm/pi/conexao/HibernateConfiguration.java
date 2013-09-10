@@ -4,12 +4,15 @@
  */
 package br.edu.utfpr.cm.pi.conexao;
 
-import br.edu.utfpr.cm.pi.entidades.Cliente;
+import br.edu.utfpr.cm.pi.entidades.Cidade;
+import br.edu.utfpr.cm.pi.entidades.ClienteFisico;
+import br.edu.utfpr.cm.pi.entidades.ClienteJuridico;
 import br.edu.utfpr.cm.pi.entidades.Endereco;
 import br.edu.utfpr.cm.pi.entidades.Estado;
-import br.edu.utfpr.cm.pi.entidades.Fornecedor;
-import br.edu.utfpr.cm.pi.entidades.Produto;
-import br.edu.utfpr.cm.pi.entidades.Telefone;
+import br.edu.utfpr.cm.pi.entidades.Fisico;
+import br.edu.utfpr.cm.pi.entidades.Funcionario;
+import br.edu.utfpr.cm.pi.entidades.Juridico;
+import br.edu.utfpr.cm.pi.entidades.Pessoa;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
@@ -19,10 +22,9 @@ import org.hibernate.tool.hbm2ddl.SchemaExport;
  *
  * @author TAYLY
  */
-public class HibernateUtil {
+public class HibernateConfiguration {
     
-
-    private static AnnotationConfiguration cfg = null;
+       private static AnnotationConfiguration cfg = null;
     private static SessionFactory sessionFactory = null;
     private static String pass;
     private static String user;
@@ -31,7 +33,7 @@ public class HibernateUtil {
         if (cfg == null) {
             cfg = new AnnotationConfiguration();
             cfg.setProperty("hibernate.connection.driver", "com.mysql.jdbc.Driver");
-            cfg.setProperty("hibernate.connection.url", "jdbc:mysql://localhost/aluno");
+            cfg.setProperty("hibernate.connection.url", "jdbc:mysql://localhost/sysDistribuidora");
             cfg.setProperty("hibernate.connection.username", user);
             cfg.setProperty("hibernate.connection.password", pass);
             cfg.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
@@ -39,15 +41,16 @@ public class HibernateUtil {
             cfg.setProperty("hibernate.format_sql", "true");
             cfg.setProperty("hibernate.hbm2ddl.auto", "update");
 
-            cfg.addAnnotatedClass(Cliente.class);
-         
-            cfg.addAnnotatedClass(Estado.class);
-            cfg.addAnnotatedClass(Telefone.class);
             cfg.addAnnotatedClass(Endereco.class);
-            cfg.addAnnotatedClass(Fornecedor.class);
-           
-            cfg.addAnnotatedClass(Produto.class);
-            
+            cfg.addAnnotatedClass(Fisico.class);
+            cfg.addAnnotatedClass(Juridico.class);
+            cfg.addAnnotatedClass(Pessoa.class);
+            cfg.addAnnotatedClass(ClienteFisico.class);
+            cfg.addAnnotatedClass(ClienteJuridico.class);
+            cfg.addAnnotatedClass(Cidade.class);
+            cfg.addAnnotatedClass(Estado.class);
+            cfg.addAnnotatedClass(Funcionario.class);
+            //cfg.addAnnotatedClass(OrdemVenda.class);
 
 
             sessionFactory = cfg.buildSessionFactory();
@@ -61,7 +64,7 @@ public class HibernateUtil {
     }
 
     public static void setPass(String pass) {
-        HibernateUtil.pass = pass;
+        HibernateConfiguration.pass = pass;
     }
 
     public static String getUser() {
@@ -69,7 +72,7 @@ public class HibernateUtil {
     }
 
     public static void setUser(String user) {
-        HibernateUtil.user = user;
+        HibernateConfiguration.user = user;
     }
 
     public static void criarSchema() {
@@ -79,5 +82,4 @@ public class HibernateUtil {
     }
 }
 
-    
 

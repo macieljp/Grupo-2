@@ -18,8 +18,8 @@ public class Conexao {
     private static com.mysql.jdbc.Driver mysqlDriver;
 
     public static java.sql.Connection getConnection() throws SQLException {
-        String conecaoMysql = "jdbc:mysql://localhost" + "/?user=" + HibernateUtil.getUser()
-                + "&password=" + HibernateUtil.getPass();
+        String conecaoMysql = "jdbc:mysql://localhost" + "/?user=" + HibernateConfiguration.getUser()
+                + "&password=" + HibernateConfiguration.getPass();
         if (conexao == null) {
             mysqlDriver = new com.mysql.jdbc.Driver();
             conexao = DriverManager.getConnection(conecaoMysql);

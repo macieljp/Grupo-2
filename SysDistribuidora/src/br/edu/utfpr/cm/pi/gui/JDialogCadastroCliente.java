@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.utfpr.cm.tsi.gui;
+package br.edu.utfpr.cm.pi.gui;
 
 import br.edu.utfpr.cm.pi.util.Util;
 
@@ -128,11 +128,7 @@ public class JDialogCadastroCliente extends javax.swing.JDialog {
         jRadioButton2.setText("Físico");
         jPanel2.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, -1, -1));
 
-        try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFormattedTextField1ActionPerformed(evt);
@@ -141,7 +137,6 @@ public class JDialogCadastroCliente extends javax.swing.JDialog {
         jPanel2.add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 160, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/clientes.png"))); // NOI18N
-        jLabel2.setText("jLabel2");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 0, -1, -1));
 
         jTabbedPane1.addTab("Dados Pessoais", jPanel2);

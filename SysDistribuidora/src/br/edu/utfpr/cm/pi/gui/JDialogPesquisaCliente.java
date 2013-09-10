@@ -1,4 +1,4 @@
-package br.edu.utfpr.cm.tsi.gui;
+package br.edu.utfpr.cm.pi.gui;
 
 import br.edu.utfpr.cm.pi.entidades.Cliente;
 import br.edu.utfpr.cm.pi.entidades.Endereco;
@@ -8,6 +8,7 @@ import br.edu.utfpr.cm.pi.daos.DaoTelefone;
 import br.edu.utfpr.cm.pi.entidades.Telefone;
 import br.edu.utfpr.cm.pi.util.Util;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;

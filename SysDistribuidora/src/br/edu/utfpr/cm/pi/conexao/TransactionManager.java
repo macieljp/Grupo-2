@@ -22,7 +22,7 @@ public class TransactionManager {
             //throw new RuntimeException("Já existe uma transação iniciada.");
             getCurrentSession();
         } else {
-            session = HibernateUtil.openConnect();
+            session = HibernateConfiguration.openConnect();
             transaction = session.beginTransaction();
         }
     }
@@ -50,7 +50,7 @@ public class TransactionManager {
     public static Session getCurrentSession() {
         /*Automatizando a criação da transação.*/
         if (session == null) {
-            Session session2 = HibernateUtil.openConnect();
+            Session session2 = HibernateConfiguration.openConnect();
             // System.out.println("========================="+session2.getFlushMode());
             session2.setFlushMode(FlushMode.ALWAYS);
             return session2;
