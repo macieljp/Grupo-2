@@ -30,9 +30,9 @@ public class HibernateConfiguration {
     private static SessionFactory sessionFactory;
     
     private static String usuarioBase = "root";// seu nome de usuario da base de dados aqui
-    private static String senhaBase = "aluno";// sua seha de usuario da base de dados aqui
+    private static String senhaBase = "tayly";// sua seha de usuario da base de dados aqui
     private static String baseDados = "tayly";// o nome da sua base de dados aqui
-    private static String host = "localhost:3307";
+    private static String host = "localhost:3306";
 
     public static Session openConect() {
         if (cfg == null) {

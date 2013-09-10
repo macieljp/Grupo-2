@@ -63,7 +63,7 @@ public class JDialogCadastrarGrupoDeProduto extends javax.swing.JDialog {
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 217, 665, 1));
 
         jLabelCadGPImagem.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabelCadGPImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/grupo.png"))); // NOI18N
+        jLabelCadGPImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/AltGroupProduct.png"))); // NOI18N
         getContentPane().add(jLabelCadGPImagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 90, 130, 120));
 
         jButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/Close_.png"))); // NOI18N

@@ -139,8 +139,8 @@ public class JDialogCadastrarProduto extends javax.swing.JDialog {
         jSeparatorCadProd.setPreferredSize(new java.awt.Dimension(740, 10));
         getContentPane().add(jSeparatorCadProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 216, 740, 20));
 
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, -1, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/AltProduct.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, -1, -1));
 
         setBounds(0, 0, 681, 333);
     }// </editor-fold>//GEN-END:initComponents
