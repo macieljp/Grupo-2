@@ -34,8 +34,8 @@ import org.hibernate.Transaction;
         session.flush();
         try {
 
-            session = TransactionUtil.obterSessao();
-            transaction = TransactionUtil.iniciarTransacao(session);
+            session = TransactionManager.obterSessao();
+            transaction = TransactionManager.iniciarTransacao(session);
             session.saveOrUpdate(o);
             transaction.commit();
 
@@ -46,7 +46,7 @@ import org.hibernate.Transaction;
             System.err.println("Ocorreu um erro ao persistir o objeto.\n" + e.fillInStackTrace());
         } finally {
 
-            TransactionUtil.fecharSessao(session);
+            TransactionManager.fecharSessao(session);
         }
     }
 
@@ -56,8 +56,8 @@ import org.hibernate.Transaction;
        session.flush();
         try {
 
-            session = TransactionUtil.obterSessao();
-            transaction = TransactionUtil.iniciarTransacao(session);
+            session = TransactionManager.obterSessao();
+            transaction = TransactionManager.iniciarTransacao(session);
             session.delete(o);
             transaction.commit();
 
@@ -68,7 +68,7 @@ import org.hibernate.Transaction;
            System.err.println("Ocorreu um erro ao persistir o objeto.\n" + e.fillInStackTrace());
         } finally {
 
-            TransactionUtil.fecharSessao(session);
+            TransactionManager.fecharSessao(session);
         }
     }
 
@@ -79,8 +79,8 @@ import org.hibernate.Transaction;
         T objeto = null;
         try {
 
-            session = TransactionUtil.obterSessao();
-            transaction = TransactionUtil.iniciarTransacao(session);
+            session = TransactionManager.obterSessao();
+            transaction = TransactionManager.iniciarTransacao(session);
             if (id > 0) {
 
                 select = session.createQuery("From " + alvo.getSimpleName() + " where id = " + id);
@@ -106,8 +106,8 @@ import org.hibernate.Transaction;
 
         try {
 
-            session = TransactionUtil.obterSessao();
-            transaction = TransactionUtil.iniciarTransacao(session);
+            session = TransactionManager.obterSessao();
+            transaction = TransactionManager.iniciarTransacao(session);
             if (filtro != null) {
                 query = session.createQuery("FROM " + alvo.getSimpleName() + " WHERE nome LIKE '%" + filtro + "%'");
                 lista = query.list();
