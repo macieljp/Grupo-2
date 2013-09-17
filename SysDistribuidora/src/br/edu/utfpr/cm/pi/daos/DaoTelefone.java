@@ -15,4 +15,5 @@ import br.edu.utfpr.cm.pi.entidades.Telefone;
      public DaoTelefone() {
         super.alvo = Telefone.class;
     }
-}
+
+  }

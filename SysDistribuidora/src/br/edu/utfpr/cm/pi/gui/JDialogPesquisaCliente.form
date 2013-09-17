@@ -38,14 +38,14 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="43" y="24" width="472" height="-1"/>
+          <AbsoluteConstraints x="40" y="110" width="472" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JButton" name="btPesquisar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/br/edu/utfpr/cm/tsi/icons/PesquisarPadrao.png"/>
+          <Image iconType="3" name="/br/edu/utfpr/cm/pi/icons/PesquisarPadrao.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Pesquisar"/>
       </Properties>
@@ -54,7 +54,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="533" y="23" width="-1" height="-1"/>
+          <AbsoluteConstraints x="530" y="100" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -194,7 +194,7 @@
     <Component class="javax.swing.JButton" name="btCancelar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/br/edu/utfpr/cm/tsi/icons/clear.png"/>
+          <Image iconType="3" name="/br/edu/utfpr/cm/pi/icons/clear.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Limpar"/>
       </Properties>
@@ -210,7 +210,7 @@
     <Component class="javax.swing.JButton" name="btSalvar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/br/edu/utfpr/cm/tsi/icons/save01.png"/>
+          <Image iconType="3" name="/br/edu/utfpr/cm/pi/icons/save01.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Salvar"/>
       </Properties>
@@ -226,7 +226,7 @@
     <Component class="javax.swing.JButton" name="btFechar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/br/edu/utfpr/cm/tsi/icons/Close_.png"/>
+          <Image iconType="3" name="/br/edu/utfpr/cm/pi/icons/Close.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Fechar"/>
       </Properties>
@@ -258,7 +258,7 @@
     <Component class="javax.swing.JButton" name="btDeletar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/br/edu/utfpr/cm/tsi/icons/delete.png"/>
+          <Image iconType="3" name="/br/edu/utfpr/cm/pi/icons/delete.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Deletar"/>
       </Properties>
@@ -277,7 +277,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="40" y="60" width="700" height="230"/>
+          <AbsoluteConstraints x="40" y="150" width="700" height="140"/>
         </Constraint>
       </Constraints>
 

@@ -15,4 +15,5 @@ import br.edu.utfpr.cm.pi.entidades.Endereco;
     public DaoEndereco() {
         super.alvo = Endereco.class;
     }
+
  }

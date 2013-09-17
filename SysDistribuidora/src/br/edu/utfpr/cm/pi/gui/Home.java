@@ -46,7 +46,6 @@ public class Home extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jSeparator12 = new javax.swing.JToolBar.Separator();
         jLabel1 = new javax.swing.JLabel();
-        jSeparator13 = new javax.swing.JToolBar.Separator();
         lbDuffBeer = new javax.swing.JLabel();
         lbStatus = new javax.swing.JLabel();
         jMenuBar = new javax.swing.JMenuBar();
@@ -90,7 +89,7 @@ public class Home extends javax.swing.JFrame {
         jToolBarMenu.setMinimumSize(new java.awt.Dimension(860, 50));
         jToolBarMenu.setPreferredSize(new java.awt.Dimension(860, 50));
 
-        btCadastrarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/Cliente_32.png"))); // NOI18N
+        btCadastrarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/Cliente_32.png"))); // NOI18N
         btCadastrarCliente.setToolTipText("Cadastrar Cliente");
         btCadastrarCliente.setFocusable(false);
         btCadastrarCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -113,7 +112,7 @@ public class Home extends javax.swing.JFrame {
 
         jToolBarMenu.add(jSeparator1);
 
-        btPesquisarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/clientSearch.png"))); // NOI18N
+        btPesquisarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/clientSearch.png"))); // NOI18N
         btPesquisarCliente.setToolTipText("Pesquisar Cliente");
         btPesquisarCliente.setFocusable(false);
         btPesquisarCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -136,7 +135,7 @@ public class Home extends javax.swing.JFrame {
 
         jToolBarMenu.add(jSeparator2);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/Beer-icon_32.png"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/Beer-icon_32.png"))); // NOI18N
         jButton3.setToolTipText("Cadastrar Produto");
         jButton3.setFocusable(false);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -151,7 +150,7 @@ public class Home extends javax.swing.JFrame {
         jToolBarMenu.add(jButton3);
         jToolBarMenu.add(jSeparator3);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/searchBeer.png"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/searchBeer.png"))); // NOI18N
         jButton4.setToolTipText("Pesquisar Produto");
         jButton4.setFocusable(false);
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -171,7 +170,7 @@ public class Home extends javax.swing.JFrame {
         jButton10.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBarMenu.add(jButton10);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/Truck.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/Truck.png"))); // NOI18N
         jButton1.setToolTipText("Fornecedor");
         jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -184,7 +183,7 @@ public class Home extends javax.swing.JFrame {
         jToolBarMenu.add(jButton1);
         jToolBarMenu.add(jSeparator8);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/searchTruck_1.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/searchTruck_1.png"))); // NOI18N
         jButton2.setToolTipText("Pesquisar Fornecedor");
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -197,7 +196,7 @@ public class Home extends javax.swing.JFrame {
         jToolBarMenu.add(jButton2);
         jToolBarMenu.add(jSeparator10);
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/grupo.png"))); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/grupo.png"))); // NOI18N
         jButton5.setToolTipText("Grupo de Produtos");
         jButton5.setFocusable(false);
         jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -210,7 +209,7 @@ public class Home extends javax.swing.JFrame {
         jToolBarMenu.add(jButton5);
         jToolBarMenu.add(jSeparator11);
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/relatorio.png"))); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/relatorio.png"))); // NOI18N
         jButton6.setToolTipText("Gerar Relatórios");
         jButton6.setFocusable(false);
         jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -226,7 +225,6 @@ public class Home extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/email.png"))); // NOI18N
         jLabel1.setToolTipText("Enviar e-mail");
         jToolBarMenu.add(jLabel1);
-        jToolBarMenu.add(jSeparator13);
 
         pnMenu.add(jToolBarMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, -1));
 
@@ -234,7 +232,7 @@ public class Home extends javax.swing.JFrame {
 
         lbDuffBeer.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbDuffBeer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbDuffBeer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/duff.jpg"))); // NOI18N
+        lbDuffBeer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/duff.jpg"))); // NOI18N
         lbDuffBeer.setToolTipText("Duff Beer");
         lbDuffBeer.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -468,7 +466,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator jSeparator10;
     private javax.swing.JToolBar.Separator jSeparator11;
     private javax.swing.JToolBar.Separator jSeparator12;
-    private javax.swing.JToolBar.Separator jSeparator13;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator4;

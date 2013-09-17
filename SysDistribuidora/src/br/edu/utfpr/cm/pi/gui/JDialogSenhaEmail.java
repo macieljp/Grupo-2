@@ -50,7 +50,7 @@ public class JDialogSenhaEmail extends javax.swing.JDialog {
         jLabel9.setText("Senha:");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, -1, -1));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/pi/icons/Ok_.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/Ok_.png"))); // NOI18N
         jButton1.setToolTipText("Confirmar");
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, -1, -1));
 

@@ -21,9 +21,8 @@ import org.hibernate.Transaction;
  *
  * @author TAYLY
  */
-
- public class DaoGenerics<T> implements Dao<T> {
-
+public class DaoGenerics<T> implements Dao<T>{
+ 
     protected Session session;
     protected Transaction transaction;
     protected Class alvo;

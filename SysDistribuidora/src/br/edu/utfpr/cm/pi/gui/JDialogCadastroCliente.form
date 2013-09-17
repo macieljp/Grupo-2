@@ -495,7 +495,7 @@
         <Component class="javax.swing.JButton" name="btSalvar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/br/edu/utfpr/cm/tsi/icons/save01.png"/>
+              <Image iconType="3" name="/br/edu/utfpr/cm/pi/icons/save01.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Salvar"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -513,7 +513,7 @@
         <Component class="javax.swing.JButton" name="btCancelar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/br/edu/utfpr/cm/tsi/icons/clear.png"/>
+              <Image iconType="3" name="/br/edu/utfpr/cm/pi/icons/clear.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Cancelar"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -531,7 +531,7 @@
         <Component class="javax.swing.JButton" name="btDeletar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/br/edu/utfpr/cm/tsi/icons/delete.png"/>
+              <Image iconType="3" name="/br/edu/utfpr/cm/pi/icons/delete.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Apagar"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -549,7 +549,7 @@
         <Component class="javax.swing.JButton" name="btFechar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/br/edu/utfpr/cm/tsi/icons/Close.png"/>
+              <Image iconType="3" name="/br/edu/utfpr/cm/pi/icons/close_1.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Fechar"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

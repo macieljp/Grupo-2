@@ -224,7 +224,7 @@
             <Component class="javax.swing.JButton" name="btCadastrarCliente">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/br/edu/utfpr/cm/tsi/icons/Cliente_32.png"/>
+                  <Image iconType="3" name="/br/edu/utfpr/cm/pi/icons/Cliente_32.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Cadastrar Cliente"/>
                 <Property name="focusable" type="boolean" value="false"/>
@@ -253,7 +253,7 @@
             <Component class="javax.swing.JButton" name="btPesquisarCliente">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/br/edu/utfpr/cm/tsi/icons/clientSearch.png"/>
+                  <Image iconType="3" name="/br/edu/utfpr/cm/pi/icons/clientSearch.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Pesquisar Cliente"/>
                 <Property name="focusable" type="boolean" value="false"/>
@@ -280,7 +280,7 @@
             <Component class="javax.swing.JButton" name="jButton3">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/br/edu/utfpr/cm/tsi/icons/Beer-icon_32.png"/>
+                  <Image iconType="3" name="/br/edu/utfpr/cm/pi/icons/Beer-icon_32.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Cadastrar Produto"/>
                 <Property name="focusable" type="boolean" value="false"/>
@@ -302,7 +302,7 @@
             <Component class="javax.swing.JButton" name="jButton4">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/br/edu/utfpr/cm/tsi/icons/searchBeer.png"/>
+                  <Image iconType="3" name="/br/edu/utfpr/cm/pi/icons/searchBeer.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Pesquisar Produto"/>
                 <Property name="focusable" type="boolean" value="false"/>
@@ -331,7 +331,7 @@
             <Component class="javax.swing.JButton" name="jButton1">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/br/edu/utfpr/cm/tsi/icons/Truck.png"/>
+                  <Image iconType="3" name="/br/edu/utfpr/cm/pi/icons/Truck.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Fornecedor"/>
                 <Property name="focusable" type="boolean" value="false"/>
@@ -347,7 +347,7 @@
             <Component class="javax.swing.JButton" name="jButton2">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/br/edu/utfpr/cm/tsi/icons/searchTruck_1.png"/>
+                  <Image iconType="3" name="/br/edu/utfpr/cm/pi/icons/searchTruck_1.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Pesquisar Fornecedor"/>
                 <Property name="focusable" type="boolean" value="false"/>
@@ -363,7 +363,7 @@
             <Component class="javax.swing.JButton" name="jButton5">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/br/edu/utfpr/cm/tsi/icons/grupo.png"/>
+                  <Image iconType="3" name="/br/edu/utfpr/cm/pi/icons/grupo.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Grupo de Produtos"/>
                 <Property name="focusable" type="boolean" value="false"/>
@@ -379,7 +379,7 @@
             <Component class="javax.swing.JButton" name="jButton6">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/br/edu/utfpr/cm/tsi/icons/relatorio.png"/>
+                  <Image iconType="3" name="/br/edu/utfpr/cm/pi/icons/relatorio.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Gerar Relat&#xf3;rios"/>
                 <Property name="focusable" type="boolean" value="false"/>
@@ -400,8 +400,6 @@
                 <Property name="toolTipText" type="java.lang.String" value="Enviar e-mail"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JToolBar$Separator" name="jSeparator13">
-            </Component>
           </SubComponents>
         </Container>
       </SubComponents>
@@ -413,7 +411,7 @@
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/br/edu/utfpr/cm/tsi/icons/duff.jpg"/>
+          <Image iconType="3" name="/br/edu/utfpr/cm/pi/icons/duff.jpg"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Duff Beer"/>
       </Properties>

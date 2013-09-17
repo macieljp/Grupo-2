@@ -53,14 +53,18 @@ public class JDialogRelatorioCliente extends javax.swing.JDialog {
 
         jLabelRelHosp.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabelRelHosp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelRelHosp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/name/RelCliente_1.png"))); // NOI18N
+        jLabelRelHosp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/name/RelCliente_1.png"))); // NOI18N
         getContentPane().add(jLabelRelHosp, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 320, 40));
 
         jLabelRelClienteImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelRelClienteImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/Cliente_32.png"))); // NOI18N
         getContentPane().add(jLabelRelClienteImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 40));
 
-        jFormattedTextFieldRelClienteData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        try {
+            jFormattedTextFieldRelClienteData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         jFormattedTextFieldRelClienteData.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jFormattedTextFieldRelClienteData.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
         getContentPane().add(jFormattedTextFieldRelClienteData, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 80, -1));
@@ -80,7 +84,11 @@ public class JDialogRelatorioCliente extends javax.swing.JDialog {
         jTextFieldRelClienteCliente.setPreferredSize(new java.awt.Dimension(250, 20));
         getContentPane().add(jTextFieldRelClienteCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 240, -1));
 
-        jFormattedTextFieldRelClienteDataFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        try {
+            jFormattedTextFieldRelClienteDataFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         jFormattedTextFieldRelClienteDataFim.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jFormattedTextFieldRelClienteDataFim.setPreferredSize(new java.awt.Dimension(48, 20));
         getContentPane().add(jFormattedTextFieldRelClienteDataFim, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 80, -1));
@@ -91,7 +99,7 @@ public class JDialogRelatorioCliente extends javax.swing.JDialog {
         getContentPane().add(jLabelRelClienteFim, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, -1, -1));
 
         jButtonCancelarRelatorioCliente.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
-        jButtonCancelarRelatorioCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/Close_.png"))); // NOI18N
+        jButtonCancelarRelatorioCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/close_24.png"))); // NOI18N
         jButtonCancelarRelatorioCliente.setToolTipText("Cancelar");
         jButtonCancelarRelatorioCliente.setMaximumSize(new java.awt.Dimension(24, 24));
         jButtonCancelarRelatorioCliente.setMinimumSize(new java.awt.Dimension(24, 24));
@@ -104,7 +112,7 @@ public class JDialogRelatorioCliente extends javax.swing.JDialog {
         getContentPane().add(jButtonCancelarRelatorioCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 24, 24));
 
         jButtonGerarRelatorioCliente.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
-        jButtonGerarRelatorioCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/Ok_.png"))); // NOI18N
+        jButtonGerarRelatorioCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/Ok_.png"))); // NOI18N
         jButtonGerarRelatorioCliente.setToolTipText("Gerar Relatório");
         jButtonGerarRelatorioCliente.setMaximumSize(new java.awt.Dimension(24, 24));
         jButtonGerarRelatorioCliente.setMinimumSize(new java.awt.Dimension(24, 24));
@@ -112,7 +120,7 @@ public class JDialogRelatorioCliente extends javax.swing.JDialog {
         getContentPane().add(jButtonGerarRelatorioCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 24, 24));
 
         jButtonRelClientePesquisar.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
-        jButtonRelClientePesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/DocumentIconAd.png"))); // NOI18N
+        jButtonRelClientePesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/DocumentIconAd.png"))); // NOI18N
         jButtonRelClientePesquisar.setToolTipText("Pesquisar Cliente");
         jButtonRelClientePesquisar.setPreferredSize(new java.awt.Dimension(24, 24));
         getContentPane().add(jButtonRelClientePesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 24, 24));

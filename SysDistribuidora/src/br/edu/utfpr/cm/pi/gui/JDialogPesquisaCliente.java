@@ -79,16 +79,16 @@ public class JDialogPesquisaCliente extends javax.swing.JDialog {
                 tfPesquisarActionPerformed(evt);
             }
         });
-        getContentPane().add(tfPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 24, 472, -1));
+        getContentPane().add(tfPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 472, -1));
 
-        btPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/PesquisarPadrao.png"))); // NOI18N
+        btPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/PesquisarPadrao.png"))); // NOI18N
         btPesquisar.setToolTipText("Pesquisar");
         btPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btPesquisarActionPerformed(evt);
             }
         });
-        getContentPane().add(btPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(533, 23, -1, -1));
+        getContentPane().add(btPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 100, -1, -1));
 
         jLabelNome.setText("Nome:");
         getContentPane().add(jLabelNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 304, -1, -1));
@@ -123,7 +123,7 @@ public class JDialogPesquisaCliente extends javax.swing.JDialog {
         jLabel8.setText("Telefone:");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(487, 396, -1, -1));
 
-        btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/clear.png"))); // NOI18N
+        btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/clear.png"))); // NOI18N
         btCancelar.setToolTipText("Limpar");
         btCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,7 +132,7 @@ public class JDialogPesquisaCliente extends javax.swing.JDialog {
         });
         getContentPane().add(btCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 470, -1, -1));
 
-        btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/save01.png"))); // NOI18N
+        btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/save01.png"))); // NOI18N
         btSalvar.setToolTipText("Salvar");
         btSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,7 +141,7 @@ public class JDialogPesquisaCliente extends javax.swing.JDialog {
         });
         getContentPane().add(btSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 470, -1, -1));
 
-        btFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/Close_.png"))); // NOI18N
+        btFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/Close.png"))); // NOI18N
         btFechar.setToolTipText("Fechar");
         btFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,7 +158,7 @@ public class JDialogPesquisaCliente extends javax.swing.JDialog {
         ftfTelefone.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         getContentPane().add(ftfTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 420, 250, -1));
 
-        btDeletar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/delete.png"))); // NOI18N
+        btDeletar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/delete.png"))); // NOI18N
         btDeletar.setToolTipText("Deletar");
         btDeletar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,7 +180,7 @@ public class JDialogPesquisaCliente extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTableCliente);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 700, 230));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 700, 140));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

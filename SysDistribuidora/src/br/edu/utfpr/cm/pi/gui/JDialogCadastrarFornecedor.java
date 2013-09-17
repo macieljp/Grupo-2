@@ -62,7 +62,7 @@ public class JDialogCadastrarFornecedor extends javax.swing.JDialog {
         getContentPane().add(jTextFieldCadFornCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 118, -1));
 
         jButtonPesquisar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButtonPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/DocumentIconAd.png"))); // NOI18N
+        jButtonPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/DocumentIconAd.png"))); // NOI18N
         jButtonPesquisar.setToolTipText("Pesquisar");
         jButtonPesquisar.setPreferredSize(new java.awt.Dimension(24, 24));
         getContentPane().add(jButtonPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, -1, -1));
@@ -79,22 +79,22 @@ public class JDialogCadastrarFornecedor extends javax.swing.JDialog {
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 184, 740, 5));
 
         jButtonSalvar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButtonSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/save01.png"))); // NOI18N
+        jButtonSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/save01.png"))); // NOI18N
         jButtonSalvar.setToolTipText("Salvar");
         getContentPane().add(jButtonSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, -1, -1));
 
         jButtonLimpar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButtonLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/clear02.png"))); // NOI18N
+        jButtonLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/clear02.png"))); // NOI18N
         jButtonLimpar.setToolTipText("Limpar");
         getContentPane().add(jButtonLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, -1, -1));
 
         jButtonApagar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButtonApagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/trash.png"))); // NOI18N
+        jButtonApagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/trash.png"))); // NOI18N
         jButtonApagar.setToolTipText("Apagar");
         getContentPane().add(jButtonApagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, -1, -1));
 
         jButtonFechar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/Close_.png"))); // NOI18N
+        jButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/Close.png"))); // NOI18N
         jButtonFechar.setToolTipText("Fechar");
         jButtonFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,7 +111,7 @@ public class JDialogCadastrarFornecedor extends javax.swing.JDialog {
 
         jLabelCadForn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelCadForn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelCadForn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/name/CadFornecedor.png"))); // NOI18N
+        jLabelCadForn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/name/CadFornecedor.png"))); // NOI18N
         getContentPane().add(jLabelCadForn, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 420, 50));
 
         jLabelCadForn1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N

@@ -208,22 +208,22 @@ public class JDialogCadastroCliente extends javax.swing.JDialog {
 
         jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 800, 390));
 
-        btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/save01.png"))); // NOI18N
+        btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/save01.png"))); // NOI18N
         btSalvar.setToolTipText("Salvar");
         btSalvar.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jPanel1.add(btSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 430, 50, 40));
 
-        btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/clear.png"))); // NOI18N
+        btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/clear.png"))); // NOI18N
         btCancelar.setToolTipText("Cancelar");
         btCancelar.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jPanel1.add(btCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 430, 50, 40));
 
-        btDeletar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/delete.png"))); // NOI18N
+        btDeletar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/delete.png"))); // NOI18N
         btDeletar.setToolTipText("Apagar");
         btDeletar.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jPanel1.add(btDeletar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 430, 50, 40));
 
-        btFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/Close.png"))); // NOI18N
+        btFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/close_1.png"))); // NOI18N
         btFechar.setToolTipText("Fechar");
         btFechar.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         btFechar.addActionListener(new java.awt.event.ActionListener() {

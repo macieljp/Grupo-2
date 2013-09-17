@@ -53,7 +53,7 @@ public class JDialogCadastrarProduto extends javax.swing.JDialog {
 
         jLabelCadProdImage.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelCadProdImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelCadProdImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/name/CadProduto.png"))); // NOI18N
+        jLabelCadProdImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/name/CadProduto.png"))); // NOI18N
         jLabelCadProdImage.setMaximumSize(new java.awt.Dimension(740, 70));
         jLabelCadProdImage.setMinimumSize(new java.awt.Dimension(740, 70));
         jLabelCadProdImage.setPreferredSize(new java.awt.Dimension(740, 70));
@@ -78,7 +78,7 @@ public class JDialogCadastrarProduto extends javax.swing.JDialog {
         getContentPane().add(jTextFieldCadProdCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 116, -1));
 
         jButtonPesquisar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButtonPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/DocumentIconAd.png"))); // NOI18N
+        jButtonPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/DocumentIconAd.png"))); // NOI18N
         jButtonPesquisar.setToolTipText("Pesquisar");
         jButtonPesquisar.setBorder(null);
         jButtonPesquisar.setPreferredSize(new java.awt.Dimension(24, 24));
@@ -109,7 +109,7 @@ public class JDialogCadastrarProduto extends javax.swing.JDialog {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, -1, 110));
 
         jButtonCadProdFechar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButtonCadProdFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/Close_.png"))); // NOI18N
+        jButtonCadProdFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/Close.png"))); // NOI18N
         jButtonCadProdFechar.setToolTipText("Fachar");
         jButtonCadProdFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,17 +119,17 @@ public class JDialogCadastrarProduto extends javax.swing.JDialog {
         getContentPane().add(jButtonCadProdFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 230, -1, 40));
 
         jButtonCadProdExcluir.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButtonCadProdExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/trash.png"))); // NOI18N
+        jButtonCadProdExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/trash.png"))); // NOI18N
         jButtonCadProdExcluir.setToolTipText("");
         getContentPane().add(jButtonCadProdExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, -1, -1));
 
         jButtonCadProdLimpar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButtonCadProdLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/clear02.png"))); // NOI18N
+        jButtonCadProdLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/clear02.png"))); // NOI18N
         jButtonCadProdLimpar.setToolTipText("Limpar");
         getContentPane().add(jButtonCadProdLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, -1, -1));
 
         jButtonCadProdSalvar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButtonCadProdSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/save01.png"))); // NOI18N
+        jButtonCadProdSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/save01.png"))); // NOI18N
         jButtonCadProdSalvar.setToolTipText("Salvar");
         getContentPane().add(jButtonCadProdSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, -1, -1));
 
