@@ -46,7 +46,9 @@ import org.hibernate.Transaction;
             System.err.println("Ocorreu um erro ao persistir o objeto.\n" + e.fillInStackTrace());
         } finally {
 
-            TransactionManager.closeCurrentSession(session);
+           TransactionManager.beginTransaction(session);
+            
+           
         }
     }
 
@@ -68,7 +70,8 @@ import org.hibernate.Transaction;
            System.err.println("Ocorreu um erro ao persistir o objeto.\n" + e.fillInStackTrace());
         } finally {
 
-            TransactionManager.closeCurrentSession(session);
+            TransactionManager.closeCurrentSession();
+           
         }
     }
 
@@ -108,6 +111,8 @@ import org.hibernate.Transaction;
 
             session = TransactionManager.getCurrentSession();
             transaction = TransactionManager.beginTransaction(session);
+            
+            //transaction = TransactionManager.beginTransaction(session);
             if (filtro != null) {
                 query = session.createQuery("FROM " + alvo.getSimpleName() + " WHERE nome LIKE '%" + filtro + "%'");
                 lista = query.list();
