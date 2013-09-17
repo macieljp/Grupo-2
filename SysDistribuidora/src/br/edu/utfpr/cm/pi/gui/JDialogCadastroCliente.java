@@ -1,10 +1,11 @@
-/*
+ /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 package br.edu.utfpr.cm.pi.gui;
 
 import br.edu.utfpr.cm.pi.util.Util;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -128,10 +129,19 @@ public class JDialogCadastroCliente extends javax.swing.JDialog {
         jRadioButton2.setText("Físico");
         jPanel2.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, -1, -1));
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        try {
+            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFormattedTextField1ActionPerformed(evt);
+            }
+        });
+        jFormattedTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jFormattedTextField1FocusLost(evt);
             }
         });
         jPanel2.add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 160, 30));
@@ -236,6 +246,13 @@ public class JDialogCadastroCliente extends javax.swing.JDialog {
     private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextField1ActionPerformed
+
+    private void jFormattedTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFormattedTextField1FocusLost
+        // TODO add your handling code here:
+        if(!Util.isCPF(jFormattedTextField1.getText())){
+            JOptionPane.showMessageDialog(lbComplemento, "CPF inválido!!");
+        }
+    }//GEN-LAST:event_jFormattedTextField1FocusLost
 
     /**
      * @param args the command line arguments

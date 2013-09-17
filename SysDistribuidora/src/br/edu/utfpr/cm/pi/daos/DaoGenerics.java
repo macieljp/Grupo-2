@@ -107,7 +107,7 @@ import org.hibernate.Transaction;
         try {
 
             session = TransactionManager.obterSessao();
-            transaction = TransactionManager.iniciarTransacao(session);
+            transaction = TransactionManager.beginTransaction(session);
             if (filtro != null) {
                 query = session.createQuery("FROM " + alvo.getSimpleName() + " WHERE nome LIKE '%" + filtro + "%'");
                 lista = query.list();
