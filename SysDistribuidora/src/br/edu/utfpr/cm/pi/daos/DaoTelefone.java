@@ -16,4 +16,8 @@ import br.edu.utfpr.cm.pi.entidades.Telefone;
         super.alvo = Telefone.class;
     }
 
+    public void persist(Telefone tel) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
   }
