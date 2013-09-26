@@ -16,4 +16,8 @@ import br.edu.utfpr.cm.pi.entidades.Endereco;
         super.alvo = Endereco.class;
     }
 
+    public void persist(Endereco end) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
  }
