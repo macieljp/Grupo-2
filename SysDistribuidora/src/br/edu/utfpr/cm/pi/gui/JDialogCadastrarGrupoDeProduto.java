@@ -4,8 +4,16 @@
  */
 package br.edu.utfpr.cm.pi.gui;
 
+import br.edu.utfpr.cm.pi.conexao.Data;
+import br.edu.utfpr.cm.pi.conexao.TransactionManager;
+import br.edu.utfpr.cm.pi.daos.DaoGrupodeProduto;
+import br.edu.utfpr.cm.pi.entidades.GrupodeProduto;
 import br.edu.utfpr.cm.pi.gui.JDialogCadastrarGrupoDeProduto;
 import br.edu.utfpr.cm.pi.util.Util;
+import java.awt.Color;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author TAYLY
@@ -63,7 +71,7 @@ public class JDialogCadastrarGrupoDeProduto extends javax.swing.JDialog {
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 217, 665, 1));
 
         jLabelCadGPImagem.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabelCadGPImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/AltGroupProduct.png"))); // NOI18N
+        jLabelCadGPImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/AltGroupProduct.png"))); // NOI18N
         getContentPane().add(jLabelCadGPImagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 90, 130, 120));
 
         jButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/Close.png"))); // NOI18N
@@ -78,16 +86,31 @@ public class JDialogCadastrarGrupoDeProduto extends javax.swing.JDialog {
         jButtonApagar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButtonApagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/trash.png"))); // NOI18N
         jButtonApagar.setToolTipText("Apagar");
+        jButtonApagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonApagarActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonApagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, -1, -1));
 
         jButtonLimpar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButtonLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/clear02.png"))); // NOI18N
         jButtonLimpar.setToolTipText("Limpar");
+        jButtonLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLimparActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, -1, -1));
 
         jButtonSalvar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButtonSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/save01.png"))); // NOI18N
         jButtonSalvar.setToolTipText("Salvar");
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, -1, -1));
 
         jTextFieldCadGPDescricao.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -98,6 +121,7 @@ public class JDialogCadastrarGrupoDeProduto extends javax.swing.JDialog {
         });
         getContentPane().add(jTextFieldCadGPDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 250, -1));
 
+        jTextFieldCadGPCodigo.setEditable(false);
         jTextFieldCadGPCodigo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         getContentPane().add(jTextFieldCadGPCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 110, -1));
 
@@ -105,6 +129,11 @@ public class JDialogCadastrarGrupoDeProduto extends javax.swing.JDialog {
         jButtonPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/DocumentIconAd.png"))); // NOI18N
         jButtonPesquisar.setToolTipText("Pesquisar");
         jButtonPesquisar.setPreferredSize(new java.awt.Dimension(24, 24));
+        jButtonPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPesquisarActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, -1, -1));
 
         jLabelCodigo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -128,6 +157,26 @@ public class JDialogCadastrarGrupoDeProduto extends javax.swing.JDialog {
             dispose();
         }
     }//GEN-LAST:event_jButtonFecharActionPerformed
+
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        // TODO add your handling code here:
+        cadastrarGrupoDeProduto();
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
+        // TODO add your handling code here:
+        limparFormulario();
+    }//GEN-LAST:event_jButtonLimparActionPerformed
+
+    private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
+        // TODO add your handling code here:
+        abrirJanelaDePesquisa();
+    }//GEN-LAST:event_jButtonPesquisarActionPerformed
+
+    private void jButtonApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApagarActionPerformed
+        // TODO add your handling code here:
+        deletarGrupoDeProduto();
+    }//GEN-LAST:event_jButtonApagarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,4 +234,86 @@ public class JDialogCadastrarGrupoDeProduto extends javax.swing.JDialog {
     private javax.swing.JTextField jTextFieldCadGPCodigo;
     private javax.swing.JTextField jTextFieldCadGPDescricao;
     // End of variables declaration//GEN-END:variables
+
+    private void cadastrarGrupoDeProduto() {
+        GrupodeProduto grupo = new GrupodeProduto();
+
+        if (verificarCampos()) {
+            if (new Util().validarID(jTextFieldCadGPCodigo.getText())) {
+                grupo.setId(Integer.parseInt(jTextFieldCadGPCodigo.getText()));
+                grupo.setDescricao(jTextFieldCadGPDescricao.getText());
+            } else {
+                grupo.setDescricao(jTextFieldCadGPDescricao.getText());
+            }
+
+
+            try {
+                TransactionManager.beginTransaction();
+                DaoGrupodeProduto dGP = new DaoGrupodeProduto();
+                dGP.persist(grupo);
+                TransactionManager.commit();
+                JOptionPane.showMessageDialog(rootPane, "Cadastrado com sucesso!");
+                limparFormulario();
+            } catch (Exception e) {
+                TransactionManager.rollback();
+                JOptionPane.showMessageDialog(rootPane, "O grupo não pode ser cadastrado" + e);
+                System.out.println(e);
+            }
+        }
+    }
+
+    private boolean verificarCampos() {
+        int erros = 0;
+        if (jTextFieldCadGPDescricao.getText() == null || jTextFieldCadGPDescricao.getText().equals("")) {
+            jTextFieldCadGPDescricao.setBackground(new Color(247, 169, 157));
+            erros++;
+        }
+        if (erros != 0) {
+            return false;
+        }
+        return true;
+    }
+
+    private void limparFormulario() {
+        jTextFieldCadGPCodigo.setText(null);
+        jTextFieldCadGPDescricao.setText(null);
+        jTextFieldCadGPDescricao.setBackground(Color.white);
+    }
+
+    private void abrirJanelaDePesquisa() {
+        JDialog jd = new JDialogPesquisarGrupoDeProduto(null, true);
+        jd.setLocationRelativeTo(null);
+        jd.setVisible(true);
+        GrupodeProduto grupo = (GrupodeProduto) Data.hash.get("grupoDeProduto");
+        if (grupo == null) {
+            return;
+        }
+        Data.hash.remove("grupoDeProduto");
+        preencherFormularioComDados(grupo);
+    }
+
+    private void preencherFormularioComDados(GrupodeProduto grupo) {
+        jTextFieldCadGPCodigo.setText(String.valueOf(grupo.getId()));
+        jTextFieldCadGPDescricao.setText(grupo.getDescricao());
+    }
+
+    private void deletarGrupoDeProduto() {
+    if (new Util().validarID(jTextFieldCadGPCodigo.getText())) {
+            try {
+                TransactionManager.beginTransaction();
+                Integer id = Integer.parseInt(jTextFieldCadGPCodigo.getText());
+                DaoGrupodeProduto dE = new DaoGrupodeProduto();
+                GrupodeProduto grupo = dE.retrive(id);
+                dE.delete(grupo);
+                TransactionManager.commit();
+                limparFormulario();
+                JOptionPane.showMessageDialog(rootPane, "Excluido com sucesso!");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, "Erro ao excluir!");
+                TransactionManager.rollback();
+            }
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Selecione um grupo para excluir!");
+        }    
+    }
 }
