@@ -11,7 +11,7 @@ import org.hibernate.Query;
   
     public class DaoCliente extends DaoGenerics<Cliente>{
     public DaoCliente() {
-        super.alvo = Cliente.class;
+        super(Cliente.class);
     }
  public List<Cliente> obterNome(String nome) {
         List<Cliente> lista = null;
@@ -31,19 +31,5 @@ import org.hibernate.Query;
         return objeto;
     }
 
-    public List<Cliente> listCliente(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void persist(Cliente cliente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void delete(Cliente c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public List<Cliente> list() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
     }

@@ -5,114 +5,67 @@
 package br.edu.utfpr.cm.pi.daos;
 
 import br.edu.utfpr.cm.pi.conexao.TransactionManager;
-import br.edu.utfpr.cm.pi.util.Util;
+
+import java.util.ArrayList;
 import java.util.List;
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 /**
  *
  * @author TAYLY
  */
-
- public class DaoGenerics<T> implements Dao<T> {
+public class DaoGenerics<T> implements Dao<T> {
 
     protected Session session;
-    protected Transaction transaction;
     protected Class alvo;
+    
+    public DaoGenerics(Class alvo){
+        this.alvo = alvo;
+        this.session = TransactionManager.getCurrentSession();
+    }  
 
     @Override
-    public void persistir(T o) {
-//        session.saveOrUpdate(o);
-//        session.flush();
-        try {
-
-            session = TransactionUtil.obterSessao();
-            transaction = TransactionUtil.iniciarTransacao(session);
-            session.saveOrUpdate(o);
-            transaction.commit();
-
-        } catch (HibernateException e) {
-
-            transaction.rollback();
-            Util.dispayMsg("Ocorreu um erro ao persistir o objeto.\n" + e.fillInStackTrace());
-//            System.err.println("Ocorreu um erro ao persistir o objeto.\n" + e.fillInStackTrace());
-        } finally {
-
-            TransactionUtil.fecharSessao(session);
-        }
+    public void persist(T o) {
+        session = TransactionManager.getCurrentSession(); 
+        session.saveOrUpdate(o);
     }
 
     @Override
-    public void remover(T o) {
-//        session.delete(o);
-//        session.flush();
-        try {
+    public void delete(T o) {
+        session = TransactionManager.getCurrentSession(); 
+        session.delete(o);
 
-            session = TransactionUtil.obterSessao();
-            transaction = TransactionUtil.iniciarTransacao(session);
-            session.delete(o);
-            transaction.commit();
-
-        } catch (HibernateException e) {
-
-            transaction.rollback();
-            Util.dispayMsg("Ocorreu um erro ao remover o objeto.\n" + e.fillInStackTrace());
-//            System.err.println("Ocorreu um erro ao persistir o objeto.\n" + e.fillInStackTrace());
-        } finally {
-
-            TransactionUtil.fecharSessao(session);
-        }
     }
 
     @Override
-    public T obterPorId(int id) {
+    public T retrive(int id) {
+        Object objeto = new Object();
+        session = TransactionManager.getCurrentSession();
 
-        Query select = null;
-        T objeto = null;
-        try {
+        objeto = (T) session.createQuery("FROM " + alvo.getSimpleName() + " WHERE id='" + id + "'").uniqueResult();
 
-            session = TransactionUtil.obterSessao();
-            transaction = TransactionUtil.iniciarTransacao(session);
-            if (id > 0) {
-
-                select = session.createQuery("From " + alvo.getSimpleName() + " where id = " + id);
-                objeto = (T) select.uniqueResult();
-
-            }
-        } catch (Exception e) {
-
-            transaction.rollback();
-            e.printStackTrace();
-        } finally {
-
-            session.close();
-            return objeto;
-        }
+        return (T) objeto;
     }
 
     @Override
-    public List<T> listar(String filtro) {
+    public List<T> list() {
+        List<T> objetos = new ArrayList<T>();
+        session = TransactionManager.getCurrentSession();
 
-        List<T> lista = null;
-        Query query = null;
+        objetos = session.createQuery("FROM " + alvo.getSimpleName()).list();
+        session.flush();
+        return objetos;
+    }
 
-        try {
-
-            session = TransactionUtil.obterSessao();
-            transaction = TransactionUtil.iniciarTransacao(session);
-            if (filtro != null) {
-                query = session.createQuery("FROM " + alvo.getSimpleName() + " WHERE nome LIKE '%" + filtro + "%'");
-                lista = query.list();
-            }
-        } catch (Exception e) {
-            transaction.rollback();
-            e.printStackTrace();
-        } finally {
-            session.close();
-            return lista;
-        }
+    public List<T> listarComFiltro(String filtro) {
+       if(filtro == null || filtro.isEmpty()){
+            return list();
+        }        
+        List<T> objetos = new ArrayList<T>();
+        session = TransactionManager.getCurrentSession();   
+        
+        objetos = session.createQuery("FROM "+ alvo.getSimpleName() +" WHERE " + filtro).list();
+        session.flush();
+        return objetos;
     }
 }

@@ -16,7 +16,7 @@ import org.hibernate.Query;
     public class DaoFuncionario extends DaoGenerics<Funcionario> {
 
     public DaoFuncionario() {
-        super.alvo = Funcionario.class;
+        super(Funcionario.class);
     }
 
     public List<Funcionario> obterNome(String nome) {

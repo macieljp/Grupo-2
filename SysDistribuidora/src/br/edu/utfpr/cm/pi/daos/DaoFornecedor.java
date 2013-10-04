@@ -14,7 +14,7 @@ import org.hibernate.Query;
  */
  public class DaoFornecedor extends DaoGenerics<Fornecedor>{
     public DaoFornecedor() {
-        super.alvo = Fornecedor.class;
+        super(Fornecedor.class);
     }
    public List<Fornecedor> obterNome(String nome) {
 

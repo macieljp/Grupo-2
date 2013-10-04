@@ -13,11 +13,7 @@ import br.edu.utfpr.cm.pi.entidades.Endereco;
  */
  public class DaoEndereco extends DaoGenerics<Endereco>{
     public DaoEndereco() {
-        super.alvo = Endereco.class;
-    }
-
-    public void persist(Endereco end) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        super(Endereco.class);
     }
 
  }
