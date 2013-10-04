@@ -4,7 +4,17 @@
  */
 package br.edu.utfpr.cm.pi.gui;
 
+import br.edu.utfpr.cm.pi.conexao.Data;
+import br.edu.utfpr.cm.pi.conexao.TransactionManager;
+import br.edu.utfpr.cm.pi.daos.DaoGrupodeProduto;
+import br.edu.utfpr.cm.pi.daos.DaoProduto;
+import br.edu.utfpr.cm.pi.entidades.GrupodeProduto;
+import br.edu.utfpr.cm.pi.entidades.Produto;
 import br.edu.utfpr.cm.pi.util.Util;
+import java.awt.Color;
+import java.util.List;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,9 +25,12 @@ public class JDialogCadastrarProduto extends javax.swing.JDialog {
     /**
      * Creates new form JDialogCadastrarProduto
      */
+    List<GrupodeProduto> grupos;
+
     public JDialogCadastrarProduto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        carregarGrupoDeProdutos();
     }
 
     /**
@@ -37,19 +50,21 @@ public class JDialogCadastrarProduto extends javax.swing.JDialog {
         jTextFieldCadProdProduto = new javax.swing.JTextField();
         jLabelCadProdProduto = new javax.swing.JLabel();
         jLabelCadProdGP = new javax.swing.JLabel();
-        jTextFieldCadProdGP = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jButtonCadProdFechar = new javax.swing.JButton();
         jButtonCadProdExcluir = new javax.swing.JButton();
         jButtonCadProdLimpar = new javax.swing.JButton();
         jButtonCadProdSalvar = new javax.swing.JButton();
         jSeparatorCadProd = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
+        jComboBoxGrupoDeProduto = new javax.swing.JComboBox();
+        jLabelCadProdProduto1 = new javax.swing.JLabel();
+        jTextFieldValorProduto = new javax.swing.JTextField();
+        jLabelCadProdProduto2 = new javax.swing.JLabel();
+        jSpinnerQtdeProduto = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(681, 333));
         setResizable(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelCadProdImage.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelCadProdImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -57,32 +72,33 @@ public class JDialogCadastrarProduto extends javax.swing.JDialog {
         jLabelCadProdImage.setMaximumSize(new java.awt.Dimension(740, 70));
         jLabelCadProdImage.setMinimumSize(new java.awt.Dimension(740, 70));
         jLabelCadProdImage.setPreferredSize(new java.awt.Dimension(740, 70));
-        getContentPane().add(jLabelCadProdImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 350, 60));
 
         jSeparatorCadProdut.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jSeparatorCadProdut.setMaximumSize(new java.awt.Dimension(740, 1));
         jSeparatorCadProdut.setMinimumSize(new java.awt.Dimension(740, 1));
         jSeparatorCadProdut.setPreferredSize(new java.awt.Dimension(740, 1));
-        getContentPane().add(jSeparatorCadProdut, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 740, 1));
 
         jLabelCadProdCodigo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabelCadProdCodigo.setText("Código:");
-        getContentPane().add(jLabelCadProdCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
 
+        jTextFieldCadProdCodigo.setEditable(false);
         jTextFieldCadProdCodigo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jTextFieldCadProdCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldCadProdCodigoActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextFieldCadProdCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 116, -1));
 
         jButtonPesquisar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButtonPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/DocumentIconAd.png"))); // NOI18N
         jButtonPesquisar.setToolTipText("Pesquisar");
         jButtonPesquisar.setBorder(null);
         jButtonPesquisar.setPreferredSize(new java.awt.Dimension(24, 24));
-        getContentPane().add(jButtonPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, -1, -1));
+        jButtonPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPesquisarActionPerformed(evt);
+            }
+        });
 
         jTextFieldCadProdProduto.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jTextFieldCadProdProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -90,23 +106,12 @@ public class JDialogCadastrarProduto extends javax.swing.JDialog {
                 jTextFieldCadProdProdutoActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextFieldCadProdProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 319, -1));
 
         jLabelCadProdProduto.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabelCadProdProduto.setText("Produto:");
-        getContentPane().add(jLabelCadProdProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, -1));
 
         jLabelCadProdGP.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabelCadProdGP.setText("Grupo de Produto:");
-        getContentPane().add(jLabelCadProdGP, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
-
-        jTextFieldCadProdGP.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        getContentPane().add(jTextFieldCadProdGP, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 260, -1));
-
-        jLabel2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/pi/icons/Product.png"))); // NOI18N
-        jLabel2.setToolTipText("Cadastro de Produto");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, -1, 110));
+        jLabelCadProdGP.setText("Grupo:");
 
         jButtonCadProdFechar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButtonCadProdFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/Close.png"))); // NOI18N
@@ -116,33 +121,155 @@ public class JDialogCadastrarProduto extends javax.swing.JDialog {
                 jButtonCadProdFecharActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonCadProdFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 230, -1, 40));
 
         jButtonCadProdExcluir.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButtonCadProdExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/trash.png"))); // NOI18N
         jButtonCadProdExcluir.setToolTipText("");
-        getContentPane().add(jButtonCadProdExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, -1, -1));
+        jButtonCadProdExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCadProdExcluirActionPerformed(evt);
+            }
+        });
 
         jButtonCadProdLimpar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButtonCadProdLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/clear02.png"))); // NOI18N
         jButtonCadProdLimpar.setToolTipText("Limpar");
-        getContentPane().add(jButtonCadProdLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, -1, -1));
+        jButtonCadProdLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCadProdLimparActionPerformed(evt);
+            }
+        });
 
         jButtonCadProdSalvar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButtonCadProdSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/save01.png"))); // NOI18N
         jButtonCadProdSalvar.setToolTipText("Salvar");
-        getContentPane().add(jButtonCadProdSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, -1, -1));
+        jButtonCadProdSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCadProdSalvarActionPerformed(evt);
+            }
+        });
 
         jSeparatorCadProd.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jSeparatorCadProd.setMaximumSize(new java.awt.Dimension(740, 1));
         jSeparatorCadProd.setMinimumSize(new java.awt.Dimension(740, 1));
         jSeparatorCadProd.setPreferredSize(new java.awt.Dimension(740, 10));
-        getContentPane().add(jSeparatorCadProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 216, 740, 20));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/AltProduct.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, -1, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/AltProduct.png"))); // NOI18N
 
-        setBounds(0, 0, 681, 333);
+        jComboBoxGrupoDeProduto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabelCadProdProduto1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabelCadProdProduto1.setText("Valor R$:");
+
+        jTextFieldValorProduto.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jTextFieldValorProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldValorProdutoActionPerformed(evt);
+            }
+        });
+
+        jLabelCadProdProduto2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabelCadProdProduto2.setText("Quantidade:");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addComponent(jLabelCadProdImage, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparatorCadProdut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(201, 201, 201)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButtonCadProdSalvar)
+                                .addGap(75, 75, 75)
+                                .addComponent(jButtonCadProdExcluir)
+                                .addGap(5, 5, 5)
+                                .addComponent(jButtonCadProdFechar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(70, 70, 70)
+                                .addComponent(jButtonCadProdLimpar))))
+                    .addComponent(jSeparatorCadProd, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(70, 70, 70)
+                                .addComponent(jLabelCadProdCodigo)
+                                .addGap(21, 21, 21))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelCadProdProduto, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabelCadProdProduto1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabelCadProdProduto2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabelCadProdGP, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(18, 18, 18)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxGrupoDeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jTextFieldCadProdCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jButtonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextFieldCadProdProduto)
+                                    .addComponent(jTextFieldValorProduto)
+                                    .addComponent(jSpinnerQtdeProduto))
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabelCadProdImage, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jSeparatorCadProdut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelCadProdCodigo)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldCadProdCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButtonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jTextFieldCadProdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelCadProdProduto))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldValorProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelCadProdProduto1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelCadProdProduto2)
+                            .addComponent(jSpinnerQtdeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxGrupoDeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCadProdGP))
+                .addGap(32, 32, 32)
+                .addComponent(jSeparatorCadProd, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonCadProdSalvar)
+                    .addComponent(jButtonCadProdExcluir)
+                    .addComponent(jButtonCadProdFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonCadProdLimpar))
+                .addContainerGap())
+        );
+
+        setBounds(0, 0, 681, 410);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextFieldCadProdCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCadProdCodigoActionPerformed
@@ -154,10 +281,34 @@ public class JDialogCadastrarProduto extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextFieldCadProdProdutoActionPerformed
 
     private void jButtonCadProdFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadProdFecharActionPerformed
-       if (Util.imprimirConfirmacao("Deseja Sair?")) {
+        
             dispose();
-        }
+        
     }//GEN-LAST:event_jButtonCadProdFecharActionPerformed
+
+    private void jTextFieldValorProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldValorProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldValorProdutoActionPerformed
+
+    private void jButtonCadProdSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadProdSalvarActionPerformed
+        // TODO add your handling code here:
+        cadastrarProduto();
+    }//GEN-LAST:event_jButtonCadProdSalvarActionPerformed
+
+    private void jButtonCadProdLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadProdLimparActionPerformed
+        // TODO add your handling code here:
+        limparFormulario();
+    }//GEN-LAST:event_jButtonCadProdLimparActionPerformed
+
+    private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
+        // TODO add your handling code here:
+        abrirJanelaDePesquisa();
+    }//GEN-LAST:event_jButtonPesquisarActionPerformed
+
+    private void jButtonCadProdExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadProdExcluirActionPerformed
+        // TODO add your handling code here:
+        deletarProduto();
+    }//GEN-LAST:event_jButtonCadProdExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,16 +357,136 @@ public class JDialogCadastrarProduto extends javax.swing.JDialog {
     private javax.swing.JButton jButtonCadProdLimpar;
     private javax.swing.JButton jButtonCadProdSalvar;
     private javax.swing.JButton jButtonPesquisar;
+    private javax.swing.JComboBox jComboBoxGrupoDeProduto;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelCadProdCodigo;
     private javax.swing.JLabel jLabelCadProdGP;
     private javax.swing.JLabel jLabelCadProdImage;
     private javax.swing.JLabel jLabelCadProdProduto;
+    private javax.swing.JLabel jLabelCadProdProduto1;
+    private javax.swing.JLabel jLabelCadProdProduto2;
     private javax.swing.JSeparator jSeparatorCadProd;
     private javax.swing.JSeparator jSeparatorCadProdut;
+    private javax.swing.JSpinner jSpinnerQtdeProduto;
     private javax.swing.JTextField jTextFieldCadProdCodigo;
-    private javax.swing.JTextField jTextFieldCadProdGP;
     private javax.swing.JTextField jTextFieldCadProdProduto;
+    private javax.swing.JTextField jTextFieldValorProduto;
     // End of variables declaration//GEN-END:variables
+
+    private void carregarGrupoDeProdutos() {
+        grupos = new DaoGrupodeProduto().list();
+        jComboBoxGrupoDeProduto.removeAllItems();
+        for (int i = 0; i < grupos.size(); i++) {
+            jComboBoxGrupoDeProduto.addItem(grupos.get(i).getDescricao());
+        }
+    }
+
+    private void cadastrarProduto() {
+        if (validarCampos()) {
+            Produto produto = new Produto();
+            if (new Util().validarID(jTextFieldCadProdCodigo.getText()) && new Util().validarValorDouble(jTextFieldValorProduto.getText())) {
+                produto.setId(Integer.parseInt(jTextFieldCadProdCodigo.getText()));
+                produto.setNome(jTextFieldCadProdProduto.getText());
+                produto.setValor(Double.parseDouble(jTextFieldValorProduto.getText()));
+                produto.setQuantidade((Integer) jSpinnerQtdeProduto.getValue());
+                produto.setGrupoDeProduto(grupos.get(jComboBoxGrupoDeProduto.getSelectedIndex()));
+            } else {
+                produto.setNome(jTextFieldCadProdProduto.getText());
+                produto.setValor(Double.parseDouble(jTextFieldValorProduto.getText()));
+                produto.setQuantidade((Integer) jSpinnerQtdeProduto.getValue());
+                produto.setGrupoDeProduto(grupos.get(jComboBoxGrupoDeProduto.getSelectedIndex()));
+            }
+
+
+            try {
+                TransactionManager.beginTransaction();
+                DaoProduto dGP = new DaoProduto();
+                dGP.persist(produto);
+                TransactionManager.commit();
+                JOptionPane.showMessageDialog(rootPane, "Cadastrado com sucesso!");
+                limparFormulario();
+            } catch (Exception e) {
+                TransactionManager.rollback();
+                JOptionPane.showMessageDialog(rootPane, "O produto não pode ser cadastrado" + e);
+                System.out.println(e);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Verifique os erros antes de continuar!");
+        }
+    }
+
+    private boolean validarCampos() {
+        int erros = 0;
+        if (jTextFieldCadProdProduto.getText() == null || jTextFieldCadProdProduto.getText().equals("")) {
+            jTextFieldCadProdProduto.setBackground(new Color(247, 169, 157));
+            erros++;
+        }
+        if (jTextFieldValorProduto.getText() == null || jTextFieldValorProduto.getText().equals("")) {
+            jTextFieldValorProduto.setBackground(new Color(247, 169, 157));
+            erros++;
+        }
+        if (erros != 0) {
+            return false;
+        }
+        return true;
+    }
+
+    private void limparFormulario() {
+        jTextFieldCadProdCodigo.setText(null);
+        jTextFieldCadProdProduto.setText(null);
+        jTextFieldCadProdProduto.setBackground(Color.white);
+        jTextFieldValorProduto.setText(null);
+        jTextFieldValorProduto.setBackground(Color.white);
+        jSpinnerQtdeProduto.setValue(0);
+        jComboBoxGrupoDeProduto.setSelectedIndex(0);
+    }
+
+    private void abrirJanelaDePesquisa() {
+        JDialog jd = new JDialogPesquisarProduto(null, true);
+        jd.setLocationRelativeTo(null);
+        jd.setVisible(true);
+        Produto produto = (Produto) Data.hash.get("produto");
+        if (produto == null) {
+            return;
+        }
+        Data.hash.remove("produto");
+        preencherFormularioComDados(produto);
+    }
+
+    private void preencherFormularioComDados(Produto produto) {
+        jTextFieldCadProdCodigo.setText(String.valueOf(produto.getId()));
+        jTextFieldCadProdProduto.setText(produto.getNome());
+        jTextFieldValorProduto.setText(String.valueOf(produto.getValor()));
+        jSpinnerQtdeProduto.setValue(produto.getQuantidade());        
+        jComboBoxGrupoDeProduto.setSelectedIndex(buscarIndiceDoGrupo(produto));
+    }
+
+    private void deletarProduto() {
+       if (new Util().validarID(jTextFieldCadProdCodigo.getText())) {
+            try {
+                TransactionManager.beginTransaction();
+                Integer id = Integer.parseInt(jTextFieldCadProdCodigo.getText());
+                DaoProduto dE = new DaoProduto();
+                Produto produto = dE.retrive(id);
+                dE.delete(produto);
+                TransactionManager.commit();
+                limparFormulario();
+                JOptionPane.showMessageDialog(rootPane, "Excluido com sucesso!");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, "Erro ao excluir!");
+                TransactionManager.rollback();
+            }
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Selecione um produto para excluir!");
+        } 
+    }
+
+    private int buscarIndiceDoGrupo(Produto produto) {
+        for (int i = 0; i < grupos.size(); i++) {
+            if(produto.getGrupoDeProduto().getDescricao().equals(grupos.get(i).getDescricao())){
+                return i;
+            }
+        }
+        return -1;
+    }
 }
