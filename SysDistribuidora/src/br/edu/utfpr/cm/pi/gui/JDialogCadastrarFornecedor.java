@@ -4,8 +4,13 @@
  */
 package br.edu.utfpr.cm.pi.gui;
 
+import br.edu.utfpr.cm.pi.conexao.Data;
+import br.edu.utfpr.cm.pi.conexao.TransactionManager;
+import br.edu.utfpr.cm.pi.daos.DaoFornecedor;
+import br.edu.utfpr.cm.pi.entidades.Fornecedor;
 import br.edu.utfpr.cm.pi.util.Util;
-
+import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,7 +39,7 @@ public class JDialogCadastrarFornecedor extends javax.swing.JDialog {
         jLabelCadFornCodigo = new javax.swing.JLabel();
         jTextFieldCadFornCodigo = new javax.swing.JTextField();
         jButtonPesquisar = new javax.swing.JButton();
-        jTextFieldCadFornNome = new javax.swing.JTextField();
+        jTextFieldRazaoSocial = new javax.swing.JTextField();
         jLabelCadFornNome = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jButtonSalvar = new javax.swing.JButton();
@@ -44,54 +49,72 @@ public class JDialogCadastrarFornecedor extends javax.swing.JDialog {
         jSeparatorCadForn = new javax.swing.JSeparator();
         jLabelCadForn = new javax.swing.JLabel();
         jLabelCadForn1 = new javax.swing.JLabel();
+        jLabelCadFornNome1 = new javax.swing.JLabel();
+        jTextFieldFantasia = new javax.swing.JTextField();
+        jLabelCadFornNome2 = new javax.swing.JLabel();
+        jLabelCadFornNome3 = new javax.swing.JLabel();
+        jTextFieldContato = new javax.swing.JTextField();
+        jLabelCadFornNome4 = new javax.swing.JLabel();
+        jFormattedTextFieldTelefone = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldCNPJ = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(665, 280));
         setResizable(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelImagemCadForn.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabelImagemCadForn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/Truck-icon.png"))); // NOI18N
-        getContentPane().add(jLabelImagemCadForn, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, 130, 90));
+        jLabelImagemCadForn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/AltsearchTruck.png"))); // NOI18N
 
         jLabelCadFornCodigo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabelCadFornCodigo.setText("Código:");
-        getContentPane().add(jLabelCadFornCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
 
+        jTextFieldCadFornCodigo.setEditable(false);
         jTextFieldCadFornCodigo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        getContentPane().add(jTextFieldCadFornCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 118, -1));
 
         jButtonPesquisar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButtonPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/DocumentIconAd.png"))); // NOI18N
         jButtonPesquisar.setToolTipText("Pesquisar");
         jButtonPesquisar.setPreferredSize(new java.awt.Dimension(24, 24));
-        getContentPane().add(jButtonPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, -1, -1));
+        jButtonPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPesquisarActionPerformed(evt);
+            }
+        });
 
-        jTextFieldCadFornNome.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        getContentPane().add(jTextFieldCadFornNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 313, -1));
+        jTextFieldRazaoSocial.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
         jLabelCadFornNome.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabelCadFornNome.setText("Nome:");
-        getContentPane().add(jLabelCadFornNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
+        jLabelCadFornNome.setText("Razão Social:");
 
         jSeparator1.setMaximumSize(new java.awt.Dimension(740, 5));
         jSeparator1.setMinimumSize(new java.awt.Dimension(740, 5));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 184, 740, 5));
 
         jButtonSalvar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButtonSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/save01.png"))); // NOI18N
         jButtonSalvar.setToolTipText("Salvar");
-        getContentPane().add(jButtonSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, -1, -1));
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarActionPerformed(evt);
+            }
+        });
 
         jButtonLimpar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButtonLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/clear02.png"))); // NOI18N
         jButtonLimpar.setToolTipText("Limpar");
-        getContentPane().add(jButtonLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, -1, -1));
+        jButtonLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLimparActionPerformed(evt);
+            }
+        });
 
         jButtonApagar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButtonApagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/trash.png"))); // NOI18N
         jButtonApagar.setToolTipText("Apagar");
-        getContentPane().add(jButtonApagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, -1, -1));
+        jButtonApagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonApagarActionPerformed(evt);
+            }
+        });
 
         jButtonFechar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/Close.png"))); // NOI18N
@@ -101,24 +124,148 @@ public class JDialogCadastrarFornecedor extends javax.swing.JDialog {
                 jButtonFecharActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, -1, 40));
 
         jSeparatorCadForn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jSeparatorCadForn.setMaximumSize(new java.awt.Dimension(750, 5));
         jSeparatorCadForn.setMinimumSize(new java.awt.Dimension(750, 5));
         jSeparatorCadForn.setPreferredSize(new java.awt.Dimension(740, 5));
-        getContentPane().add(jSeparatorCadForn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, -1));
 
         jLabelCadForn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelCadForn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelCadForn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/name/CadFornecedor.png"))); // NOI18N
-        getContentPane().add(jLabelCadForn, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 420, 50));
 
         jLabelCadForn1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelCadForn1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(jLabelCadForn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 420, 50));
 
-        setSize(new java.awt.Dimension(681, 319));
+        jLabelCadFornNome1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabelCadFornNome1.setText("Fantasia:");
+
+        jTextFieldFantasia.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+
+        jLabelCadFornNome2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabelCadFornNome2.setText("CNPJ:");
+
+        jLabelCadFornNome3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabelCadFornNome3.setText("Contato:");
+
+        jTextFieldContato.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+
+        jLabelCadFornNome4.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabelCadFornNome4.setText("Telefone:");
+
+        try {
+            jFormattedTextFieldTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            jFormattedTextFieldCNPJ.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelCadForn, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCadForn1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addComponent(jSeparatorCadForn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(180, 180, 180)
+                .addComponent(jButtonSalvar)
+                .addGap(5, 5, 5)
+                .addComponent(jButtonLimpar)
+                .addGap(5, 5, 5)
+                .addComponent(jButtonApagar)
+                .addGap(5, 5, 5)
+                .addComponent(jButtonFechar))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(jLabelCadFornCodigo)
+                        .addGap(64, 64, 64))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelCadFornNome, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelCadFornNome1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelCadFornNome2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelCadFornNome3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelCadFornNome4, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextFieldCadFornCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(2, 2, 2)
+                                .addComponent(jButtonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextFieldRazaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldFantasia, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(57, 57, 57)
+                        .addComponent(jLabelImagemCadForn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jFormattedTextFieldCNPJ, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jFormattedTextFieldTelefone, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextFieldContato, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelCadForn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCadForn1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addComponent(jSeparatorCadForn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelImagemCadForn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelCadFornCodigo)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldCadFornCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButtonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(16, 16, 16)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jTextFieldRazaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelCadFornNome))))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldFantasia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCadFornNome1))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelCadFornNome2)
+                    .addComponent(jFormattedTextFieldCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldContato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCadFornNome3))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelCadFornNome4)
+                    .addComponent(jFormattedTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(63, 63, 63)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonSalvar)
+                    .addComponent(jButtonLimpar)
+                    .addComponent(jButtonApagar)
+                    .addComponent(jButtonFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        setSize(new java.awt.Dimension(681, 490));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -127,6 +274,27 @@ public class JDialogCadastrarFornecedor extends javax.swing.JDialog {
             dispose();
         }
     }//GEN-LAST:event_jButtonFecharActionPerformed
+
+    private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
+        // TODO add your handling code here:
+        abrirJanelaPesquisaFornecedor();
+    }//GEN-LAST:event_jButtonPesquisarActionPerformed
+
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        // TODO add your handling code here:
+        cadastrarFornecedor();
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
+        // TODO add your handling code here:
+        limparFormulario();
+    }//GEN-LAST:event_jButtonLimparActionPerformed
+
+    private void jButtonApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApagarActionPerformed
+
+        // TODO add your handling code here:
+        deletarFornecedor();
+    }//GEN-LAST:event_jButtonApagarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,14 +343,161 @@ public class JDialogCadastrarFornecedor extends javax.swing.JDialog {
     private javax.swing.JButton jButtonLimpar;
     private javax.swing.JButton jButtonPesquisar;
     private javax.swing.JButton jButtonSalvar;
+    private javax.swing.JFormattedTextField jFormattedTextFieldCNPJ;
+    private javax.swing.JFormattedTextField jFormattedTextFieldTelefone;
     private javax.swing.JLabel jLabelCadForn;
     private javax.swing.JLabel jLabelCadForn1;
     private javax.swing.JLabel jLabelCadFornCodigo;
     private javax.swing.JLabel jLabelCadFornNome;
+    private javax.swing.JLabel jLabelCadFornNome1;
+    private javax.swing.JLabel jLabelCadFornNome2;
+    private javax.swing.JLabel jLabelCadFornNome3;
+    private javax.swing.JLabel jLabelCadFornNome4;
     private javax.swing.JLabel jLabelImagemCadForn;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparatorCadForn;
     private javax.swing.JTextField jTextFieldCadFornCodigo;
-    private javax.swing.JTextField jTextFieldCadFornNome;
+    private javax.swing.JTextField jTextFieldContato;
+    private javax.swing.JTextField jTextFieldFantasia;
+    private javax.swing.JTextField jTextFieldRazaoSocial;
     // End of variables declaration//GEN-END:variables
+
+    private void abrirJanelaPesquisaFornecedor() {
+        Util.abrirJDialogCentralizado(new JDialogPesquisarFornecedor(null, true));
+        Fornecedor fornecedor = (Fornecedor) Data.hash.get("fornecedor");
+        if (fornecedor == null) {
+            return;
+        }
+        Data.hash.remove("fornecedor");
+        preencherFormularioComDados(fornecedor);
+    }
+
+    private void cadastrarFornecedor() {
+        if (validarCampos()) {
+            Fornecedor fornecedor = new Fornecedor();
+
+            if (new Util().validarID(jTextFieldCadFornCodigo.getText())) {
+                fornecedor.setId(Integer.parseInt(jTextFieldCadFornCodigo.getText()));
+                fornecedor.setRazaoSocial(jTextFieldRazaoSocial.getText());
+                fornecedor.setNomeFantasia(jTextFieldFantasia.getText());
+                fornecedor.setCnpj(jFormattedTextFieldCNPJ.getText());
+                fornecedor.setContato(jTextFieldContato.getText());
+                fornecedor.setTelefone(jFormattedTextFieldTelefone.getText());
+
+
+            } else {
+                fornecedor.setRazaoSocial(jTextFieldRazaoSocial.getText());
+                fornecedor.setNomeFantasia(jTextFieldFantasia.getText());
+                fornecedor.setCnpj(jFormattedTextFieldCNPJ.getText());
+                fornecedor.setContato(jTextFieldContato.getText());
+                fornecedor.setTelefone(jFormattedTextFieldTelefone.getText());
+            }
+
+
+            try {
+                TransactionManager.beginTransaction();
+                DaoFornecedor dGP = new DaoFornecedor();
+
+                dGP.persist(fornecedor);
+                TransactionManager.commit();
+                JOptionPane.showMessageDialog(rootPane, "Cadastrado com sucesso!");
+                limparFormulario();
+            } catch (Exception e) {
+                TransactionManager.rollback();
+                JOptionPane.showMessageDialog(rootPane, "O Fornecedor não pode ser cadastrado" + e);
+                System.out.println(e);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Verifique os erros antes de continuar!");
+        }
+    }
+
+    private void limparFormulario() {
+        jTextFieldCadFornCodigo.setText(null);
+        jTextFieldRazaoSocial.setText(null);
+        jTextFieldRazaoSocial.setBackground(Color.white);
+        jTextFieldFantasia.setText(null);
+        jTextFieldFantasia.setBackground(Color.white);
+        jTextFieldContato.setText(null);
+        jTextFieldContato.setBackground(Color.white);
+        jFormattedTextFieldCNPJ.setText(null);
+        jFormattedTextFieldCNPJ.setBackground(Color.white);
+        jFormattedTextFieldTelefone.setText(null);
+        jFormattedTextFieldTelefone.setBackground(Color.white);
+    }
+
+    private boolean validarCampos() {
+        int erros = 0;
+        if (jTextFieldRazaoSocial.getText() == null || jTextFieldRazaoSocial.getText().equals("")) {
+            jTextFieldRazaoSocial.setBackground(new Color(247, 169, 157));
+            erros++;
+        }
+        if (jTextFieldFantasia.getText().equals("")) {
+            jTextFieldFantasia.setBackground(new Color(247, 169, 157));
+            erros++;
+        }
+        if (!jFormattedTextFieldCNPJ.getText().equals("  .   .   /    -  ")) {
+            if (!jFormattedTextFieldCNPJ.getText().equals("00.000.000/0000-00")) {
+                String cnpj = jFormattedTextFieldCNPJ.getText();
+                cnpj = cnpj.replace(".", "");
+                cnpj = cnpj.replace("-", "");
+                cnpj = cnpj.replace("/", "");
+                if (!Util.validarCNPJ(cnpj)) {
+                    JOptionPane.showMessageDialog(rootPane, "CNPJ inválido!");
+                    jFormattedTextFieldCNPJ.setBackground(new Color(247, 169, 157));
+                    erros++;
+                } else {
+                    jFormattedTextFieldCNPJ.setBackground(Color.white);
+                }
+            } else {
+                jFormattedTextFieldCNPJ.setBackground(Color.white);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "CNPJ inválido!");
+            jFormattedTextFieldCNPJ.setBackground(new Color(247, 169, 157));
+            erros++;
+        }
+        if (jTextFieldContato.getText().equals("")) {
+            jTextFieldContato.setBackground(new Color(247, 169, 157));
+            erros++;
+        }
+        if (jFormattedTextFieldTelefone.getText().equals("")) {
+            jFormattedTextFieldTelefone.setBackground(new Color(247, 169, 157));
+            erros++;
+        }
+        if (erros != 0) {
+            return false;
+        }
+        return true;
+    }
+
+    private void deletarFornecedor() {
+        if (new Util().validarID(jTextFieldCadFornCodigo.getText())) {
+            try {
+                TransactionManager.beginTransaction();
+                Integer id = Integer.parseInt(jTextFieldCadFornCodigo.getText());
+                DaoFornecedor dE = new DaoFornecedor();
+                Fornecedor fornecedor = dE.retrive(id);
+                dE.delete(fornecedor);
+                TransactionManager.commit();
+                limparFormulario();
+                JOptionPane.showMessageDialog(rootPane, "Excluido com sucesso!");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, "Erro ao excluir!");
+                TransactionManager.rollback();
+            }
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Selecione um item para excluir!");
+        }
+    }
+
+    private void preencherFormularioComDados(Fornecedor fornecedor) {
+        jTextFieldCadFornCodigo.setText(String.valueOf(fornecedor.getId()));
+        jTextFieldRazaoSocial.setText(fornecedor.getRazaoSocial());
+        jTextFieldFantasia.setText(fornecedor.getNomeFantasia());
+        jTextFieldContato.setText(fornecedor.getContato());
+        jFormattedTextFieldCNPJ.setText(fornecedor.getCnpj());
+        jFormattedTextFieldTelefone.setText(fornecedor.getTelefone());
+    }
 }
