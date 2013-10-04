@@ -35,7 +35,7 @@ public class TransactionManager {
         } else {
             transaction.commit();
             closeCurrentSession();
-        }
+        }   
 
     }
 
