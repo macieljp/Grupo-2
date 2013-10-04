@@ -19,19 +19,20 @@ import javax.persistence.Temporal;
 
 @Entity
 public class Cliente {
-    @Id    
-    @GeneratedValue(strategy=GenerationType.AUTO)  
-    @Column
-    private int id;
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Integer id;
     private String nome;
     private String cpf;
+    private String cnpj;
     private String tipo;
     
     @OneToOne
     private Endereco endereco;
     
+    
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dataNascimento = Calendar.getInstance().getTime();
+    private Calendar dataNascimento;
 
     public int getId() {
         return id;
@@ -41,15 +42,24 @@ public class Cliente {
         return nome;
     }
 
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+
+   
+    
+    
+
     public String getCpf() {
         return cpf;
     }
 
     
-    public Date getdataNascimento() {
-        return dataNascimento;
-    }
-
+  
     public String getTipo() {
         return tipo;
     }
@@ -74,11 +84,16 @@ public class Cliente {
         this.endereco = endereco;
     }
 
-    
+    public Calendar getDataNascimento() {
+        return dataNascimento;
+    }
 
-    public void setdataNascimento(Date dataNascimento) {
+    public void setDataNascimento(Calendar dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
+
+    
+
 
     public void setTipo(String tipo) {
         this.tipo = tipo;

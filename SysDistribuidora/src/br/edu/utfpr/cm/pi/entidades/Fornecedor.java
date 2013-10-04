@@ -21,18 +21,24 @@ import javax.persistence.Entity;
 public class Fornecedor implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column
-    private int id;
+    private Integer id;
     @Column
     private String RazaoSocial;
     @Column
-    private int NomeFantasia;
+    private String NomeFantasia;
     @Column
     private String contato;
+    @Column
+    private String cnpj;
+    
+    @Column
+    private String telefone;
+    
 
     // public Endereco (int id , String logradouro,int numero,String bairro,String complemento,String cidade,String Uf,String cep,String telefone);
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -40,15 +46,11 @@ public class Fornecedor implements Serializable {
         return RazaoSocial;
     }
 
-    public int getNomeFantasia() {
-        return NomeFantasia;
-    }
-
     public String getContato() {
         return contato;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -56,23 +58,45 @@ public class Fornecedor implements Serializable {
         this.RazaoSocial = RazaoSocial;
     }
 
-    public void setNomeFantasia(int NomeFantasia) {
+    public String getNomeFantasia() {
+        return NomeFantasia;
+    }
+
+    public void setNomeFantasia(String NomeFantasia) {
         this.NomeFantasia = NomeFantasia;
     }
 
+    
+    
     public void setContato(String contato) {
         this.contato = contato;
     }
 
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
     @Override
     public String toString() {
-
-        return "Pessoa {" + "id: " + id
-                + "Razão Social: " + RazaoSocial
-                + "Nome Fantasisa:  " + NomeFantasia
-                + "Contato: " + contato + "}";
-
-
+        return "Fornecedor{" + "id=" + id + ", RazaoSocial=" + RazaoSocial + ", NomeFantasia=" + NomeFantasia + ", contato=" + contato + ", cnpj=" + cnpj + ", telefone=" + telefone + '}';
     }
+    
+    
+
+    
+    
+    
 }
 

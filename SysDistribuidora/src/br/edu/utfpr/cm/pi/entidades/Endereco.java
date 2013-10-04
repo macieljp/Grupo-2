@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 
 
@@ -20,31 +22,33 @@ import javax.persistence.Id;
 @Entity
 public class Endereco implements  Serializable {
 
-    @Id    
-    @GeneratedValue(strategy=GenerationType.AUTO)  
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY) 
     @Column
-     private int id;
+     private Integer id;
     @Column
     private String logradouro;
     @Column
-    private int numero;
+    private String numero;
     @Column
     private String bairro;
     @Column
     private String complemento;
-    @Column
-    private String cidade;
-    @Column
-    private String Uf;
-    @Column
-    private String estado;
+    
+    
+    @OneToOne
+    private Cidade cidade;   
     @Column
     private String cep;
+    private String tipo;
     
+    private String telefone;
     
-   // public Endereco (int id , String logradouro,int numero,String bairro,String complemento,String cidade,String Uf,String cep,String telefone);
+    private String celular;
+    
+    private String email;
 
-   
+    // public Endereco (int id , String logradouro,int numero,String bairro,String complemento,String cidade,String Uf,String cep,String telefone);
     public int getId() {
         return id;
     }
@@ -61,15 +65,23 @@ public class Endereco implements  Serializable {
         this.logradouro = logradouro;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
-  
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+
     public String getBairro() {
         return bairro;
     }
@@ -77,8 +89,8 @@ public class Endereco implements  Serializable {
     public void setBairro(String bairro) {
         this.bairro = bairro;
     }
-   
-     public String getComplemento() {
+
+    public String getComplemento() {
         return complemento;
     }
 
@@ -86,25 +98,15 @@ public class Endereco implements  Serializable {
         this.complemento = complemento;
     }
 
-    public String getCidade() {
+    public Cidade getCidade() {
         return cidade;
     }
 
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setCidade(String cidade) {
+    public void setCidade(Cidade cidade) {
         this.cidade = cidade;
     }
 
-    public String getUf() {
-        return Uf;
-    }
-
-    public void setUf(String Uf) {
-        this.Uf = Uf;
-    }
+   
 
     public String getCep() {
         return cep;
@@ -114,14 +116,40 @@ public class Endereco implements  Serializable {
         this.cep = cep;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public String getTipo() {
+        return tipo;
     }
 
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+
+    
+    
     @Override
     public String toString() {
-        return "Endereco{" + "id=" + id + ", logradouro=" + logradouro + ", numero=" + numero + ", bairro=" + bairro + ", complemento=" + complemento + ", cidade=" + cidade + ", Uf=" + Uf + ", estado=" + estado + ", cep=" + cep + '}';
+        return "Endereco{" + "id=" + id + ", logradouro=" + logradouro + ", numero=" + numero + ", bairro=" + bairro + ", complemento=" + complemento + ", cidade=" + cidade + ", cep=" + cep + ", tipo=" + tipo + '}';
     }
+
+
+   
+    
 
   
     
