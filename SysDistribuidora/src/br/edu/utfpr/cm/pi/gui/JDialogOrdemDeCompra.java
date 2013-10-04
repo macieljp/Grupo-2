@@ -30,13 +30,13 @@ public class JDialogOrdemDeCompra extends javax.swing.JDialog {
      */
     private Fornecedor fornecedor;
     private Calendar data;
-    private List<Produto> produtos;
+    private List<Produto> produtosCompraTemporario;
     
     public JDialogOrdemDeCompra(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         pegarData();
-        produtos = new ArrayList();
+        produtosCompraTemporario = new ArrayList();
         carregarTabelaProdutos();
     }
 
@@ -426,13 +426,13 @@ public class JDialogOrdemDeCompra extends javax.swing.JDialog {
                 ordem.setId(Integer.parseInt(jTextFieldCodigoOrdem.getText()));
                 ordem.setDataCompra(data);
                 ordem.setFornecedor(fornecedor);
-                ordem.setProdutos(produtos);
+                ordem.setProdutos(produtosCompraTemporario);
 
 
             } else {
                 ordem.setDataCompra(data);
                 ordem.setFornecedor(fornecedor);
-                ordem.setProdutos(produtos); 
+                ordem.setProdutos(produtosCompraTemporario); 
             }
 
 
@@ -456,7 +456,7 @@ public class JDialogOrdemDeCompra extends javax.swing.JDialog {
 
     private void limparFormulario() {
         fornecedor = new Fornecedor();
-        produtos = new ArrayList();
+        produtosCompraTemporario = new ArrayList();
         jTextFieldCodigoOrdem.setText(null);
         jTextFieldFornecedor.setText(null);
         jTextFieldFornecedor.setBackground(Color.white);
@@ -506,7 +506,7 @@ public class JDialogOrdemDeCompra extends javax.swing.JDialog {
             return;
         }
         Data.hash.remove("produto");
-        produtos.add(produto);
+        produtosCompraTemporario.add(produto);
         carregarTabelaProdutos();
     }
 
@@ -514,12 +514,12 @@ public class JDialogOrdemDeCompra extends javax.swing.JDialog {
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(new String[]{"Código", "Nome", "Valor", "Quantidade", "Grupo"});
 
-        if (produtos != null) {
-            for (Produto produto : produtos) {
+        if (produtosCompraTemporario != null) {
+            for (Produto produto : produtosCompraTemporario) {
                 model.addRow(new Object[]{produto.getId(), produto.getNome(), produto.getValor(), produto.getQuantidade(), produto.getGrupoDeProduto().getDescricao()});
             }
             jTableProdutos.setModel(model);
-            calcularvalorTotalProdutos(produtos);
+            calcularvalorTotalProdutos(produtosCompraTemporario);
         }
         
 
@@ -531,7 +531,7 @@ public class JDialogOrdemDeCompra extends javax.swing.JDialog {
             jTextFieldFornecedor.setBackground(new Color(247, 169, 157));
             erros++;
         }
-        if (produtos == null || produtos.isEmpty()) {
+        if (produtosCompraTemporario == null || produtosCompraTemporario.isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Insira pelo menos 1 produto!");
             erros++;
         }
@@ -548,11 +548,13 @@ public class JDialogOrdemDeCompra extends javax.swing.JDialog {
 
     private void preencherFormularioComDados(OrdemCompra ordem) {
         fornecedor = ordem.getFornecedor();
-        data = ordem.getDataCompra();
-        produtos = ordem.getProdutos();
+        data = ordem.getDataCompra();       
         
         jTextFieldCodigoOrdem.setText(String.valueOf(ordem.getId()));
         jTextFieldFornecedor.setText(ordem.getFornecedor().getRazaoSocial());
+        for (int i = 0; i < ordem.getProdutos().size(); i++) {
+            produtosCompraTemporario.add(ordem.getProdutos().get(i));
+        }
         carregarTabelaProdutos();
         jFormattedTextFieldDataCompra.setText(new Util().calendarToString(data));
         
@@ -570,7 +572,7 @@ public class JDialogOrdemDeCompra extends javax.swing.JDialog {
     private void apagarProdutoDaLista() {
         int linha = jTableProdutos.getSelectedRow();
         if(linha != -1){
-            produtos.remove(linha);
+            produtosCompraTemporario.remove(linha);
             carregarTabelaProdutos();
         }
     }
