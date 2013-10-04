@@ -4,7 +4,6 @@ import br.edu.utfpr.cm.pi.entidades.Cliente;
 import br.edu.utfpr.cm.pi.entidades.Endereco;
 import br.edu.utfpr.cm.pi.daos.DaoCliente;
 import br.edu.utfpr.cm.pi.daos.DaoEndereco;
-import br.edu.utfpr.cm.pi.daos.DaoTelefone;
 import br.edu.utfpr.cm.pi.entidades.Telefone;
 import br.edu.utfpr.cm.pi.util.Util;
 import java.sql.SQLException;
@@ -40,7 +39,6 @@ public class JDialogPesquisaCliente extends javax.swing.JDialog {
     @SuppressWarnings("unchecked")
     DefaultTableModel tmClientes = new DefaultTableModel(null, new String[]{"Códogo", "Nome", "Endeço", "Bairro", "Cidade", "UF", "CEP", "Telefone"});
     ListSelectionModel IsmClientes;
-    List<Cliente> fornecedores;
     String tipoCadastro;
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -73,12 +71,6 @@ public class JDialogPesquisaCliente extends javax.swing.JDialog {
         setMinimumSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        tfPesquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfPesquisarActionPerformed(evt);
-            }
-        });
         getContentPane().add(tfPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 472, -1));
 
         btPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/PesquisarPadrao.png"))); // NOI18N
@@ -209,9 +201,6 @@ public class JDialogPesquisaCliente extends javax.swing.JDialog {
 
     }//GEN-LAST:event_btSalvarActionPerformed
 
-    private void tfPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPesquisarActionPerformed
-    }//GEN-LAST:event_tfPesquisarActionPerformed
-
     private void tfNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNomeActionPerformed
     }//GEN-LAST:event_tfNomeActionPerformed
 
@@ -253,8 +242,8 @@ public class JDialogPesquisaCliente extends javax.swing.JDialog {
 
     protected void listarClientes() {
         DaoCliente cli = new DaoCliente();
-        fornecedores = cli.listCliente("%" + tfPesquisar.getText().trim()+"%");
-        mostrarClientes(fornecedores);
+        clientes = cli.listarComFiltro(" nome LIKE '%" + tfPesquisar.getText().trim()+"%'");
+        mostrarClientes(clientes);
     }
 
     protected void mostrarClientes(List<Cliente> clientes) {
@@ -263,7 +252,7 @@ public class JDialogPesquisaCliente extends javax.swing.JDialog {
 
         if (clientes != null) {
             for (Cliente cliente : clientes) {
-                model.addRow(new Object[]{cliente.getId(), cliente.getNome(), cliente.getEndereco().getLogradouro(), cliente.getEndereco().getBairro(), cliente.getEndereco().getCidade(), cliente.getEndereco().getUf(), cliente.getEndereco().getCep()});
+                model.addRow(new Object[]{cliente.getId(), cliente.getNome(), cliente.getEndereco().getLogradouro(), cliente.getEndereco().getBairro(), cliente.getEndereco().getCidade().getNome(), cliente.getEndereco().getCidade().getEstado().getNome(), cliente.getEndereco().getCep()});
             }
             jTableCliente.setModel(model);
         }
@@ -271,12 +260,12 @@ public class JDialogPesquisaCliente extends javax.swing.JDialog {
 
     protected void tbClientesLinhaSelecionada(JTable tb) {
         if (tb.getSelectedRow() != -1) {
-            tfNome.setText(fornecedores.get(tb.getSelectedRow()).getNome());
-            tfLogradouro.setText(fornecedores.get(tb.getSelectedRow()).getEndereco().getLogradouro());
-            tfCidade.setText(fornecedores.get(tb.getSelectedRow()).getEndereco().getCidade());
-            tfBairro.setText(fornecedores.get(tb.getSelectedRow()).getEndereco().getBairro());
-            tfUF.setText(fornecedores.get(tb.getSelectedRow()).getEndereco().getUf());
-            tfCep.setText(fornecedores.get(tb.getSelectedRow()).getEndereco().getCep());
+            tfNome.setText(clientes.get(tb.getSelectedRow()).getNome());
+            tfLogradouro.setText(clientes.get(tb.getSelectedRow()).getEndereco().getLogradouro());
+            tfCidade.setText(clientes.get(tb.getSelectedRow()).getEndereco().getCidade().getNome());
+            tfBairro.setText(clientes.get(tb.getSelectedRow()).getEndereco().getBairro());
+            //tfUF.setText(clientes.get(tb.getSelectedRow()).getEndereco().getEstado().getNome());
+            tfCep.setText(clientes.get(tb.getSelectedRow()).getEndereco().getCep());
            //ftfTelefone.setText(fornecedores.get(tb.getSelectedRow()).getEndereco().getTelefone());
         } else {
             tfNome.setText("");
@@ -307,17 +296,13 @@ public class JDialogPesquisaCliente extends javax.swing.JDialog {
             Endereco end = new Endereco();
             end.setLogradouro(tfLogradouro.getText().trim());
             end.setBairro(tfBairro.getText().trim());
-            end.setCidade(tfCidade.getText().trim());
-            end.setUf(tfUF.getText().trim());
+            
             end.setCep(tfCep.getText().trim());
 
 
             Telefone tel = new Telefone();
             tel.setNumero(ftfTelefone.getText());
 
-            DaoTelefone daoT = new DaoTelefone();
-
-            daoT.persist(tel);
 
             DaoEndereco daoE = new DaoEndereco();
             daoE.persist(end);
@@ -334,13 +319,13 @@ public class JDialogPesquisaCliente extends javax.swing.JDialog {
     protected void alterarCliente() {
         if (verificarCampos() && verificarUF()) {
             Cliente cliente = new Cliente();
-            cliente.setId(fornecedores.get(jTableCliente.getSelectedRow()).getId());
+            cliente.setId(clientes.get(jTableCliente.getSelectedRow()).getId());
             cliente.setNome(tfNome.getText().trim());
             Endereco end = cliente.getEndereco();
             end.setLogradouro(tfLogradouro.getText().trim());
             end.setBairro(tfBairro.getText().trim());
-            end.setCidade(tfCidade.getText().trim());
-            end.setUf(tfUF.getText().trim());
+//            end.setCidade(tfCidade.getText().trim());
+//            end.setUf(tfUF.getText().trim());
             end.setCep(tfCep.getText().trim());
             // end.setTelefone(ftfTelefone.getText().trim());
             DaoCliente c = new DaoCliente();
@@ -401,7 +386,7 @@ public class JDialogPesquisaCliente extends javax.swing.JDialog {
     protected void deletaCliente() throws SQLException, Exception {
         habilitarCampos();
         Cliente cliente = new Cliente();
-        cliente.setId(fornecedores.get(jTableCliente.getSelectedRow()).getId());
+        cliente.setId(clientes.get(jTableCliente.getSelectedRow()).getId());
 
         DaoCliente c = new DaoCliente();
         c.delete(cliente);
