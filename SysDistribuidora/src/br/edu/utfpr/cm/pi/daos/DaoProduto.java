@@ -12,7 +12,7 @@ import br.edu.utfpr.cm.pi.entidades.Produto;
  */
  public class DaoProduto extends DaoGenerics<Produto>{
     public DaoProduto() {
-        super.alvo = Produto.class;
+        super(Produto.class);
     }
     
 }
