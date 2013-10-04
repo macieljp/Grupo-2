@@ -4,7 +4,13 @@
  */
 package br.edu.utfpr.cm.pi.gui;
 
+import br.edu.utfpr.cm.pi.conexao.Data;
+import br.edu.utfpr.cm.pi.daos.DaoProduto;
+import br.edu.utfpr.cm.pi.entidades.Produto;
 import br.edu.utfpr.cm.pi.util.Util;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,9 +21,13 @@ public class JDialogPesquisarProduto extends javax.swing.JDialog {
     /**
      * Creates new form JDialogPesquisarProduto
      */
+    List<Produto> produtosCadastrados;
+    
     public JDialogPesquisarProduto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        carregarTabelaProdutos();
+        
     }
 
     /**
@@ -29,58 +39,40 @@ public class JDialogPesquisarProduto extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabelPesProdImagem = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jTextFieldPesProdCod = new javax.swing.JTextField();
         jButton1PesProdPesquisar = new javax.swing.JButton();
-        jTextFieldPesProdDesc = new javax.swing.JTextField();
-        jLabelPesProdDescr = new javax.swing.JLabel();
-        jLabelPesProdCodigo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTablePesProd = new javax.swing.JTable();
+        jTableProdutos = new javax.swing.JTable();
         jButtonPesProdAtualizar = new javax.swing.JButton();
-        jButtonPesProdLimpar = new javax.swing.JButton();
-        jButtonPesProdCadastrarProduto = new javax.swing.JButton();
         jButtonPesProdFechar = new javax.swing.JButton();
-
-        jLabel1.setText("jLabel1");
+        jComboBoxFiltro = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(620, 480));
         setResizable(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelPesProdImagem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelPesProdImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/name/Pesquisar produto.png"))); // NOI18N
         jLabelPesProdImagem.setToolTipText("");
-        getContentPane().add(jLabelPesProdImagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 240, 50));
 
         jSeparator1.setMaximumSize(new java.awt.Dimension(620, 1));
         jSeparator1.setMinimumSize(new java.awt.Dimension(620, 1));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 620, 1));
 
         jTextFieldPesProdCod.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        getContentPane().add(jTextFieldPesProdCod, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 110, -1));
 
         jButton1PesProdPesquisar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButton1PesProdPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/PesquisarPadrao.png"))); // NOI18N
         jButton1PesProdPesquisar.setToolTipText("Pesquisar");
-        getContentPane().add(jButton1PesProdPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 50, 50));
+        jButton1PesProdPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1PesProdPesquisarActionPerformed(evt);
+            }
+        });
 
-        jTextFieldPesProdDesc.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        getContentPane().add(jTextFieldPesProdDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 210, -1));
-
-        jLabelPesProdDescr.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabelPesProdDescr.setText("Descrição:");
-        getContentPane().add(jLabelPesProdDescr, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
-
-        jLabelPesProdCodigo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabelPesProdCodigo.setText("Código:");
-        getContentPane().add(jLabelPesProdCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, -1, -1));
-
-        jTablePesProd.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jTablePesProd.setModel(new javax.swing.table.DefaultTableModel(
+        jTableProdutos.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jTableProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -95,24 +87,16 @@ public class JDialogPesquisarProduto extends javax.swing.JDialog {
                 "Cod", "Descrição", "Estoque"
             }
         ));
-        jScrollPane1.setViewportView(jTablePesProd);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 510, 160));
+        jScrollPane1.setViewportView(jTableProdutos);
 
         jButtonPesProdAtualizar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButtonPesProdAtualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/update.png"))); // NOI18N
         jButtonPesProdAtualizar.setToolTipText("Atualizar");
-        getContentPane().add(jButtonPesProdAtualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, -1, -1));
-
-        jButtonPesProdLimpar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButtonPesProdLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/clear.png"))); // NOI18N
-        jButtonPesProdLimpar.setToolTipText("Limpar");
-        getContentPane().add(jButtonPesProdLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, -1, -1));
-
-        jButtonPesProdCadastrarProduto.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButtonPesProdCadastrarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/searchBeer.png"))); // NOI18N
-        jButtonPesProdCadastrarProduto.setToolTipText("Cadastrar Produto");
-        getContentPane().add(jButtonPesProdCadastrarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 390, -1, -1));
+        jButtonPesProdAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPesProdAtualizarActionPerformed(evt);
+            }
+        });
 
         jButtonPesProdFechar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButtonPesProdFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/close_1.png"))); // NOI18N
@@ -122,7 +106,59 @@ public class JDialogPesquisarProduto extends javax.swing.JDialog {
                 jButtonPesProdFecharActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonPesProdFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 390, -1, -1));
+
+        jComboBoxFiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nome", "ID" }));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(190, 190, 190)
+                        .addComponent(jLabelPesProdImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jComboBoxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldPesProdCod, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1PesProdPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(253, 253, 253)
+                .addComponent(jButtonPesProdAtualizar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonPesProdFechar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabelPesProdImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1PesProdPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldPesProdCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBoxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonPesProdAtualizar)
+                    .addComponent(jButtonPesProdFechar))
+                .addContainerGap())
+        );
 
         pack();
         setLocationRelativeTo(null);
@@ -133,6 +169,16 @@ public class JDialogPesquisarProduto extends javax.swing.JDialog {
             dispose();
         }
     }//GEN-LAST:event_jButtonPesProdFecharActionPerformed
+
+    private void jButtonPesProdAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesProdAtualizarActionPerformed
+        // TODO add your handling code here:
+        editarProduto();
+    }//GEN-LAST:event_jButtonPesProdAtualizarActionPerformed
+
+    private void jButton1PesProdPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1PesProdPesquisarActionPerformed
+        // TODO add your handling code here:
+        pesquisar();
+    }//GEN-LAST:event_jButton1PesProdPesquisarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,17 +224,60 @@ public class JDialogPesquisarProduto extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1PesProdPesquisar;
     private javax.swing.JButton jButtonPesProdAtualizar;
-    private javax.swing.JButton jButtonPesProdCadastrarProduto;
     private javax.swing.JButton jButtonPesProdFechar;
-    private javax.swing.JButton jButtonPesProdLimpar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabelPesProdCodigo;
-    private javax.swing.JLabel jLabelPesProdDescr;
+    private javax.swing.JComboBox jComboBoxFiltro;
     private javax.swing.JLabel jLabelPesProdImagem;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTablePesProd;
+    private javax.swing.JTable jTableProdutos;
     private javax.swing.JTextField jTextFieldPesProdCod;
-    private javax.swing.JTextField jTextFieldPesProdDesc;
     // End of variables declaration//GEN-END:variables
+
+    private void carregarTabelaProdutos() {
+        DaoProduto dGP = new DaoProduto();
+        produtosCadastrados = dGP.list();
+        mostrarProdutos(produtosCadastrados);
+    }
+
+    private void mostrarProdutos(List<Produto> produtos) {
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new String[]{"Código", "Nome", "Valor", "Quantidade", "Grupo"});
+
+        if (produtos != null) {
+            for (Produto produto : produtos) {
+                model.addRow(new Object[]{produto.getId(), produto.getNome(), produto.getValor(), produto.getQuantidade(), produto.getGrupoDeProduto().getDescricao()});
+            }
+            jTableProdutos.setModel(model);
+        }
+    }
+
+    private void editarProduto() {
+        int linha = jTableProdutos.getSelectedRow();
+        if(linha != -1){
+            Produto produto = produtosCadastrados.get(linha);
+            Data.hash.put("produto", produto);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione uma linha para editar!.");
+            return;
+        }
+    }
+
+    private void pesquisar() {
+        if(jTextFieldPesProdCod.getText()==null){
+            carregarTabelaProdutos();
+            return;
+        }
+        if(jComboBoxFiltro.getSelectedIndex()==0){
+            DaoProduto dGP = new DaoProduto();
+            produtosCadastrados = dGP.listarComFiltro(" nome LIKE '%"+jTextFieldPesProdCod.getText()+ "%'");
+            mostrarProdutos(produtosCadastrados);
+        }else{
+            DaoProduto dGP = new DaoProduto();
+            produtosCadastrados = dGP.listarComFiltro(" id='"+jTextFieldPesProdCod.getText()+ "'");
+            mostrarProdutos(produtosCadastrados);
+        }
+    }
+
+    
 }
