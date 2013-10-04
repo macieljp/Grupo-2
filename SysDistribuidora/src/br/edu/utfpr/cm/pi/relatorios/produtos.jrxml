@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="produtos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     grupodeproduto.`id` AS grupodeproduto_id,
+     grupodeproduto.`descricao` AS grupodeproduto_descricao,
+     produto.`id` AS produto_id,
+     produto.`nome` AS produto_nome,
+     produto.`quantidade` AS produto_quantidade,
+     produto.`valor` AS produto_valor,
+     produto.`grupoDeProduto_id` AS produto_grupoDeProduto_id
+FROM
+     `grupodeproduto` grupodeproduto INNER JOIN `produto` produto ON grupodeproduto.`id` = produto.`grupoDeProduto_id`]]>
+	</queryString>
+	<field name="grupodeproduto_id" class="java.lang.Integer"/>
+	<field name="grupodeproduto_descricao" class="java.lang.String"/>
+	<field name="produto_id" class="java.lang.Integer"/>
+	<field name="produto_nome" class="java.lang.String"/>
+	<field name="produto_quantidade" class="java.lang.Integer"/>
+	<field name="produto_valor" class="java.lang.Double"/>
+	<field name="produto_grupoDeProduto_id" class="java.lang.Integer"/>
+	<group name="produto_id">
+		<groupExpression><![CDATA[$F{produto_id}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="79"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Produtos - Duff Beer Distribuidora]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="41" height="20" forecolor="#990000"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[COD.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="41" y="0" width="264" height="20" forecolor="#990000"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="305" y="0" width="50" height="20" forecolor="#990000"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[QTDE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="355" y="0" width="100" height="20" forecolor="#990000"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[VALOR UN. R$]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="0" width="100" height="20" forecolor="#990000"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[GRUPO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="33" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="2" width="41" height="19" forecolor="#CC0000"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{produto_id}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="0" width="100" height="1"/>
+			</line>
+			<line>
+				<reportElement x="1" y="0" width="554" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="41" y="0" width="264" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{produto_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="305" y="1" width="50" height="19"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{produto_quantidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="355" y="2" width="100" height="19"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{produto_valor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="1" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{grupodeproduto_descricao}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="34" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="0" y="14" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="421" y="11" width="94" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="11" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="0" width="554" height="1"/>
+			</line>
+		</band>
+	</pageFooter>
+</jasperReport>
