@@ -26,7 +26,7 @@ public class DaoOrdemVenda extends DaoGenerics<OrdemVenda> {
     String dataFormatadaNormal = formatadorTotal.format(data);
 
     public DaoOrdemVenda() {
-        super.alvo = OrdemVenda.class;
+        super(OrdemVenda.class);
     }
 
     public List<OrdemVenda> obter() {
