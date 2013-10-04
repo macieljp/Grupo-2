@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -32,8 +33,10 @@ public class OrdemCompra implements Serializable {
     @OneToOne
     private Fornecedor fornecedor;
     
-    @OneToMany
-    private List<Produto> produtos;
+    
+    
+    @ManyToMany
+    private List<Produto> produtosCompra;
     
     @Temporal(javax.persistence.TemporalType.DATE)
     private Calendar dataCompra;
@@ -56,11 +59,11 @@ public class OrdemCompra implements Serializable {
     }
 
     public List<Produto> getProdutos() {
-        return produtos;
+        return produtosCompra;
     }
 
     public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
+        this.produtosCompra = produtos;
     }
 
     public Calendar getDataCompra() {
