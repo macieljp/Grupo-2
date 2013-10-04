@@ -4,7 +4,13 @@
  */
 package br.edu.utfpr.cm.pi.gui;
 
+import br.edu.utfpr.cm.pi.conexao.Data;
+import br.edu.utfpr.cm.pi.daos.DaoFornecedor;
+import br.edu.utfpr.cm.pi.entidades.Fornecedor;
 import br.edu.utfpr.cm.pi.util.Util;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -16,9 +22,12 @@ public class JDialogPesquisarFornecedor extends javax.swing.JDialog {
     /**
      * Creates new form JDialogPesquisarFornecedor
      */
+    List<Fornecedor> fornecedores;
+    
     public JDialogPesquisarFornecedor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        carregarTabelaFornecedores();
     }
 
     /**
@@ -32,61 +41,25 @@ public class JDialogPesquisarFornecedor extends javax.swing.JDialog {
 
         jOptionPane1 = new javax.swing.JOptionPane();
         jLabelpesClienteImagem = new javax.swing.JLabel();
-        jTextFieldPesFornCod = new javax.swing.JTextField();
-        jLabelPesClienteCod = new javax.swing.JLabel();
-        jLabelPesClienteCPF = new javax.swing.JLabel();
-        jLabel1PesFornCodNome = new javax.swing.JLabel();
-        jTextFieldpesPesFornCod = new javax.swing.JTextField();
-        jFormattedTextFieldPesFornCod = new javax.swing.JFormattedTextField();
+        jTextFieldPesquisa = new javax.swing.JTextField();
         jButtonPesquisar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTablePesquisarCliente = new javax.swing.JTable();
+        jTablePesquisarFornecedor = new javax.swing.JTable();
         jButtonAtualizar = new javax.swing.JButton();
-        jButtonLimpar = new javax.swing.JButton();
         jButtonFechar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jButtonCadFornecedor = new javax.swing.JButton();
+        jComboBoxFiltro = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         setMinimumSize(new java.awt.Dimension(620, 480));
         setResizable(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelpesClienteImagem.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabelpesClienteImagem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelpesClienteImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/name/PesquisarFornecedor.png"))); // NOI18N
-        getContentPane().add(jLabelpesClienteImagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 280, 50));
 
-        jTextFieldPesFornCod.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        getContentPane().add(jTextFieldPesFornCod, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 110, -1));
-
-        jLabelPesClienteCod.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabelPesClienteCod.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelPesClienteCod.setText("Código:");
-        getContentPane().add(jLabelPesClienteCod, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, -1));
-
-        jLabelPesClienteCPF.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabelPesClienteCPF.setText("CPF:");
-        getContentPane().add(jLabelPesClienteCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, -1, -1));
-
-        jLabel1PesFornCodNome.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel1PesFornCodNome.setText("Nome:");
-        jLabel1PesFornCodNome.setToolTipText("");
-        getContentPane().add(jLabel1PesFornCodNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
-
-        jTextFieldpesPesFornCod.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jTextFieldpesPesFornCod.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        getContentPane().add(jTextFieldpesPesFornCod, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 230, -1));
-
-        try {
-            jFormattedTextFieldPesFornCod.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFormattedTextFieldPesFornCod.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jFormattedTextFieldPesFornCod.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        getContentPane().add(jFormattedTextFieldPesFornCod, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 110, -1));
+        jTextFieldPesquisa.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
         jButtonPesquisar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButtonPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/PesquisarPadrao.png"))); // NOI18N
@@ -94,10 +67,14 @@ public class JDialogPesquisarFornecedor extends javax.swing.JDialog {
         jButtonPesquisar.setMaximumSize(new java.awt.Dimension(72, 72));
         jButtonPesquisar.setMinimumSize(new java.awt.Dimension(72, 72));
         jButtonPesquisar.setPreferredSize(new java.awt.Dimension(72, 72));
-        getContentPane().add(jButtonPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 50, 50));
+        jButtonPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPesquisarActionPerformed(evt);
+            }
+        });
 
-        jTablePesquisarCliente.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jTablePesquisarCliente.setModel(new javax.swing.table.DefaultTableModel(
+        jTablePesquisarFornecedor.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jTablePesquisarFornecedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -112,19 +89,16 @@ public class JDialogPesquisarFornecedor extends javax.swing.JDialog {
                 "Cod", "Nome", "Logradouro", "Numero", "Estado", "Municipio", "Bairro", "Telefone", "E-mail"
             }
         ));
-        jScrollPane1.setViewportView(jTablePesquisarCliente);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 540, 160));
+        jScrollPane1.setViewportView(jTablePesquisarFornecedor);
 
         jButtonAtualizar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButtonAtualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/update.png"))); // NOI18N
         jButtonAtualizar.setToolTipText("Atualizar");
-        getContentPane().add(jButtonAtualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, -1, -1));
-
-        jButtonLimpar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButtonLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/clear.png"))); // NOI18N
-        jButtonLimpar.setToolTipText("Limpar");
-        getContentPane().add(jButtonLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, -1, -1));
+        jButtonAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAtualizarActionPerformed(evt);
+            }
+        });
 
         jButtonFechar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButtonFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/Close.png"))); // NOI18N
@@ -134,25 +108,84 @@ public class JDialogPesquisarFornecedor extends javax.swing.JDialog {
                 jButtonFecharActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 390, -1, -1));
 
         jSeparator1.setPreferredSize(new java.awt.Dimension(620, 1));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 620, 1));
 
-        jButtonCadFornecedor.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButtonCadFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/Forn.png"))); // NOI18N
-        jButtonCadFornecedor.setToolTipText("Cadastrar Fornecedor");
-        getContentPane().add(jButtonCadFornecedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 390, -1, -1));
+        jComboBoxFiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Razão Social", "ID" }));
 
-        setSize(new java.awt.Dimension(636, 519));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jComboBoxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextFieldPesquisa)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 785, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 8, Short.MAX_VALUE))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(302, 302, 302)
+                .addComponent(jButtonAtualizar)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonFechar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelpesClienteImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(256, 256, 256))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelpesClienteImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonAtualizar)
+                    .addComponent(jButtonFechar))
+                .addContainerGap())
+        );
+
+        setSize(new java.awt.Dimension(829, 519));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
-      if (Util.imprimirConfirmacao("Deseja Sair?")) {
             dispose();
-        }
+        
     }//GEN-LAST:event_jButtonFecharActionPerformed
+
+    private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
+        // TODO add your handling code here:
+       editarFornecedor();
+    }//GEN-LAST:event_jButtonAtualizarActionPerformed
+
+    private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
+        // TODO add your handling code here:
+        pesquisarFornecedor();
+        
+    }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,20 +230,60 @@ public class JDialogPesquisarFornecedor extends javax.swing.JDialog {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAtualizar;
-    private javax.swing.JButton jButtonCadFornecedor;
     private javax.swing.JButton jButtonFechar;
-    private javax.swing.JButton jButtonLimpar;
     private javax.swing.JButton jButtonPesquisar;
-    private javax.swing.JFormattedTextField jFormattedTextFieldPesFornCod;
-    private javax.swing.JLabel jLabel1PesFornCodNome;
-    private javax.swing.JLabel jLabelPesClienteCPF;
-    private javax.swing.JLabel jLabelPesClienteCod;
+    private javax.swing.JComboBox jComboBoxFiltro;
     private javax.swing.JLabel jLabelpesClienteImagem;
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTablePesquisarCliente;
-    private javax.swing.JTextField jTextFieldPesFornCod;
-    private javax.swing.JTextField jTextFieldpesPesFornCod;
+    private javax.swing.JTable jTablePesquisarFornecedor;
+    private javax.swing.JTextField jTextFieldPesquisa;
     // End of variables declaration//GEN-END:variables
+
+    private void carregarTabelaFornecedores() {
+        DaoFornecedor dGP = new DaoFornecedor();
+        fornecedores = dGP.list();
+        mostrarFornecedores(fornecedores);
+    }
+
+    private void mostrarFornecedores(List<Fornecedor> fornecedores) {
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new String[]{"Código", "Razão Social", "Fantasia", "CNPJ", "Contato", "Telefone"});
+
+        if (fornecedores != null) {
+            for (Fornecedor fornecedor : fornecedores) {
+                model.addRow(new Object[]{fornecedor.getId(), fornecedor.getRazaoSocial(), fornecedor.getNomeFantasia(), fornecedor.getCnpj(), fornecedor.getContato(), fornecedor.getTelefone()});
+            }
+            jTablePesquisarFornecedor.setModel(model);
+        }
+    }
+
+    private void editarFornecedor() {
+        int linha = jTablePesquisarFornecedor.getSelectedRow();
+        if(linha != -1){
+            Fornecedor fornecedor = fornecedores.get(linha);
+            Data.hash.put("fornecedor", fornecedor);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione uma linha para editar!.");
+            return;
+        }
+    }
+
+    private void pesquisarFornecedor() {
+        if(jTextFieldPesquisa.getText()==null){
+            carregarTabelaFornecedores();
+            return;
+        }
+        if(jComboBoxFiltro.getSelectedIndex()==0){
+            DaoFornecedor dGP = new DaoFornecedor();
+            fornecedores = dGP.listarComFiltro(" RazaoSocial LIKE '%"+jTextFieldPesquisa.getText()+ "%'");
+            mostrarFornecedores(fornecedores);
+        }else{
+            DaoFornecedor dGP = new DaoFornecedor();
+            fornecedores = dGP.listarComFiltro(" id='"+jTextFieldPesquisa.getText()+ "'");
+            mostrarFornecedores(fornecedores);
+        }
+    }
 }
