@@ -4,7 +4,20 @@
  */
 package br.edu.utfpr.cm.pi.gui;
 
+import br.edu.utfpr.cm.pi.conexao.Data;
+import br.edu.utfpr.cm.pi.conexao.TransactionManager;
+import br.edu.utfpr.cm.pi.daos.DaoCidade;
+import br.edu.utfpr.cm.pi.daos.DaoCliente;
+import br.edu.utfpr.cm.pi.daos.DaoEndereco;
+import br.edu.utfpr.cm.pi.daos.DaoEstado;
+import br.edu.utfpr.cm.pi.entidades.Cidade;
+import br.edu.utfpr.cm.pi.entidades.Cliente;
+import br.edu.utfpr.cm.pi.entidades.Endereco;
+import br.edu.utfpr.cm.pi.entidades.Estado;
 import br.edu.utfpr.cm.pi.util.Util;
+import java.awt.Color;
+import java.util.List;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,11 +29,13 @@ public class JDialogCadastroCliente extends javax.swing.JDialog {
     /**
      * Creates new form JDialogCadastroCliente
      */
+    List<Estado> estados;
+
     public JDialogCadastroCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        tfCodigo.setEditable(false);
-        tfNome.requestFocus();
+        selecionarMascaraCNPJouCPF();
+        popularComboBoxEstado();
     }
 
     /**
@@ -45,12 +60,13 @@ public class JDialogCadastroCliente extends javax.swing.JDialog {
         lbNascimento = new javax.swing.JLabel();
         tfCodigo = new javax.swing.JTextField();
         tfNome = new javax.swing.JTextField();
-        tfDataNascimento = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jLabel2 = new javax.swing.JLabel();
+        jRadioButtonJuridico = new javax.swing.JRadioButton();
+        jRadioButtonFisico = new javax.swing.JRadioButton();
+        jFormattedTextFieldCNPJ = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldCPF = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldData = new javax.swing.JFormattedTextField();
+        jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         lbTipoLogradouro = new javax.swing.JLabel();
         lbLogradouro = new javax.swing.JLabel();
@@ -64,16 +80,19 @@ public class JDialogCadastroCliente extends javax.swing.JDialog {
         tfLogradouro = new javax.swing.JTextField();
         tfNumero = new javax.swing.JTextField();
         tfComplemento = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox();
-        jComboBox2 = new javax.swing.JComboBox();
+        jComboBoxEstado = new javax.swing.JComboBox();
+        jComboBoxCidade = new javax.swing.JComboBox();
         tfBairro = new javax.swing.JTextField();
-        tfCep = new javax.swing.JTextField();
-        tfResidencial = new javax.swing.JTextField();
         lbTelefone = new javax.swing.JLabel();
         lbCelular = new javax.swing.JLabel();
-        tfCelular = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         tfEmail = new javax.swing.JTextField();
+        lbTipoLogradouro1 = new javax.swing.JLabel();
+        jTextFieldCodigoEndereco = new javax.swing.JTextField();
+        jFormattedTextFieldTelefone = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldCelular = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldCEP = new javax.swing.JFormattedTextField();
+        jButton2 = new javax.swing.JButton();
         btSalvar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
         btDeletar = new javax.swing.JButton();
@@ -84,7 +103,7 @@ public class JDialogCadastroCliente extends javax.swing.JDialog {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnRotulo.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        pnRotulo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         pnRotulo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbRotulo.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
@@ -94,10 +113,10 @@ public class JDialogCadastroCliente extends javax.swing.JDialog {
 
         getContentPane().add(pnRotulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setMaximumSize(new java.awt.Dimension(790, 200));
         jPanel2.setMinimumSize(new java.awt.Dimension(790, 200));
         jPanel2.setPreferredSize(new java.awt.Dimension(795, 200));
@@ -113,146 +132,410 @@ public class JDialogCadastroCliente extends javax.swing.JDialog {
         jPanel2.add(lbId, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
 
         lbNascimento.setText("Nasc:");
-        jPanel2.add(lbNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, -1, -1));
+        jPanel2.add(lbNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
+
+        tfCodigo.setEditable(false);
         jPanel2.add(tfCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 90, 25));
         jPanel2.add(tfNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 390, 25));
-        jPanel2.add(tfDataNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 170, 25));
 
         jLabel1.setText("Tipo:");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, -1, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, -1, -1));
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("Jurídico");
-        jPanel2.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, -1, -1));
+        buttonGroup1.add(jRadioButtonJuridico);
+        jRadioButtonJuridico.setSelected(true);
+        jRadioButtonJuridico.setText("Jurídico");
+        jRadioButtonJuridico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonJuridicoActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jRadioButtonJuridico, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, -1, -1));
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("Físico");
-        jPanel2.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, -1, -1));
+        buttonGroup1.add(jRadioButtonFisico);
+        jRadioButtonFisico.setText("Físico");
+        jRadioButtonFisico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonFisicoActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jRadioButtonFisico, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, -1, -1));
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("")));
+            jFormattedTextFieldCNPJ.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jFormattedTextFieldCNPJ.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField1ActionPerformed(evt);
+                jFormattedTextFieldCNPJActionPerformed(evt);
             }
         });
-        jFormattedTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+        jFormattedTextFieldCNPJ.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jFormattedTextField1FocusLost(evt);
+                jFormattedTextFieldCNPJFocusLost(evt);
             }
         });
-        jPanel2.add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 160, 30));
+        jPanel2.add(jFormattedTextFieldCNPJ, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 160, 30));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/tsi/icons/clientes.png"))); // NOI18N
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 0, -1, -1));
+        try {
+            jFormattedTextFieldCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormattedTextFieldCPF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextFieldCPFActionPerformed(evt);
+            }
+        });
+        jFormattedTextFieldCPF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jFormattedTextFieldCPFFocusLost(evt);
+            }
+        });
+        jPanel2.add(jFormattedTextFieldCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 160, 30));
+
+        try {
+            jFormattedTextFieldData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormattedTextFieldData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextFieldDataActionPerformed(evt);
+            }
+        });
+        jFormattedTextFieldData.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jFormattedTextFieldDataFocusLost(evt);
+            }
+        });
+        jPanel2.add(jFormattedTextFieldData, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 160, -1));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/PesquisarPadrao.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 50, -1));
 
         jTabbedPane1.addTab("Dados Pessoais", jPanel2);
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         lbTipoLogradouro.setText("Tipo Logradouro:");
-        jPanel3.add(lbTipoLogradouro, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, -1));
 
         lbLogradouro.setText("Logradouro:");
-        jPanel3.add(lbLogradouro, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
 
         lbNumero.setText("N°:");
-        jPanel3.add(lbNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, -1, -1));
 
         lbComplemento.setText("Complemento:");
-        jPanel3.add(lbComplemento, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, -1, -1));
 
         lbCep.setText("Cep:");
-        jPanel3.add(lbCep, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 210, -1, -1));
 
         lbBairro.setText("Bairro:");
-        jPanel3.add(lbBairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, -1, -1));
 
         lbCidade.setText("Cidade:");
-        jPanel3.add(lbCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, -1, -1));
 
         lbEstado.setText("Estado:");
-        jPanel3.add(lbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, -1, -1));
 
         cbTipoLogradouro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Rua", "Avenida", "Estrada" }));
-        jPanel3.add(cbTipoLogradouro, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 100, -1));
-        jPanel3.add(tfLogradouro, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 200, -1));
-        jPanel3.add(tfNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 90, 90, -1));
-        jPanel3.add(tfComplemento, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 200, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 200, -1));
+        jComboBoxEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxEstadoActionPerformed(evt);
+            }
+        });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel3.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, 120, -1));
-        jPanel3.add(tfBairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 140, 130, -1));
-        jPanel3.add(tfCep, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 200, 110, -1));
-        jPanel3.add(tfResidencial, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 200, -1));
+        jComboBoxCidade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         lbTelefone.setText("Telefone:");
-        jPanel3.add(lbTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, -1, -1));
 
         lbCelular.setText("Celular:");
-        jPanel3.add(lbCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, -1, -1));
-        jPanel3.add(tfCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 250, 120, -1));
 
         jLabel13.setText("E-mail:");
-        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, -1, -1));
-        jPanel3.add(tfEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, 400, -1));
+
+        lbTipoLogradouro1.setText("Codigo:");
+
+        jTextFieldCodigoEndereco.setEditable(false);
+
+        try {
+            jFormattedTextFieldTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            jFormattedTextFieldCelular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            jFormattedTextFieldCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/add_1.png"))); // NOI18N
+        jButton2.setToolTipText("ADD Cidade");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(lbTelefone))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(lbEstado)
+                                .addGap(381, 381, 381))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(112, 112, 112)
+                                        .addComponent(jFormattedTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(110, 110, 110)
+                                        .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lbCidade)))
+                                .addGap(18, 18, 18)
+                                .addComponent(jComboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(13, 13, 13)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(lbLogradouro)
+                                .addGap(31, 31, 31)
+                                .addComponent(tfLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
+                                .addComponent(lbNumero)
+                                .addGap(24, 24, 24)
+                                .addComponent(tfNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lbCep)
+                                    .addComponent(lbComplemento))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(tfComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(lbBairro)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(tfBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jFormattedTextFieldCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbTipoLogradouro)
+                            .addComponent(lbTipoLogradouro1))
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbTipoLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldCodigoEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(jLabel13)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(218, 218, 218)
+                                .addComponent(lbCelular)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jFormattedTextFieldCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(485, 485, 485))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbTipoLogradouro1)
+                    .addComponent(jTextFieldCodigoEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbTipoLogradouro)
+                    .addComponent(cbTipoLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(lbLogradouro))
+                    .addComponent(tfLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbNumero)
+                    .addComponent(tfNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(lbBairro))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(tfComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lbComplemento)))))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbCep)
+                    .addComponent(jFormattedTextFieldCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbCidade)
+                        .addComponent(lbEstado)
+                        .addComponent(jComboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(13, 13, 13)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbCelular)
+                    .addComponent(lbTelefone)
+                    .addComponent(jFormattedTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextFieldCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
+                .addGap(29, 29, 29))
+        );
 
         jTabbedPane1.addTab("Endereço", jPanel3);
 
-        jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 800, 390));
+        jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 710, 410));
 
         btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/save01.png"))); // NOI18N
         btSalvar.setToolTipText("Salvar");
-        btSalvar.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
-        jPanel1.add(btSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 430, 50, 40));
+        btSalvar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalvarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 430, 50, 40));
 
         btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/clear.png"))); // NOI18N
         btCancelar.setToolTipText("Cancelar");
-        btCancelar.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
-        jPanel1.add(btCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 430, 50, 40));
+        btCancelar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 430, 50, 40));
 
         btDeletar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/delete.png"))); // NOI18N
         btDeletar.setToolTipText("Apagar");
-        btDeletar.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
-        jPanel1.add(btDeletar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 430, 50, 40));
+        btDeletar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btDeletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btDeletarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btDeletar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 430, 50, 40));
 
         btFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/edu/utfpr/cm/pi/icons/close_1.png"))); // NOI18N
         btFechar.setToolTipText("Fechar");
-        btFechar.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        btFechar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btFecharActionPerformed(evt);
             }
         });
-        jPanel1.add(btFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 430, 50, 40));
+        jPanel1.add(btFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 430, 50, 40));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 800, 490));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 730, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFecharActionPerformed
-       Util.imprimirConfirmacao("Deseja Fechar?");
-       dispose();
+        Util.imprimirConfirmacao("Deseja Fechar?");
+        dispose();
     }//GEN-LAST:event_btFecharActionPerformed
 
-    private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
+    private void jFormattedTextFieldCNPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCNPJActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField1ActionPerformed
+    }//GEN-LAST:event_jFormattedTextFieldCNPJActionPerformed
 
-    private void jFormattedTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFormattedTextField1FocusLost
+    private void jFormattedTextFieldCNPJFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCNPJFocusLost
         // TODO add your handling code here:
-        if(!Util.isCPF(jFormattedTextField1.getText())){
+        if (!Util.isCPF(jFormattedTextFieldCNPJ.getText())) {
             JOptionPane.showMessageDialog(lbComplemento, "CPF inválido!!");
         }
-    }//GEN-LAST:event_jFormattedTextField1FocusLost
+    }//GEN-LAST:event_jFormattedTextFieldCNPJFocusLost
+
+    private void jFormattedTextFieldCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCPFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextFieldCPFActionPerformed
+
+    private void jFormattedTextFieldCPFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCPFFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextFieldCPFFocusLost
+
+    private void jRadioButtonFisicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonFisicoActionPerformed
+        // TODO add your handling code here:
+        selecionarMascaraCNPJouCPF();
+    }//GEN-LAST:event_jRadioButtonFisicoActionPerformed
+
+    private void jRadioButtonJuridicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonJuridicoActionPerformed
+        // TODO add your handling code here:
+        selecionarMascaraCNPJouCPF();
+    }//GEN-LAST:event_jRadioButtonJuridicoActionPerformed
+
+    private void jComboBoxEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEstadoActionPerformed
+        // TODO add your handling code here:
+        popularComboBoxCidades();
+    }//GEN-LAST:event_jComboBoxEstadoActionPerformed
+
+    private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
+        // TODO add your handling code here:
+        cadastrarCliente();
+    }//GEN-LAST:event_btSalvarActionPerformed
+
+    private void jFormattedTextFieldDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldDataActionPerformed
+        // TODO add your handling code here:
+        validarData();
+    }//GEN-LAST:event_jFormattedTextFieldDataActionPerformed
+
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+        // TODO add your handling code here:
+        limparFormulario();
+    }//GEN-LAST:event_btCancelarActionPerformed
+
+    private void jFormattedTextFieldDataFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFormattedTextFieldDataFocusLost
+        // TODO add your handling code here:
+        validarData();
+    }//GEN-LAST:event_jFormattedTextFieldDataFocusLost
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        abrirJanelaPesquisaClientes();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        abrirJanelaADDCidade();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeletarActionPerformed
+        // TODO add your handling code here:
+        deletarCliente();
+    }//GEN-LAST:event_btDeletarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -303,18 +586,25 @@ public class JDialogCadastroCliente extends javax.swing.JDialog {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JComboBox cbTipoLogradouro;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox jComboBoxCidade;
+    private javax.swing.JComboBox jComboBoxEstado;
+    private javax.swing.JFormattedTextField jFormattedTextFieldCEP;
+    private javax.swing.JFormattedTextField jFormattedTextFieldCNPJ;
+    private javax.swing.JFormattedTextField jFormattedTextFieldCPF;
+    private javax.swing.JFormattedTextField jFormattedTextFieldCelular;
+    private javax.swing.JFormattedTextField jFormattedTextFieldData;
+    private javax.swing.JFormattedTextField jFormattedTextFieldTelefone;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButtonFisico;
+    private javax.swing.JRadioButton jRadioButtonJuridico;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField jTextFieldCodigoEndereco;
     private javax.swing.JLabel lbBairro;
     private javax.swing.JLabel lbCPF;
     private javax.swing.JLabel lbCelular;
@@ -330,17 +620,348 @@ public class JDialogCadastroCliente extends javax.swing.JDialog {
     private javax.swing.JLabel lbRotulo;
     private javax.swing.JLabel lbTelefone;
     private javax.swing.JLabel lbTipoLogradouro;
+    private javax.swing.JLabel lbTipoLogradouro1;
     private javax.swing.JPanel pnRotulo;
     private javax.swing.JTextField tfBairro;
-    private javax.swing.JTextField tfCelular;
-    private javax.swing.JTextField tfCep;
     private javax.swing.JTextField tfCodigo;
     private javax.swing.JTextField tfComplemento;
-    private javax.swing.JTextField tfDataNascimento;
     private javax.swing.JTextField tfEmail;
     private javax.swing.JTextField tfLogradouro;
     private javax.swing.JTextField tfNome;
     private javax.swing.JTextField tfNumero;
-    private javax.swing.JTextField tfResidencial;
     // End of variables declaration//GEN-END:variables
+
+    private void selecionarMascaraCNPJouCPF() {
+        if (jRadioButtonJuridico.isSelected()) {
+            jFormattedTextFieldCNPJ.setVisible(true);
+            jFormattedTextFieldCPF.setVisible(false);
+        } else {
+            jFormattedTextFieldCNPJ.setVisible(false);
+            jFormattedTextFieldCPF.setVisible(true);
+        }
+    }
+
+    private void popularComboBoxEstado() {
+        estados = new DaoEstado().list();
+        jComboBoxEstado.removeAllItems();
+        for (int i = 0; i < estados.size(); i++) {
+            jComboBoxEstado.addItem(estados.get(i).getNome());
+        }
+    }
+
+    private void popularComboBoxCidades() {
+        jComboBoxCidade.removeAllItems();
+        List<Estado> estado = new DaoEstado().listarComFiltro("nome='" + jComboBoxEstado.getSelectedItem().toString().trim() + "'");
+
+        List<Cidade> cids = new DaoCidade().listarComFiltro("estado_id=" + estado.get(0).getId());
+
+        for (Cidade cidade : cids) {
+            jComboBoxCidade.addItem(cidade.getNome());
+        }
+    }
+
+    private void cadastrarCliente() {
+        if (validarCampos()) {
+            Cliente cliente = new Cliente();
+            Endereco end = new Endereco();
+            if (new Util().validarID(tfCodigo.getText())) {
+                cliente.setId(Integer.parseInt(tfCodigo.getText()));
+                if (jRadioButtonJuridico.isSelected()) {
+                    cliente.setTipo("Juridico");
+                } else {
+                    cliente.setTipo("Fisico");
+                }
+                cliente.setNome(tfNome.getText());
+                cliente.setCnpj(jFormattedTextFieldCNPJ.getText());
+                cliente.setCpf(jFormattedTextFieldCPF.getText());
+                cliente.setDataNascimento(new Util().stringToCalendar(jFormattedTextFieldData.getText()));
+
+
+                end.setId(Integer.parseInt(jTextFieldCodigoEndereco.getText()));
+                end.setTipo(cbTipoLogradouro.getSelectedItem().toString());
+                end.setLogradouro(tfLogradouro.getText());
+                end.setNumero(tfNumero.getText());
+                end.setComplemento(tfComplemento.getText());
+                end.setBairro(tfBairro.getText());
+                end.setTelefone(jFormattedTextFieldTelefone.getText());
+                end.setCelular(jFormattedTextFieldCelular.getText());
+
+                Cidade cidade = obterCidade();
+
+                end.setCidade(cidade);
+                end.setCep(jFormattedTextFieldCEP.getText());
+                end.setEmail(tfEmail.getText());
+
+
+                cliente.setEndereco(end);
+
+            } else {
+                if (jRadioButtonJuridico.isSelected()) {
+                    cliente.setTipo("Juridico");
+                } else {
+                    cliente.setTipo("Fisico");
+                }
+                cliente.setNome(tfNome.getText());
+                cliente.setCnpj(jFormattedTextFieldCNPJ.getText());
+                cliente.setCpf(jFormattedTextFieldCPF.getText());
+                cliente.setDataNascimento(new Util().stringToCalendar(jFormattedTextFieldData.getText()));
+
+
+                end.setTipo(cbTipoLogradouro.getSelectedItem().toString());
+                end.setLogradouro(tfLogradouro.getText());
+                end.setNumero(tfNumero.getText());
+                end.setComplemento(tfComplemento.getText());
+                end.setBairro(tfBairro.getText());
+                end.setTelefone(jFormattedTextFieldTelefone.getText());
+                end.setCelular(jFormattedTextFieldCelular.getText());
+
+                Cidade cidade = obterCidade();
+
+                end.setCidade(cidade);
+                end.setCep(jFormattedTextFieldCEP.getText());
+                end.setEmail(tfEmail.getText());
+
+                cliente.setEndereco(end);
+
+            }
+
+
+            try {
+                TransactionManager.beginTransaction();
+                DaoEndereco dEnd = new DaoEndereco();
+                DaoCliente dGP = new DaoCliente();
+                dEnd.persist(end);
+                dGP.persist(cliente);
+                TransactionManager.commit();
+                JOptionPane.showMessageDialog(rootPane, "Cadastrado com sucesso!");
+                limparFormulario();
+            } catch (Exception e) {
+                TransactionManager.rollback();
+                JOptionPane.showMessageDialog(rootPane, "O Cliente não pode ser cadastrado" + e);
+                System.out.println(e);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Verifique os erros antes de continuar!");
+        }
+    }
+
+    private boolean validarCampos() {
+        int erros = 0;
+        if (tfBairro.getText() == null || tfBairro.getText().equals("")) {
+            tfBairro.setBackground(new Color(247, 169, 157));
+            erros++;
+        }
+        if (tfNome.getText().equals("")) {
+            tfNome.setBackground(new Color(247, 169, 157));
+            erros++;
+        }
+        if (jRadioButtonFisico.isSelected()) {
+            if (!jFormattedTextFieldCPF.getText().equals("   .   .   -  ")) {
+                if (!jFormattedTextFieldCPF.getText().equals("000.000.0000-00")) {
+                    String cpf = jFormattedTextFieldCPF.getText();
+                    cpf = cpf.replace(".", "");
+                    cpf = cpf.replace("-", "");
+                    if (!Util.validaCPF(cpf)) {
+                        JOptionPane.showMessageDialog(rootPane, "CPF inválido!");
+                        jFormattedTextFieldCPF.setBackground(new Color(247, 169, 157));
+                        erros++;
+                    } else {
+                        jFormattedTextFieldCPF.setBackground(Color.white);
+                    }
+                } else {
+                    jFormattedTextFieldCPF.setBackground(Color.white);
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "CPF inválido!");
+                jFormattedTextFieldCPF.setBackground(new Color(247, 169, 157));
+                erros++;
+            }
+        } else {
+            if (!jFormattedTextFieldCNPJ.getText().equals("  .   .   /    -  ")) {
+                if (!jFormattedTextFieldCNPJ.getText().equals("00.000.000/0000-00")) {
+                    String cnpj = jFormattedTextFieldCNPJ.getText();
+                    cnpj = cnpj.replace(".", "");
+                    cnpj = cnpj.replace("-", "");
+                    cnpj = cnpj.replace("/", "");
+                    if (!Util.validarCNPJ(cnpj)) {
+                        JOptionPane.showMessageDialog(rootPane, "CNPJ inválido!");
+                        jFormattedTextFieldCNPJ.setBackground(new Color(247, 169, 157));
+                        erros++;
+                    } else {
+                        jFormattedTextFieldCNPJ.setBackground(Color.white);
+                    }
+                } else {
+                    jFormattedTextFieldCNPJ.setBackground(Color.white);
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "CNPJ inválido!");
+                jFormattedTextFieldCNPJ.setBackground(new Color(247, 169, 157));
+                erros++;
+            }
+        }
+        if (tfComplemento.getText().equals("")) {
+            tfComplemento.setBackground(new Color(247, 169, 157));
+            erros++;
+        }
+        if (tfLogradouro.getText().equals("")) {
+            tfLogradouro.setBackground(new Color(247, 169, 157));
+            erros++;
+        }
+        if (tfNumero.getText().equals("")) {
+            tfNumero.setBackground(new Color(247, 169, 157));
+            erros++;
+        }
+        if (tfComplemento.getText().equals("")) {
+            tfComplemento.setBackground(new Color(247, 169, 157));
+            erros++;
+        }
+        if (tfBairro.getText().equals("")) {
+            tfBairro.setBackground(new Color(247, 169, 157));
+            erros++;
+        }
+        if (jFormattedTextFieldCEP.getText().equals("")) {
+            jFormattedTextFieldCEP.setBackground(new Color(247, 169, 157));
+            erros++;
+        }
+        if (jFormattedTextFieldTelefone.getText().equals("")) {
+            jFormattedTextFieldTelefone.setBackground(new Color(247, 169, 157));
+            erros++;
+        }
+        if (jFormattedTextFieldCelular.getText().equals("")) {
+            jFormattedTextFieldCelular.setBackground(new Color(247, 169, 157));
+            erros++;
+        }
+        if (tfEmail.getText().equals("")) {
+            tfEmail.setBackground(new Color(247, 169, 157));
+            erros++;
+        }
+        if (!validarData()) {
+            jFormattedTextFieldData.setBackground(new Color(247, 169, 157));
+            erros++;
+        }
+        if (erros != 0) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validarData() {
+        try {
+            new Util().stringToCalendar(jFormattedTextFieldData.getText());
+            return true;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Data invalida");
+            return false;
+        }
+    }
+
+    private void limparFormulario() {
+        tfCodigo.setText(null);
+        jFormattedTextFieldCelular.setText(null);
+        jFormattedTextFieldCelular.setBackground(Color.white);
+        jFormattedTextFieldCEP.setText(null);
+        jFormattedTextFieldCEP.setBackground(Color.white);
+        tfBairro.setText(null);
+        tfBairro.setBackground(Color.white);
+        tfComplemento.setText(null);
+        tfComplemento.setBackground(Color.white);
+        tfEmail.setText(null);
+        tfEmail.setBackground(Color.white);
+        tfLogradouro.setText(null);
+        tfLogradouro.setBackground(Color.white);
+        tfNome.setText(null);
+        tfNome.setBackground(Color.white);
+        tfNumero.setText(null);
+        tfNumero.setBackground(Color.white);
+        jFormattedTextFieldTelefone.setText(null);
+        jFormattedTextFieldTelefone.setBackground(Color.white);
+        jFormattedTextFieldData.setText(null);
+        jFormattedTextFieldCNPJ.setText(null);
+        jFormattedTextFieldCNPJ.setBackground(Color.white);
+        jFormattedTextFieldCPF.setText(null);
+        jFormattedTextFieldCPF.setBackground(Color.white);
+
+    }
+
+    private Cidade obterCidade() {
+        DaoCidade dC = new DaoCidade();
+
+        List<Cidade> cidades = dC.listarComFiltro("nome='" + jComboBoxCidade.getSelectedItem().toString().trim() + "'");
+        if (!cidades.isEmpty()) {
+            return cidades.get(0);
+        }
+        return null;
+    }
+
+    private void abrirJanelaPesquisaClientes() {
+        JDialog jd = new JDialogPesquisaClienteSimples(null, true);
+        jd.setLocationRelativeTo(null);
+        jd.setVisible(true);
+        Cliente cliente = (Cliente) Data.hash.get("cliente");
+        if (cliente == null) {
+            return;
+        }
+        Data.hash.remove("cliente");
+        preencherFormularioComDados(cliente);
+    }
+
+    private void preencherFormularioComDados(Cliente cliente) {
+        tfCodigo.setText(String.valueOf(cliente.getId()));
+        if (cliente.getTipo().equals("Fisico")) {
+            jRadioButtonFisico.setSelected(true);
+            jFormattedTextFieldCPF.setVisible(true);
+            jFormattedTextFieldCNPJ.setVisible(false);
+            jFormattedTextFieldCPF.setText(cliente.getCpf());
+        } else {
+            jRadioButtonJuridico.setSelected(true);
+            jFormattedTextFieldCPF.setVisible(false);
+            jFormattedTextFieldCNPJ.setVisible(true);
+            jFormattedTextFieldCNPJ.setText(cliente.getCnpj());
+        }
+        tfNome.setText(cliente.getNome());
+        jFormattedTextFieldData.setText(new Util().calendarToString(cliente.getDataNascimento()));
+        jTextFieldCodigoEndereco.setText(String.valueOf(cliente.getEndereco().getId()));
+        if (cliente.getEndereco().getTipo().equals("Rua")) {
+            cbTipoLogradouro.setSelectedIndex(0);
+        } else if (cliente.getEndereco().getTipo().equals("Avenida")) {
+            cbTipoLogradouro.setSelectedIndex(1);
+        } else {
+            cbTipoLogradouro.setSelectedIndex(2);
+        }
+        tfLogradouro.setText(cliente.getEndereco().getLogradouro());
+        tfNumero.setText(cliente.getEndereco().getNumero());
+        tfComplemento.setText(cliente.getEndereco().getComplemento());
+        tfBairro.setText(cliente.getEndereco().getBairro());
+        jFormattedTextFieldCEP.setText(cliente.getEndereco().getCep());
+        jFormattedTextFieldTelefone.setText(cliente.getEndereco().getTelefone());
+        jFormattedTextFieldCelular.setText(cliente.getEndereco().getCelular());
+        tfEmail.setText(cliente.getEndereco().getEmail());
+
+    }
+
+    private void abrirJanelaADDCidade() {
+        Util.abrirJDialogCentralizado(new JDialogCadastroCidade(null, true));
+    }
+
+    private void deletarCliente() {
+        if (new Util().validarID(tfCodigo.getText())) {
+            try {
+                TransactionManager.beginTransaction();
+                Integer id = Integer.parseInt(tfCodigo.getText());
+                DaoCliente dE = new DaoCliente();
+                Cliente cliente = dE.retrive(id);
+                dE.delete(cliente);
+                TransactionManager.commit();
+                limparFormulario();
+                JOptionPane.showMessageDialog(rootPane, "Excluido com sucesso!");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, "Erro ao excluir!");
+                TransactionManager.rollback();
+            }
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Selecione um item para excluir!");
+        }
+    }
 }
