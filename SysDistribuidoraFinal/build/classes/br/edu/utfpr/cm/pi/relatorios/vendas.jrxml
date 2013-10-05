@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="vendas" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.2418426461183105"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     cliente.`id` AS cliente_id,
+     cliente.`cnpj` AS cliente_cnpj,
+     cliente.`cpf` AS cliente_cpf,
+     cliente.`dataNascimento` AS cliente_dataNascimento,
+     cliente.`nome` AS cliente_nome,
+     cliente.`tipo` AS cliente_tipo,
+     cliente.`endereco_id` AS cliente_endereco_id,
+     endereco.`id` AS endereco_id,
+     endereco.`bairro` AS endereco_bairro,
+     endereco.`celular` AS endereco_celular,
+     endereco.`cep` AS endereco_cep,
+     endereco.`complemento` AS endereco_complemento,
+     endereco.`email` AS endereco_email,
+     endereco.`logradouro` AS endereco_logradouro,
+     endereco.`numero` AS endereco_numero,
+     endereco.`telefone` AS endereco_telefone,
+     endereco.`tipo` AS endereco_tipo,
+     endereco.`cidade_id` AS endereco_cidade_id,
+     estado.`id` AS estado_id,
+     estado.`nome` AS estado_nome,
+     estado.`sigla` AS estado_sigla,
+     cidade.`id` AS cidade_id,
+     cidade.`nome` AS cidade_nome,
+     cidade.`estado_id` AS cidade_estado_id,
+     ordemvenda.`id` AS ordemvenda_id,
+     ordemvenda.`dataVencimento` AS ordemvenda_dataVencimento,
+     ordemvenda.`dataVenda` AS ordemvenda_dataVenda,
+     ordemvenda.`cliente_id` AS ordemvenda_cliente_id,
+     ordemvenda_produto.`OrdemVenda_id` AS ordemvenda_produto_OrdemVenda_id,
+     ordemvenda_produto.`produtosVenda_id` AS ordemvenda_produto_produtosVenda_id,
+     produto.`id` AS produto_id,
+     produto.`nome` AS produto_nome,
+     produto.`quantidade` AS produto_quantidade,
+     produto.`valor` AS produto_valor,
+     produto.`grupoDeProduto_id` AS produto_grupoDeProduto_id
+FROM
+     `endereco` endereco INNER JOIN `cliente` cliente ON endereco.`id` = cliente.`endereco_id`
+     INNER JOIN `cidade` cidade ON endereco.`cidade_id` = cidade.`id`
+     INNER JOIN `estado` estado ON cidade.`estado_id` = estado.`id`
+     INNER JOIN `ordemvenda` ordemvenda ON cliente.`id` = ordemvenda.`cliente_id`
+     INNER JOIN `ordemvenda_produto` ordemvenda_produto ON ordemvenda.`id` = ordemvenda_produto.`OrdemVenda_id`
+     INNER JOIN `produto` produto ON ordemvenda_produto.`produtosVenda_id` = produto.`id`]]>
+	</queryString>
+	<field name="cliente_id" class="java.lang.Integer"/>
+	<field name="cliente_cnpj" class="java.lang.String"/>
+	<field name="cliente_cpf" class="java.lang.String"/>
+	<field name="cliente_dataNascimento" class="java.sql.Date"/>
+	<field name="cliente_nome" class="java.lang.String"/>
+	<field name="cliente_tipo" class="java.lang.String"/>
+	<field name="cliente_endereco_id" class="java.lang.Integer"/>
+	<field name="endereco_id" class="java.lang.Integer"/>
+	<field name="endereco_bairro" class="java.lang.String"/>
+	<field name="endereco_celular" class="java.lang.String"/>
+	<field name="endereco_cep" class="java.lang.String"/>
+	<field name="endereco_complemento" class="java.lang.String"/>
+	<field name="endereco_email" class="java.lang.String"/>
+	<field name="endereco_logradouro" class="java.lang.String"/>
+	<field name="endereco_numero" class="java.lang.String"/>
+	<field name="endereco_telefone" class="java.lang.String"/>
+	<field name="endereco_tipo" class="java.lang.String"/>
+	<field name="endereco_cidade_id" class="java.lang.Integer"/>
+	<field name="estado_id" class="java.lang.Integer"/>
+	<field name="estado_nome" class="java.lang.String"/>
+	<field name="estado_sigla" class="java.lang.String"/>
+	<field name="cidade_id" class="java.lang.Integer"/>
+	<field name="cidade_nome" class="java.lang.String"/>
+	<field name="cidade_estado_id" class="java.lang.Integer"/>
+	<field name="ordemvenda_id" class="java.lang.Integer"/>
+	<field name="ordemvenda_dataVencimento" class="java.sql.Date"/>
+	<field name="ordemvenda_dataVenda" class="java.sql.Date"/>
+	<field name="ordemvenda_cliente_id" class="java.lang.Integer"/>
+	<field name="ordemvenda_produto_OrdemVenda_id" class="java.lang.Integer"/>
+	<field name="ordemvenda_produto_produtosVenda_id" class="java.lang.Integer"/>
+	<field name="produto_id" class="java.lang.Integer"/>
+	<field name="produto_nome" class="java.lang.String"/>
+	<field name="produto_quantidade" class="java.lang.Integer"/>
+	<field name="produto_valor" class="java.lang.Double"/>
+	<field name="produto_grupoDeProduto_id" class="java.lang.Integer"/>
+	<group name="ordemvenda_id">
+		<groupExpression><![CDATA[$F{ordemvenda_id}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="79"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Venda - Duff Beer Distribuidora]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="44" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[COD.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="44" y="0" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CLIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="144" y="0" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CPF/CNPJ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="244" y="2" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA DA VENDA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="344" y="2" width="111" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA VENCIMENTO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="2" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TELEFONE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="7" y="20" width="548" height="1"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="142" splitType="Stretch">
+			<textField>
+				<reportElement x="44" y="1" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cliente_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="1" width="44" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ordemvenda_id}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="144" y="1" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cliente_cpf}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="144" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cliente_cnpj}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="44" y="21" width="200" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{produto_nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="21" width="44" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Produto:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="293" y="21" width="51" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{produto_valor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="244" y="20" width="49" height="21"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor R$:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="409" y="21" width="120" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{produto_quantidade}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="344" y="20" width="65" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quantidade:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="244" y="1" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ordemvenda_dataVenda}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="344" y="1" width="111" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ordemvenda_dataVencimento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{endereco_telefone}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="28" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="0" y="8" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="435" y="8" width="64" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="499" y="8" width="56" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["de" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
